@@ -1,0 +1,57 @@
+﻿@model InvestNetwork.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+@section Header{
+    <h2>ViewBag.Title</h2>
+}
+
+@section Footer{
+    Copyright @DateTime.Now.Year
+}
+
+<section class="main">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>LoginModel</legend>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Email)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Password)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.RememberMe)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.RememberMe)
+                @Html.ValidationMessageFor(model => model.RememberMe)
+            </div>
+
+            <p>
+                <input type="submit" value="Войти" />
+            </p>
+        </fieldset>
+    }
+</section>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

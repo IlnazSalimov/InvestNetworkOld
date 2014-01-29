@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="InvestNetworkModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="InvestNetworkModelStoreContainer">
+          <EntitySet Name="Cities" EntityType="InvestNetworkModel.Store.Cities" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Countries" EntityType="InvestNetworkModel.Store.Countries" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Regions" EntityType="InvestNetworkModel.Store.Regions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Roles" EntityType="InvestNetworkModel.Store.Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="InvestNetworkModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__Cities__RegionID__3B75D760" Association="InvestNetworkModel.Store.FK__Cities__RegionID__3B75D760">
+            <End Role="Regions" EntitySet="Regions" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Regions__Country__38996AB5" Association="InvestNetworkModel.Store.FK__Regions__Country__38996AB5">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Regions" EntitySet="Regions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__RoleId__1CF15040" Association="InvestNetworkModel.Store.FK__Users__RoleId__1CF15040">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ISO" Type="varchar" MaxLength="50" />
+          <Property Name="CityName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="RegionID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ISO" Type="varchar" MaxLength="50" />
+          <Property Name="CountryName" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Regions">
+          <Key>
+            <PropertyRef Name="RegionID" />
+          </Key>
+          <Property Name="RegionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ISO" Type="varchar" MaxLength="50" />
+          <Property Name="RegionName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="FullName" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="RoleId" Type="int" />
+        </EntityType>
+        <Association Name="FK__Cities__RegionID__3B75D760">
+          <End Role="Regions" Type="InvestNetworkModel.Store.Regions" Multiplicity="1" />
+          <End Role="Cities" Type="InvestNetworkModel.Store.Cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regions">
+              <PropertyRef Name="RegionID" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Regions__Country__38996AB5">
+          <End Role="Countries" Type="InvestNetworkModel.Store.Countries" Multiplicity="1" />
+          <End Role="Regions" Type="InvestNetworkModel.Store.Regions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Regions">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__RoleId__1CF15040">
+          <End Role="Roles" Type="InvestNetworkModel.Store.Roles" Multiplicity="0..1" />
+          <End Role="Users" Type="InvestNetworkModel.Store.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InvestNetworkModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="InvestNetworkEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="InvestNetworkModel.City" />
+          <EntitySet Name="Countries" EntityType="InvestNetworkModel.Country" />
+          <EntitySet Name="Regions" EntityType="InvestNetworkModel.Region" />
+          <EntitySet Name="Roles" EntityType="InvestNetworkModel.Role" />
+          <EntitySet Name="Users" EntityType="InvestNetworkModel.User" />
+          <AssociationSet Name="FK__Cities__RegionID__3B75D760" Association="InvestNetworkModel.FK__Cities__RegionID__3B75D760">
+            <End Role="Regions" EntitySet="Regions" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Regions__Country__38996AB5" Association="InvestNetworkModel.FK__Regions__Country__38996AB5">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Regions" EntitySet="Regions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__RoleId__1CF15040" Association="InvestNetworkModel.FK__Users__RoleId__1CF15040">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ISO" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CityName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="RegionID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Region" Relationship="InvestNetworkModel.FK__Cities__RegionID__3B75D760" FromRole="Cities" ToRole="Regions" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ISO" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Regions" Relationship="InvestNetworkModel.FK__Regions__Country__38996AB5" FromRole="Countries" ToRole="Regions" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="RegionID" />
+          </Key>
+          <Property Name="RegionID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ISO" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RegionName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cities" Relationship="InvestNetworkModel.FK__Cities__RegionID__3B75D760" FromRole="Regions" ToRole="Cities" />
+          <NavigationProperty Name="Country" Relationship="InvestNetworkModel.FK__Regions__Country__38996AB5" FromRole="Regions" ToRole="Countries" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Users" Relationship="InvestNetworkModel.FK__Users__RoleId__1CF15040" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="RoleId" Type="Int32" />
+          <NavigationProperty Name="Role" Relationship="InvestNetworkModel.FK__Users__RoleId__1CF15040" FromRole="Users" ToRole="Roles" />
+        </EntityType>
+        <Association Name="FK__Cities__RegionID__3B75D760">
+          <End Role="Regions" Type="InvestNetworkModel.Region" Multiplicity="1" />
+          <End Role="Cities" Type="InvestNetworkModel.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regions">
+              <PropertyRef Name="RegionID" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Regions__Country__38996AB5">
+          <End Role="Countries" Type="InvestNetworkModel.Country" Multiplicity="1" />
+          <End Role="Regions" Type="InvestNetworkModel.Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Regions">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__RoleId__1CF15040">
+          <End Role="Roles" Type="InvestNetworkModel.Role" Multiplicity="0..1" />
+          <End Role="Users" Type="InvestNetworkModel.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InvestNetworkModelStoreContainer" CdmEntityContainer="InvestNetworkEntities">
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="InvestNetworkModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="ISO" ColumnName="ISO" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="InvestNetworkModel.Country">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="ISO" ColumnName="ISO" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regions">
+            <EntityTypeMapping TypeName="InvestNetworkModel.Region">
+              <MappingFragment StoreEntitySet="Regions">
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="ISO" ColumnName="ISO" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="InvestNetworkModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="InvestNetworkModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

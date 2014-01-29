@@ -1,0 +1,34 @@
+﻿@using InvestNetwork.Models;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+@section Header{
+    <h2>Index</h2>
+}
+
+@section Footer{
+    Copyright @DateTime.Now.Year
+}
+
+<div class="main">
+    This is the main content.
+    @Html.ActionLink("Create", "Create", "Account")
+
+        @foreach(var u in (List<User>)ViewData["Users"]) {
+        <ul>
+            <li>
+                @u.FullName
+            </li>
+            <li>
+                @u.Password
+            </li>
+            <li>
+                @u.Id
+            </li>
+        </ul>
+        <hr />
+        }
+</div>
