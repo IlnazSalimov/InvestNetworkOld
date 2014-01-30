@@ -55,3 +55,12 @@ SELECT m.iso, m.local_name, r.RegionID
 FROM meta_location m JOIN Regions r
 ON m.in_location = r.id
 WHERE m.type = 'CI'
+
+---------------------------------------------
+-- Леха 30.01.2014
+---------------------------------------------
+CREATE UNIQUE INDEX idxCityID ON Cities (CityID);
+CREATE UNIQUE INDEX idxCountryID ON Countries (CountryID);
+CREATE UNIQUE INDEX idxRegionID ON Regions (RegionID);
+CREATE UNIQUE INDEX idxRoleID ON Roles (Id);
+CREATE UNIQUE INDEX idxUserID ON Users (Id);
