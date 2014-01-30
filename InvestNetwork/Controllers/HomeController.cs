@@ -34,7 +34,7 @@ namespace InvestNetwork.Controllers
 
         public ActionResult GetCities()
         {
-            var list = _cityRepository.GetAll();
+            var list = _cityRepository.GetAll().Where(s => s.CityID == 5);
             return View(list);
         }
     }
