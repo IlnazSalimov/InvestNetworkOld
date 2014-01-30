@@ -13,9 +13,12 @@ namespace InvestNetwork.Controllers
         //
         // GET: /Home/
         private readonly IUserRepository _userRepository;
-        public HomeController(IUserRepository userRepository)
+        private readonly ICityRepository _cityRepository;
+        public HomeController(IUserRepository userRepository, ICityRepository cityRepository)
         {
             _userRepository = userRepository;
+            _cityRepository = cityRepository;
+
         }
 
         [Authorize]
@@ -29,5 +32,10 @@ namespace InvestNetwork.Controllers
             return View();
         }
 
+        public ActionResult GetCities()
+        {
+            var list = _cityRepository.GetAll();
+            return View(list);
+        }
     }
 }

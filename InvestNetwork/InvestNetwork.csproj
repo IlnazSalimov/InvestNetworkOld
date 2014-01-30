@@ -142,14 +142,16 @@
     <Compile Include="Models\Region.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Repository\IRepository.cs" />
-    <Compile Include="Models\Repository\IRoleRepository.cs" />
-    <Compile Include="Models\Repository\IUserRepository.cs" />
-    <Compile Include="Models\Repository\Repository.cs">
+    <Compile Include="Models\Repository\Implementations\CityRepository.cs" />
+    <Compile Include="Models\Repository\Interfaces\ICityRepository.cs" />
+    <Compile Include="Models\Repository\Interfaces\IRepository.cs" />
+    <Compile Include="Models\Repository\Interfaces\IRoleRepository.cs" />
+    <Compile Include="Models\Repository\Interfaces\IUserRepository.cs" />
+    <Compile Include="Models\Repository\Implementations\Repository.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\Repository\RoleRepository.cs" />
-    <Compile Include="Models\Repository\UserRepository.cs" />
+    <Compile Include="Models\Repository\Implementations\RoleRepository.cs" />
+    <Compile Include="Models\Repository\Implementations\UserRepository.cs" />
     <Compile Include="Models\Role.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
