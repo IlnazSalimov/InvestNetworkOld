@@ -64,3 +64,30 @@ CREATE UNIQUE INDEX idxCountryID ON Countries (CountryID);
 CREATE UNIQUE INDEX idxRegionID ON Regions (RegionID);
 CREATE UNIQUE INDEX idxRoleID ON Roles (Id);
 CREATE UNIQUE INDEX idxUserID ON Users (Id);
+
+
+---------------------------------------------
+-- Ильназ 12.02.2014
+---------------------------------------------
+CREATE TABLE Scopes (
+	ScopeID INT IDENTITY (1, 1) PRIMARY KEY,
+	Title VARCHAR (150) NOT NULL
+)
+GO
+
+---------------------------------------------
+-- Ильназ 12.02.2014
+---------------------------------------------
+CREATE TABLE Projects (
+	ProjectID INT IDENTITY (1, 1) PRIMARY KEY,
+	AuthorID INT NOT NULL REFERENCES Users (Id),
+	LocationCityID INT NOT NULL REFERENCES Cities (CityID),
+	Name VARCHAR (150) NOT NULL,
+	ScopeID INT NOT NULL REFERENCES Scopes (ScopeID),
+	Description NVARCHAR(MAX) NULL,
+	LinkToBusinessPlan VARCHAR(300) NOT NULL,
+	LinkToFinancialPlan VARCHAR(300) NOT NULL,
+	LinkToVideoPresentation VARCHAR(300) NULL,
+	LinkToGuaranteeLetter VARCHAR(300) NULL
+)
+GO

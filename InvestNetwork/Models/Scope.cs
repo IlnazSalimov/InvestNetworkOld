@@ -12,14 +12,16 @@ namespace InvestNetwork.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Scope
     {
-        public int Id { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string FullName { get; set; }
-        public Nullable<int> RoleId { get; set; }
+        public Scope()
+        {
+            this.Projects = new HashSet<Project>();
+        }
     
-        public virtual Role Role { get; set; }
+        public int ScopeID { get; set; }
+        public string Title { get; set; }
+    
+        public virtual ICollection<Project> Projects { get; set; }
     }
 }

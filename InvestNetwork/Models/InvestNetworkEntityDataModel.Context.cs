@@ -31,10 +31,14 @@ namespace InvestNetwork.Models
         public DbSet<Region> Regions { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<Scope> Scopes { get; set; }
+        public DbSet<meta_location> meta_location { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
 
         public new IDbSet<TEntity> Set<TEntity>() where TEntity : class
         {
-            return base.Set<TEntity>();
+            throw new NotImplementedException();
         }
     }
 }

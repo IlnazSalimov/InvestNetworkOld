@@ -12,14 +12,15 @@ namespace InvestNetwork.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class meta_location
     {
-        public int Id { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string FullName { get; set; }
-        public Nullable<int> RoleId { get; set; }
-    
-        public virtual Role Role { get; set; }
+        public int id { get; set; }
+        public string iso { get; set; }
+        public string local_name { get; set; }
+        public string type { get; set; }
+        public Nullable<int> in_location { get; set; }
+        public Nullable<decimal> geo_lat { get; set; }
+        public Nullable<decimal> geo_lng { get; set; }
+        public string db_id { get; set; }
     }
 }

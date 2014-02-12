@@ -4,16 +4,24 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="InvestNetworkModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="InvestNetworkModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="InvestNetworkModelStoreContainer">
           <EntitySet Name="Cities" EntityType="InvestNetworkModel.Store.Cities" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Countries" EntityType="InvestNetworkModel.Store.Countries" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="meta_location" EntityType="InvestNetworkModel.Store.meta_location" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Projects" EntityType="InvestNetworkModel.Store.Projects" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Regions" EntityType="InvestNetworkModel.Store.Regions" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Roles" EntityType="InvestNetworkModel.Store.Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Scopes" EntityType="InvestNetworkModel.Store.Scopes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="InvestNetworkModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Users" EntityType="InvestNetworkModel.Store.Users" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK__Cities__RegionID__3B75D760" Association="InvestNetworkModel.Store.FK__Cities__RegionID__3B75D760">
             <End Role="Regions" EntitySet="Regions" />
             <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projects__ScopeI__4D94879B" Association="InvestNetworkModel.Store.FK__Projects__ScopeI__4D94879B">
+            <End Role="Scopes" EntitySet="Scopes" />
+            <End Role="Projects" EntitySet="Projects" />
           </AssociationSet>
           <AssociationSet Name="FK__Regions__Country__38996AB5" Association="InvestNetworkModel.Store.FK__Regions__Country__38996AB5">
             <End Role="Countries" EntitySet="Countries" />
@@ -41,6 +49,34 @@
           <Property Name="ISO" Type="varchar" MaxLength="50" />
           <Property Name="CountryName" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
+        <EntityType Name="meta_location">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="iso" Type="varchar" MaxLength="50" />
+          <Property Name="local_name" Type="varchar" MaxLength="255" />
+          <Property Name="type" Type="char" MaxLength="2" />
+          <Property Name="in_location" Type="int" />
+          <Property Name="geo_lat" Type="decimal" Scale="11" />
+          <Property Name="geo_lng" Type="decimal" Scale="11" />
+          <Property Name="db_id" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AuthorID" Type="int" Nullable="false" />
+          <Property Name="LocationCityID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="ScopeID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="LinkToBusinessPlan" Type="varchar" Nullable="false" MaxLength="300" />
+          <Property Name="LinkToFinancialPlan" Type="varchar" Nullable="false" MaxLength="300" />
+          <Property Name="LinkToVideoPresentation" Type="varchar" MaxLength="300" />
+          <Property Name="LinkToGuaranteeLetter" Type="varchar" MaxLength="300" />
+        </EntityType>
         <EntityType Name="Regions">
           <Key>
             <PropertyRef Name="RegionID" />
@@ -56,6 +92,23 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Scopes">
+          <Key>
+            <PropertyRef Name="ScopeID" />
+          </Key>
+          <Property Name="ScopeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -76,6 +129,18 @@
             </Principal>
             <Dependent Role="Cities">
               <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projects__ScopeI__4D94879B">
+          <End Role="Scopes" Type="InvestNetworkModel.Store.Scopes" Multiplicity="1" />
+          <End Role="Projects" Type="InvestNetworkModel.Store.Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Scopes">
+              <PropertyRef Name="ScopeID" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="ScopeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -103,8 +168,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="InvestNetworkModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -126,6 +190,14 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="Projects" EntityType="InvestNetworkModel.Project" />
+          <EntitySet Name="Scopes" EntityType="InvestNetworkModel.Scope" />
+          <AssociationSet Name="FK__Projects__ScopeI__4D94879B" Association="InvestNetworkModel.FK__Projects__ScopeI__4D94879B">
+            <End Role="Scope" EntitySet="Scopes" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <EntitySet Name="meta_location" EntityType="InvestNetworkModel.meta_location" />
+          <EntitySet Name="sysdiagrams" EntityType="InvestNetworkModel.sysdiagram" />
         </EntityContainer>
         <EntityType Name="City">
           <Key>
@@ -212,6 +284,65 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Type="Int32" Name="ProjectID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="AuthorID" Nullable="false" />
+          <Property Type="Int32" Name="LocationCityID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ScopeID" Nullable="false" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LinkToBusinessPlan" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LinkToFinancialPlan" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LinkToVideoPresentation" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LinkToGuaranteeLetter" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Scope" Relationship="InvestNetworkModel.FK__Projects__ScopeI__4D94879B" FromRole="Project" ToRole="Scope" />
+        </EntityType>
+        <EntityType Name="Scope">
+          <Key>
+            <PropertyRef Name="ScopeID" />
+          </Key>
+          <Property Type="Int32" Name="ScopeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Projects" Relationship="InvestNetworkModel.FK__Projects__ScopeI__4D94879B" FromRole="Scope" ToRole="Project" />
+        </EntityType>
+        <Association Name="FK__Projects__ScopeI__4D94879B">
+          <End Type="InvestNetworkModel.Scope" Role="Scope" Multiplicity="1" />
+          <End Type="InvestNetworkModel.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Scope">
+              <PropertyRef Name="ScopeID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="ScopeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="meta_location">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="iso" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="local_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="type" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="in_location" />
+          <Property Type="Decimal" Name="geo_lat" Precision="18" Scale="11" />
+          <Property Type="Decimal" Name="geo_lng" Precision="18" Scale="11" />
+          <Property Type="String" Name="db_id" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="principal_id" Nullable="false" />
+          <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="version" />
+          <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -263,6 +394,55 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="InvestNetworkModel.Project">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="LinkToGuaranteeLetter" ColumnName="LinkToGuaranteeLetter" />
+                <ScalarProperty Name="LinkToVideoPresentation" ColumnName="LinkToVideoPresentation" />
+                <ScalarProperty Name="LinkToFinancialPlan" ColumnName="LinkToFinancialPlan" />
+                <ScalarProperty Name="LinkToBusinessPlan" ColumnName="LinkToBusinessPlan" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ScopeID" ColumnName="ScopeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LocationCityID" ColumnName="LocationCityID" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Scopes">
+            <EntityTypeMapping TypeName="InvestNetworkModel.Scope">
+              <MappingFragment StoreEntitySet="Scopes">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ScopeID" ColumnName="ScopeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="meta_location">
+            <EntityTypeMapping TypeName="InvestNetworkModel.meta_location">
+              <MappingFragment StoreEntitySet="meta_location">
+                <ScalarProperty Name="db_id" ColumnName="db_id" />
+                <ScalarProperty Name="geo_lng" ColumnName="geo_lng" />
+                <ScalarProperty Name="geo_lat" ColumnName="geo_lat" />
+                <ScalarProperty Name="in_location" ColumnName="in_location" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="local_name" ColumnName="local_name" />
+                <ScalarProperty Name="iso" ColumnName="iso" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="InvestNetworkModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

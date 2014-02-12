@@ -31,7 +31,8 @@ namespace InvestNetwork.Controllers
             return View();
         }
 
-        [HttpPost]
+        //TODO: Нужно создать модели-витрины где-нибудь в отдельной папке.
+        /*[HttpPost]
         public ActionResult SignUp(RegisterModel model)
         {
             if (ModelState.IsValid)
@@ -42,7 +43,7 @@ namespace InvestNetwork.Controllers
                 return RedirectToAction("Index", "Home");
             }
             return View(model);
-        }
+        }*/
 
         /*public ActionResult SetAdminRole()
         {
@@ -62,7 +63,9 @@ namespace InvestNetwork.Controllers
             return View();
         }
 
-        [HttpPost]
+
+        //TODO: Нужно создать модели-витрины где-нибудь в отдельной папке.
+        /*[HttpPost]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
             if (ModelState.IsValid)
@@ -89,7 +92,7 @@ namespace InvestNetwork.Controllers
             }
 
             return View(model);
-        }
+        }*/
 
         public ActionResult Logout()
         {

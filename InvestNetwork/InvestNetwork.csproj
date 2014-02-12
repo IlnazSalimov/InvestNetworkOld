@@ -115,6 +115,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -139,11 +140,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InvestNetworkEntityDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\meta_location.cs">
+      <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Project.cs">
+      <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Region.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Repository\Implementations\CityRepository.cs" />
+    <Compile Include="Models\Repository\Implementations\ProjectRepository.cs" />
     <Compile Include="Models\Repository\Interfaces\ICityRepository.cs" />
+    <Compile Include="Models\Repository\Interfaces\IProjectRepository.cs" />
     <Compile Include="Models\Repository\Interfaces\IRepository.cs" />
     <Compile Include="Models\Repository\Interfaces\IRoleRepository.cs" />
     <Compile Include="Models\Repository\Interfaces\IUserRepository.cs" />
@@ -153,6 +162,12 @@
     <Compile Include="Models\Repository\Implementations\RoleRepository.cs" />
     <Compile Include="Models\Repository\Implementations\UserRepository.cs" />
     <Compile Include="Models\Role.cs">
+      <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Scope.cs">
+      <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
@@ -226,6 +241,9 @@
       <DependentUpon>InvestNetworkEntityDataModel.edmx</DependentUpon>
       <LastGenOutput>InvestNetworkEntityDataModel.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClassDiagram1.cd" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

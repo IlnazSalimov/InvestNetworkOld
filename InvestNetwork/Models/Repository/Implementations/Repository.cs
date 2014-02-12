@@ -25,7 +25,6 @@ namespace InvestNetwork.Models
         public Repository(InvestNetworkEntities context)
         {
             this.dataContext = context;
-
         }
 
         public IQueryable<TEntity> GetAll()

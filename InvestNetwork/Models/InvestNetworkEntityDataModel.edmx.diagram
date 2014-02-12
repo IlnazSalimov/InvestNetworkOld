@@ -13,6 +13,11 @@
         <AssociationConnector Association="InvestNetworkModel.FK__Cities__RegionID__3B75D760" ManuallyRouted="false" />
         <AssociationConnector Association="InvestNetworkModel.FK__Regions__Country__38996AB5" ManuallyRouted="false" />
         <AssociationConnector Association="InvestNetworkModel.FK__Users__RoleId__1CF15040" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="InvestNetworkModel.Project" Width="1.5" PointX="6.25" PointY="5.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="InvestNetworkModel.Scope" Width="1.5" PointX="3.125" PointY="7.625" IsExpanded="false" />
+        <AssociationConnector Association="InvestNetworkModel.FK__Projects__ScopeI__4D94879B" />
+        <EntityTypeShape EntityType="InvestNetworkModel.meta_location" Width="1.5" PointX="0.875" PointY="7.25" />
+        <EntityTypeShape EntityType="InvestNetworkModel.sysdiagram" Width="1.5" PointX="6.625" PointY="13" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

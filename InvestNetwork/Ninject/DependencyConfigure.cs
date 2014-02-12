@@ -18,6 +18,7 @@ namespace InvestNetwork.Ninject
             kernel.Bind(typeof(IRepository<>)).To(typeof(Repository<>));
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<ICityRepository>().To<CityRepository>();
+            kernel.Bind<IProjectRepository>().To<ProjectRepository>();
             DependencyResolver.SetResolver(new CustomDependencyResolver(kernel));
         }
     }
