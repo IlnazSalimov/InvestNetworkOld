@@ -19,8 +19,21 @@ namespace InvestNetwork.Controllers
 
         public ActionResult Index()
         {
+            return View(_projectRepository.GetAll());
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Create(Project model)
+        {
+            _projectRepository.Insert(model);
+            _projectRepository.Save();
+            return View(model);
+        }
     }
 }

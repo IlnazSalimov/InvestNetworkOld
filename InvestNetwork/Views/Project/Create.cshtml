@@ -1,0 +1,96 @@
+﻿@model InvestNetwork.Models.Project
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Project</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AuthorID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AuthorID)
+            @Html.ValidationMessageFor(model => model.AuthorID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LocationCityID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LocationCityID)
+            @Html.ValidationMessageFor(model => model.LocationCityID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ScopeID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ScopeID)
+            @Html.ValidationMessageFor(model => model.ScopeID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LinkToBusinessPlan)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LinkToBusinessPlan)
+            @Html.ValidationMessageFor(model => model.LinkToBusinessPlan)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LinkToFinancialPlan)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LinkToFinancialPlan)
+            @Html.ValidationMessageFor(model => model.LinkToFinancialPlan)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LinkToVideoPresentation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LinkToVideoPresentation)
+            @Html.ValidationMessageFor(model => model.LinkToVideoPresentation)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LinkToGuaranteeLetter)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LinkToGuaranteeLetter)
+            @Html.ValidationMessageFor(model => model.LinkToGuaranteeLetter)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

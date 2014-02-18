@@ -140,9 +140,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InvestNetworkEntityDataModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\meta_location.cs">
-      <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Project.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -167,9 +164,6 @@
     <Compile Include="Models\Scope.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -182,6 +176,174 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
+    <Content Include="js\accordion\accordion.css" />
+    <Content Include="js\accordion\custom.js" />
+    <Content Include="js\iosslider\common.css" />
+    <Content Include="js\iosslider\_lib\jquery-1.4.min.js" />
+    <Content Include="js\iosslider\_lib\jquery-1.7.min.js" />
+    <Content Include="js\iosslider\_lib\jquery-1.8.2.min.js" />
+    <Content Include="js\iosslider\_lib\jquery.easing-1.3.js" />
+    <Content Include="js\iosslider\_src\custom.js" />
+    <Content Include="js\iosslider\_src\jquery.iosslider.js" />
+    <Content Include="js\iosslider\_src\jquery.iosslider.min.js" />
+    <Content Include="js\jcarousel\jquery-1.4.2.min.js" />
+    <Content Include="js\jcarousel\jquery.jcarousel.min.js" />
+    <Content Include="js\jcarousel\next-horizontal.png" />
+    <Content Include="js\jcarousel\prev-horizontal.png" />
+    <Content Include="js\jcarousel\skin.css" />
+    <Content Include="js\jcarousel\skin2.css" />
+    <Content Include="js\mainmenu\ddsmoothmenu.js" />
+    <Content Include="js\mainmenu\jquery-1.7.1.min.js" />
+    <Content Include="js\mainmenu\jquery.smint.js" />
+    <Content Include="js\mainmenu\scripts.js" />
+    <Content Include="js\mainmenu\selectnav.js" />
+    <Content Include="js\nivo-slider\arrows.png" />
+    <Content Include="js\nivo-slider\jquery.nivo.slider.js" />
+    <Content Include="js\nivo-slider\nivo-slider.css" />
+    <Content Include="js\portfolio\lib\jquery-1.9.0.min.js" />
+    <Content Include="js\portfolio\lib\jquery.mousewheel-3.0.6.pack.js" />
+    <Content Include="js\portfolio\source\blank.gif" />
+    <Content Include="js\portfolio\source\fancybox_loading.gif" />
+    <Content Include="js\portfolio\source\fancybox_overlay.png" />
+    <Content Include="js\portfolio\source\fancybox_sprite.png" />
+    <Content Include="js\portfolio\source\helpers\fancybox_buttons.png" />
+    <Content Include="js\portfolio\source\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="js\portfolio\source\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="js\portfolio\source\helpers\jquery.fancybox-media.js" />
+    <Content Include="js\portfolio\source\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="js\portfolio\source\helpers\jquery.fancybox-thumbs.js" />
+    <Content Include="js\portfolio\source\jquery.fancybox.css" />
+    <Content Include="js\portfolio\source\jquery.fancybox.js" />
+    <Content Include="js\portfolio\source\jquery.fancybox.pack.js" />
+    <Content Include="js\progressbar\progress.js" />
+    <Content Include="js\progressbar\ui.progress-bar.css" />
+    <Content Include="js\revolutionslider\css\fullwidth.css" />
+    <Content Include="js\revolutionslider\images\tiles\accordionswitch.png" />
+    <Content Include="js\revolutionslider\images\tiles\bgtile.jpg" />
+    <Content Include="js\revolutionslider\images\tiles\bullets_boxed.png" />
+    <Content Include="js\revolutionslider\images\tiles\bullets_round.png" />
+    <Content Include="js\revolutionslider\images\tiles\bullets_square.png" />
+    <Content Include="js\revolutionslider\images\tiles\buynow.png" />
+    <Content Include="js\revolutionslider\images\tiles\check.png" />
+    <Content Include="js\revolutionslider\images\tiles\dragnotch.png" />
+    <Content Include="js\revolutionslider\images\tiles\dragsliderbg.png" />
+    <Content Include="js\revolutionslider\images\tiles\logo.png" />
+    <Content Include="js\revolutionslider\images\tiles\minishadow.png" />
+    <Content Include="js\revolutionslider\images\tiles\minishadow2.png" />
+    <Content Include="js\revolutionslider\images\tiles\minishadow3.png" />
+    <Content Include="js\revolutionslider\images\tiles\preview1.png" />
+    <Content Include="js\revolutionslider\images\tiles\preview2.png" />
+    <Content Include="js\revolutionslider\images\tiles\preview3.png" />
+    <Content Include="js\revolutionslider\images\tiles\radio.png" />
+    <Content Include="js\revolutionslider\images\tiles\selectpreview.png" />
+    <Content Include="js\revolutionslider\images\tiles\shadow3_large.png" />
+    <Content Include="js\revolutionslider\images\tiles\sliderconfigheadline.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_3dch.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_3dcv.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_bg.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_boxes.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_cubic.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_curtainone.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_curtainthree.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_curtaintwo.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_custom.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_fade.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_flyin.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_mixed.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_papercut.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_slidedown.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_slideleft.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_slideright.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_slideup.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_slotfadehorizontal.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_slotfadevertical.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_slotslidehorizontal.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_slotslidevertical.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_slotzoomhorizontal.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_slotzoomvertical.png" />
+    <Content Include="js\revolutionslider\images\tiles\transition_turnoff.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\arrowleft.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\arrowright.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\arrow_large_left.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\arrow_large_right.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\arrow_left.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\arrow_left2.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\arrow_right.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\arrow_right2.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\black50.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\boxed_bgtile.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\bullet.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\bullets.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\bullets2.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\bullet_boxed.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\coloredbg.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\grain.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\large_left.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\large_right.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\loader.gif" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\loader2.gif" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\navigdots.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\navigdots_bgtile.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\shadow1.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\shadow2.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\shadow3.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\small_left.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\small_left_boxed.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\small_right.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\small_right_boxed.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\timer.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\timerdot.png" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\transparent.jpg" />
+    <Content Include="js\revolutionslider\rs-plugin\assets\white50.png" />
+    <Content Include="js\revolutionslider\rs-plugin\css\settings.css" />
+    <Content Include="js\revolutionslider\rs-plugin\images\decor_inside.png" />
+    <Content Include="js\revolutionslider\rs-plugin\images\decor_inside_white.png" />
+    <Content Include="js\revolutionslider\rs-plugin\images\decor_testimonial.png" />
+    <Content Include="js\revolutionslider\rs-plugin\images\gradient\g30.png" />
+    <Content Include="js\revolutionslider\rs-plugin\images\gradient\g40.png" />
+    <Content Include="js\revolutionslider\rs-plugin\js\jquery.themepunch.plugins.min.js" />
+    <Content Include="js\revolutionslider\rs-plugin\js\jquery.themepunch.revolution.js" />
+    <Content Include="js\revolutionslider\rs-plugin\js\jquery.themepunch.revolution.min.js" />
+    <Content Include="js\show-hide-plugin\showHide.js" />
+    <Content Include="js\style-switcher\color-switcher.css" />
+    <Content Include="js\style-switcher\colors-swi.png" />
+    <Content Include="js\style-switcher\jquery-1.js" />
+    <Content Include="js\style-switcher\styleselector.js" />
+    <Content Include="js\style-switcher\styleswitcher.js" />
+    <Content Include="js\tabs\tabs-style2.css" />
+    <Content Include="js\tabs\tabs-style2.js" />
+    <Content Include="js\tabs\tabs.css" />
+    <Content Include="js\tabs\tabs.js" />
+    <Content Include="js\tabs\tabwidget\tabwidget.css" />
+    <Content Include="js\tabs\tabwidget\tabwidget.js" />
+    <Content Include="js\universal\jquery.js" />
+    <Content Include="css\bg-patterns\pattern-default.css" />
+    <Content Include="css\bg-patterns\pattern-eight.css" />
+    <Content Include="css\bg-patterns\pattern-five.css" />
+    <Content Include="css\bg-patterns\pattern-four.css" />
+    <Content Include="css\bg-patterns\pattern-nine.css" />
+    <Content Include="css\bg-patterns\pattern-one.css" />
+    <Content Include="css\bg-patterns\pattern-seven.css" />
+    <Content Include="css\bg-patterns\pattern-six.css" />
+    <Content Include="css\bg-patterns\pattern-three.css" />
+    <Content Include="css\bg-patterns\pattern-two.css" />
+    <Content Include="css\colors\blue.css" />
+    <Content Include="css\colors\brown.css" />
+    <Content Include="css\colors\cyan.css" />
+    <Content Include="css\colors\green.css" />
+    <Content Include="css\colors\lightgreen.css" />
+    <Content Include="css\colors\orange.css" />
+    <Content Include="css\colors\pink.css" />
+    <Content Include="css\colors\purple.css" />
+    <Content Include="css\colors\red.css" />
+    <Content Include="css\font-awesome\css\font-awesome-ie7.css" />
+    <Content Include="css\font-awesome\css\font-awesome-ie7.min.css" />
+    <Content Include="css\font-awesome\css\font-awesome.css" />
+    <Content Include="css\font-awesome\css\font-awesome.min.css" />
+    <Content Include="css\font-awesome\font\fontawesome-webfont.svg" />
+    <Content Include="css\reset.css" />
+    <Content Include="css\responsive-leyouts.css" />
+    <Content Include="css\style.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -195,7 +357,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Styles\" />
+    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -244,6 +406,40 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Project\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\font-awesome\font\fontawesome-webfont.eot" />
+    <Content Include="css\font-awesome\font\fontawesome-webfont.ttf" />
+    <Content Include="css\font-awesome\font\fontawesome-webfont.woff" />
+    <Content Include="css\font-awesome\font\FontAwesome.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\font-awesome\less\bootstrap.less" />
+    <Content Include="css\font-awesome\less\core.less" />
+    <Content Include="css\font-awesome\less\extras.less" />
+    <Content Include="css\font-awesome\less\font-awesome-ie7.less" />
+    <Content Include="css\font-awesome\less\font-awesome.less" />
+    <Content Include="css\font-awesome\less\icons.less" />
+    <Content Include="css\font-awesome\less\mixins.less" />
+    <Content Include="css\font-awesome\less\path.less" />
+    <Content Include="css\font-awesome\less\variables.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\font-awesome\scss\font-awesome-ie7.scss" />
+    <Content Include="css\font-awesome\scss\font-awesome.scss" />
+    <Content Include="css\font-awesome\scss\_bootstrap.scss" />
+    <Content Include="css\font-awesome\scss\_core.scss" />
+    <Content Include="css\font-awesome\scss\_extras.scss" />
+    <Content Include="css\font-awesome\scss\_icons.scss" />
+    <Content Include="css\font-awesome\scss\_mixins.scss" />
+    <Content Include="css\font-awesome\scss\_path.scss" />
+    <Content Include="css\font-awesome\scss\_variables.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Project\Create.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

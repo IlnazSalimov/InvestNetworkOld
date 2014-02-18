@@ -8,12 +8,10 @@
         <EntityContainer Name="InvestNetworkModelStoreContainer">
           <EntitySet Name="Cities" EntityType="InvestNetworkModel.Store.Cities" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Countries" EntityType="InvestNetworkModel.Store.Countries" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="meta_location" EntityType="InvestNetworkModel.Store.meta_location" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Projects" EntityType="InvestNetworkModel.Store.Projects" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Regions" EntityType="InvestNetworkModel.Store.Regions" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Roles" EntityType="InvestNetworkModel.Store.Roles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Scopes" EntityType="InvestNetworkModel.Store.Scopes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="sysdiagrams" EntityType="InvestNetworkModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Users" EntityType="InvestNetworkModel.Store.Users" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK__Cities__RegionID__3B75D760" Association="InvestNetworkModel.Store.FK__Cities__RegionID__3B75D760">
             <End Role="Regions" EntitySet="Regions" />
@@ -37,30 +35,16 @@
             <PropertyRef Name="CityID" />
           </Key>
           <Property Name="CityID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="ISO" Type="varchar" MaxLength="50" />
           <Property Name="CityName" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="RegionID" Type="int" Nullable="false" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Countries">
           <Key>
             <PropertyRef Name="CountryID" />
           </Key>
           <Property Name="CountryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="ISO" Type="varchar" MaxLength="50" />
           <Property Name="CountryName" Type="varchar" Nullable="false" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="meta_location">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="iso" Type="varchar" MaxLength="50" />
-          <Property Name="local_name" Type="varchar" MaxLength="255" />
-          <Property Name="type" Type="char" MaxLength="2" />
-          <Property Name="in_location" Type="int" />
-          <Property Name="geo_lat" Type="decimal" Scale="11" />
-          <Property Name="geo_lng" Type="decimal" Scale="11" />
-          <Property Name="db_id" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Projects">
           <Key>
@@ -82,7 +66,6 @@
             <PropertyRef Name="RegionID" />
           </Key>
           <Property Name="RegionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="ISO" Type="varchar" MaxLength="50" />
           <Property Name="RegionName" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="CountryID" Type="int" Nullable="false" />
         </EntityType>
@@ -99,16 +82,6 @@
           </Key>
           <Property Name="ScopeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="150" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -173,19 +146,8 @@
     <edmx:ConceptualModels>
       <Schema Namespace="InvestNetworkModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="InvestNetworkEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Cities" EntityType="InvestNetworkModel.City" />
-          <EntitySet Name="Countries" EntityType="InvestNetworkModel.Country" />
-          <EntitySet Name="Regions" EntityType="InvestNetworkModel.Region" />
           <EntitySet Name="Roles" EntityType="InvestNetworkModel.Role" />
           <EntitySet Name="Users" EntityType="InvestNetworkModel.User" />
-          <AssociationSet Name="FK__Cities__RegionID__3B75D760" Association="InvestNetworkModel.FK__Cities__RegionID__3B75D760">
-            <End Role="Regions" EntitySet="Regions" />
-            <End Role="Cities" EntitySet="Cities" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Regions__Country__38996AB5" Association="InvestNetworkModel.FK__Regions__Country__38996AB5">
-            <End Role="Countries" EntitySet="Countries" />
-            <End Role="Regions" EntitySet="Regions" />
-          </AssociationSet>
           <AssociationSet Name="FK__Users__RoleId__1CF15040" Association="InvestNetworkModel.FK__Users__RoleId__1CF15040">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
@@ -196,39 +158,18 @@
             <End Role="Scope" EntitySet="Scopes" />
             <End Role="Project" EntitySet="Projects" />
           </AssociationSet>
-          <EntitySet Name="meta_location" EntityType="InvestNetworkModel.meta_location" />
-          <EntitySet Name="sysdiagrams" EntityType="InvestNetworkModel.sysdiagram" />
+          <EntitySet Name="Cities" EntityType="InvestNetworkModel.City" />
+          <EntitySet Name="Countries" EntityType="InvestNetworkModel.Country" />
+          <EntitySet Name="Regions" EntityType="InvestNetworkModel.Region" />
+          <AssociationSet Name="FK__Cities__RegionID__3B75D760" Association="InvestNetworkModel.FK__Cities__RegionID__3B75D760">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="City" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Regions__Country__38996AB5" Association="InvestNetworkModel.FK__Regions__Country__38996AB5">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Region" EntitySet="Regions" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="City">
-          <Key>
-            <PropertyRef Name="CityID" />
-          </Key>
-          <Property Name="CityID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="ISO" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="CityName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="RegionID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Region" Relationship="InvestNetworkModel.FK__Cities__RegionID__3B75D760" FromRole="Cities" ToRole="Regions" />
-        </EntityType>
-        <EntityType Name="Country">
-          <Key>
-            <PropertyRef Name="CountryID" />
-          </Key>
-          <Property Name="CountryID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="ISO" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Regions" Relationship="InvestNetworkModel.FK__Regions__Country__38996AB5" FromRole="Countries" ToRole="Regions" />
-        </EntityType>
-        <EntityType Name="Region">
-          <Key>
-            <PropertyRef Name="RegionID" />
-          </Key>
-          <Property Name="RegionID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="ISO" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="RegionName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="CountryID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cities" Relationship="InvestNetworkModel.FK__Cities__RegionID__3B75D760" FromRole="Regions" ToRole="Cities" />
-          <NavigationProperty Name="Country" Relationship="InvestNetworkModel.FK__Regions__Country__38996AB5" FromRole="Regions" ToRole="Countries" />
-        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
@@ -248,30 +189,6 @@
           <Property Name="RoleId" Type="Int32" />
           <NavigationProperty Name="Role" Relationship="InvestNetworkModel.FK__Users__RoleId__1CF15040" FromRole="Users" ToRole="Roles" />
         </EntityType>
-        <Association Name="FK__Cities__RegionID__3B75D760">
-          <End Role="Regions" Type="InvestNetworkModel.Region" Multiplicity="1" />
-          <End Role="Cities" Type="InvestNetworkModel.City" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Regions">
-              <PropertyRef Name="RegionID" />
-            </Principal>
-            <Dependent Role="Cities">
-              <PropertyRef Name="RegionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Regions__Country__38996AB5">
-          <End Role="Countries" Type="InvestNetworkModel.Country" Multiplicity="1" />
-          <End Role="Regions" Type="InvestNetworkModel.Region" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Countries">
-              <PropertyRef Name="CountryID" />
-            </Principal>
-            <Dependent Role="Regions">
-              <PropertyRef Name="CountryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Users__RoleId__1CF15040">
           <End Role="Roles" Type="InvestNetworkModel.Role" Multiplicity="0..1" />
           <End Role="Users" Type="InvestNetworkModel.User" Multiplicity="*" />
@@ -320,64 +237,64 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="meta_location">
+        <EntityType Name="City">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="CityID" />
           </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="iso" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="local_name" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="type" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Type="Int32" Name="in_location" />
-          <Property Type="Decimal" Name="geo_lat" Precision="18" Scale="11" />
-          <Property Type="Decimal" Name="geo_lng" Precision="18" Scale="11" />
-          <Property Type="String" Name="db_id" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CityID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CityName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="RegionID" Nullable="false" />
+          <Property Type="Int32" Name="CountryID" Nullable="false" />
+          <NavigationProperty Name="Region" Relationship="InvestNetworkModel.FK__Cities__RegionID__3B75D760" FromRole="City" ToRole="Region" />
         </EntityType>
-        <EntityType Name="sysdiagram">
+        <EntityType Name="Country">
           <Key>
-            <PropertyRef Name="diagram_id" />
+            <PropertyRef Name="CountryID" />
           </Key>
-          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="principal_id" Nullable="false" />
-          <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="version" />
-          <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
+          <Property Type="Int32" Name="CountryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CountryName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Regions" Relationship="InvestNetworkModel.FK__Regions__Country__38996AB5" FromRole="Country" ToRole="Region" />
         </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="RegionID" />
+          </Key>
+          <Property Type="Int32" Name="RegionID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="RegionName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CountryID" Nullable="false" />
+          <NavigationProperty Name="Cities" Relationship="InvestNetworkModel.FK__Cities__RegionID__3B75D760" FromRole="Region" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="InvestNetworkModel.FK__Regions__Country__38996AB5" FromRole="Region" ToRole="Country" />
+        </EntityType>
+        <Association Name="FK__Cities__RegionID__3B75D760">
+          <End Type="InvestNetworkModel.Region" Role="Region" Multiplicity="1" />
+          <End Type="InvestNetworkModel.City" Role="City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="RegionID" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Regions__Country__38996AB5">
+          <End Type="InvestNetworkModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="InvestNetworkModel.Region" Role="Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Region">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="InvestNetworkModelStoreContainer" CdmEntityContainer="InvestNetworkEntities">
-          <EntitySetMapping Name="Cities">
-            <EntityTypeMapping TypeName="InvestNetworkModel.City">
-              <MappingFragment StoreEntitySet="Cities">
-                <ScalarProperty Name="CityID" ColumnName="CityID" />
-                <ScalarProperty Name="ISO" ColumnName="ISO" />
-                <ScalarProperty Name="CityName" ColumnName="CityName" />
-                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Countries">
-            <EntityTypeMapping TypeName="InvestNetworkModel.Country">
-              <MappingFragment StoreEntitySet="Countries">
-                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
-                <ScalarProperty Name="ISO" ColumnName="ISO" />
-                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Regions">
-            <EntityTypeMapping TypeName="InvestNetworkModel.Region">
-              <MappingFragment StoreEntitySet="Regions">
-                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
-                <ScalarProperty Name="ISO" ColumnName="ISO" />
-                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
-                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="InvestNetworkModel.Role">
               <MappingFragment StoreEntitySet="Roles">
@@ -421,28 +338,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="meta_location">
-            <EntityTypeMapping TypeName="InvestNetworkModel.meta_location">
-              <MappingFragment StoreEntitySet="meta_location">
-                <ScalarProperty Name="db_id" ColumnName="db_id" />
-                <ScalarProperty Name="geo_lng" ColumnName="geo_lng" />
-                <ScalarProperty Name="geo_lat" ColumnName="geo_lat" />
-                <ScalarProperty Name="in_location" ColumnName="in_location" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="local_name" ColumnName="local_name" />
-                <ScalarProperty Name="iso" ColumnName="iso" />
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="InvestNetworkModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="InvestNetworkModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="InvestNetworkModel.Country">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regions">
+            <EntityTypeMapping TypeName="InvestNetworkModel.Region">
+              <MappingFragment StoreEntitySet="Regions">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

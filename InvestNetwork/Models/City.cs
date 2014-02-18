@@ -15,9 +15,9 @@ namespace InvestNetwork.Models
     public partial class City
     {
         public int CityID { get; set; }
-        public string ISO { get; set; }
         public string CityName { get; set; }
         public int RegionID { get; set; }
+        public int CountryID { get; set; }
     
         public virtual Region Region { get; set; }
     }

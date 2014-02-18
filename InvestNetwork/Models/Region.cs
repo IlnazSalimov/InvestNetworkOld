@@ -20,7 +20,6 @@ namespace InvestNetwork.Models
         }
     
         public int RegionID { get; set; }
-        public string ISO { get; set; }
         public string RegionName { get; set; }
         public int CountryID { get; set; }
     

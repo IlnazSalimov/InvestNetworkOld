@@ -33,12 +33,10 @@ namespace InvestNetwork.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Scope> Scopes { get; set; }
-        public DbSet<meta_location> meta_location { get; set; }
-        public DbSet<sysdiagram> sysdiagrams { get; set; }
 
         public new IDbSet<TEntity> Set<TEntity>() where TEntity : class
         {
-            throw new NotImplementedException();
+            return base.Set<TEntity>();
         }
     }
 }
