@@ -1,0 +1,14 @@
+﻿<select id="ddCountry"></select>
+
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script>
+    (function () {
+        $.getJSON("api/Country/",
+            function (data) {
+                $.each(data, function (key, val) {
+                    $('<option>', { html: val.CountryName }).attr('data-country_id', val.CountryID).
+                        appendTo($('#ddCountry'));
+                });
+            });
+    })();
+</script>

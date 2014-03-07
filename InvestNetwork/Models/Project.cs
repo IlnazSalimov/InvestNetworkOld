@@ -14,6 +14,11 @@ namespace InvestNetwork.Models
     
     public partial class Project
     {
+        public Project()
+        {
+            this.Payments = new HashSet<Payment>();
+        }
+    
         public int ProjectID { get; set; }
         public int AuthorID { get; set; }
         public int LocationCityID { get; set; }
@@ -24,7 +29,11 @@ namespace InvestNetwork.Models
         public string LinkToFinancialPlan { get; set; }
         public string LinkToVideoPresentation { get; set; }
         public string LinkToGuaranteeLetter { get; set; }
+        public int ProjectStatusID { get; set; }
+        public System.DateTime StartDate { get; set; }
     
         public virtual Scope Scope { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
+        public virtual ProjectStatus ProjectStatus { get; set; }
     }
 }

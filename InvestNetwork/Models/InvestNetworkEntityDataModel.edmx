@@ -8,7 +8,11 @@
         <EntityContainer Name="InvestNetworkModelStoreContainer">
           <EntitySet Name="Cities" EntityType="InvestNetworkModel.Store.Cities" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Countries" EntityType="InvestNetworkModel.Store.Countries" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Messages" EntityType="InvestNetworkModel.Store.Messages" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Payments" EntityType="InvestNetworkModel.Store.Payments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PaymentStatuses" EntityType="InvestNetworkModel.Store.PaymentStatuses" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Projects" EntityType="InvestNetworkModel.Store.Projects" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProjectStatuses" EntityType="InvestNetworkModel.Store.ProjectStatuses" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Regions" EntityType="InvestNetworkModel.Store.Regions" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Roles" EntityType="InvestNetworkModel.Store.Roles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Scopes" EntityType="InvestNetworkModel.Store.Scopes" store:Type="Tables" Schema="dbo" />
@@ -16,6 +20,18 @@
           <AssociationSet Name="FK__Cities__RegionID__3B75D760" Association="InvestNetworkModel.Store.FK__Cities__RegionID__3B75D760">
             <End Role="Regions" EntitySet="Regions" />
             <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__Paymen__00200768" Association="InvestNetworkModel.Store.FK__Payments__Paymen__00200768">
+            <End Role="PaymentStatuses" EntitySet="PaymentStatuses" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__Projec__7E37BEF6" Association="InvestNetworkModel.Store.FK__Payments__Projec__7E37BEF6">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projects__Projec__73BA3083" Association="InvestNetworkModel.Store.FK__Projects__Projec__73BA3083">
+            <End Role="ProjectStatuses" EntitySet="ProjectStatuses" />
+            <End Role="Projects" EntitySet="Projects" />
           </AssociationSet>
           <AssociationSet Name="FK__Projects__ScopeI__4D94879B" Association="InvestNetworkModel.Store.FK__Projects__ScopeI__4D94879B">
             <End Role="Scopes" EntitySet="Scopes" />
@@ -46,6 +62,34 @@
           <Property Name="CountryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CountryName" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FromUserID" Type="int" Nullable="false" />
+          <Property Name="ToUserID" Type="int" Nullable="false" />
+          <Property Name="MessageText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MessageDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="Sum" Type="decimal" Nullable="false" Precision="12" Scale="2" />
+          <Property Name="PaymentDate" Type="datetime" Nullable="false" />
+          <Property Name="PaymentStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentStatuses">
+          <Key>
+            <PropertyRef Name="PaymentStatusID" />
+          </Key>
+          <Property Name="PaymentStatusID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Projects">
           <Key>
             <PropertyRef Name="ProjectID" />
@@ -60,6 +104,15 @@
           <Property Name="LinkToFinancialPlan" Type="varchar" Nullable="false" MaxLength="300" />
           <Property Name="LinkToVideoPresentation" Type="varchar" MaxLength="300" />
           <Property Name="LinkToGuaranteeLetter" Type="varchar" MaxLength="300" />
+          <Property Name="ProjectStatusID" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectStatuses">
+          <Key>
+            <PropertyRef Name="ProjectStatusID" />
+          </Key>
+          <Property Name="ProjectStatusID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Regions">
           <Key>
@@ -102,6 +155,42 @@
             </Principal>
             <Dependent Role="Cities">
               <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__Paymen__00200768">
+          <End Role="PaymentStatuses" Type="InvestNetworkModel.Store.PaymentStatuses" Multiplicity="1" />
+          <End Role="Payments" Type="InvestNetworkModel.Store.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentStatuses">
+              <PropertyRef Name="PaymentStatusID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="PaymentStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__Projec__7E37BEF6">
+          <End Role="Projects" Type="InvestNetworkModel.Store.Projects" Multiplicity="1" />
+          <End Role="Payments" Type="InvestNetworkModel.Store.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projects__Projec__73BA3083">
+          <End Role="ProjectStatuses" Type="InvestNetworkModel.Store.ProjectStatuses" Multiplicity="1" />
+          <End Role="Projects" Type="InvestNetworkModel.Store.Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectStatuses">
+              <PropertyRef Name="ProjectStatusID" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="ProjectStatusID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -169,6 +258,22 @@
             <End Role="Country" EntitySet="Countries" />
             <End Role="Region" EntitySet="Regions" />
           </AssociationSet>
+          <EntitySet Name="Messages" EntityType="InvestNetworkModel.Message" />
+          <EntitySet Name="Payments" EntityType="InvestNetworkModel.Payment" />
+          <EntitySet Name="PaymentStatuses" EntityType="InvestNetworkModel.PaymentStatus" />
+          <EntitySet Name="ProjectStatuses" EntityType="InvestNetworkModel.ProjectStatus" />
+          <AssociationSet Name="FK__Payments__Paymen__00200768" Association="InvestNetworkModel.FK__Payments__Paymen__00200768">
+            <End Role="PaymentStatus" EntitySet="PaymentStatuses" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__Projec__7E37BEF6" Association="InvestNetworkModel.FK__Payments__Projec__7E37BEF6">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projects__Projec__73BA3083" Association="InvestNetworkModel.FK__Projects__Projec__73BA3083">
+            <End Role="ProjectStatus" EntitySet="ProjectStatuses" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Role">
           <Key>
@@ -216,6 +321,10 @@
           <Property Type="String" Name="LinkToVideoPresentation" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="LinkToGuaranteeLetter" MaxLength="300" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Scope" Relationship="InvestNetworkModel.FK__Projects__ScopeI__4D94879B" FromRole="Project" ToRole="Scope" />
+          <Property Type="Int32" Name="ProjectStatusID" Nullable="false" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Payments" Relationship="InvestNetworkModel.FK__Payments__Projec__7E37BEF6" FromRole="Project" ToRole="Payment" />
+          <NavigationProperty Name="ProjectStatus" Relationship="InvestNetworkModel.FK__Projects__Projec__73BA3083" FromRole="Project" ToRole="ProjectStatus" />
         </EntityType>
         <EntityType Name="Scope">
           <Key>
@@ -289,6 +398,81 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Type="Int32" Name="MessageID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="FromUserID" Nullable="false" />
+          <Property Type="Int32" Name="ToUserID" Nullable="false" />
+          <Property Type="String" Name="MessageText" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="MessageDate" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Type="Int32" Name="PaymentID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="Int32" Name="ProjectID" Nullable="false" />
+          <Property Type="Decimal" Name="Sum" Nullable="false" Precision="12" Scale="2" />
+          <Property Type="DateTime" Name="PaymentDate" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="PaymentStatus" Nullable="false" />
+          <NavigationProperty Name="PaymentStatus1" Relationship="InvestNetworkModel.FK__Payments__Paymen__00200768" FromRole="Payment" ToRole="PaymentStatus" />
+          <NavigationProperty Name="Project" Relationship="InvestNetworkModel.FK__Payments__Projec__7E37BEF6" FromRole="Payment" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="PaymentStatus">
+          <Key>
+            <PropertyRef Name="PaymentStatusID" />
+          </Key>
+          <Property Type="Int32" Name="PaymentStatusID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Status" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Payments" Relationship="InvestNetworkModel.FK__Payments__Paymen__00200768" FromRole="PaymentStatus" ToRole="Payment" />
+        </EntityType>
+        <EntityType Name="ProjectStatus">
+          <Key>
+            <PropertyRef Name="ProjectStatusID" />
+          </Key>
+          <Property Type="Int32" Name="ProjectStatusID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Status" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Projects" Relationship="InvestNetworkModel.FK__Projects__Projec__73BA3083" FromRole="ProjectStatus" ToRole="Project" />
+        </EntityType>
+        <Association Name="FK__Payments__Paymen__00200768">
+          <End Type="InvestNetworkModel.PaymentStatus" Role="PaymentStatus" Multiplicity="1" />
+          <End Type="InvestNetworkModel.Payment" Role="Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentStatus">
+              <PropertyRef Name="PaymentStatusID" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="PaymentStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__Projec__7E37BEF6">
+          <End Type="InvestNetworkModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="InvestNetworkModel.Payment" Role="Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projects__Projec__73BA3083">
+          <End Type="InvestNetworkModel.ProjectStatus" Role="ProjectStatus" Multiplicity="1" />
+          <End Type="InvestNetworkModel.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectStatus">
+              <PropertyRef Name="ProjectStatusID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="ProjectStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -317,6 +501,8 @@
           <EntitySetMapping Name="Projects">
             <EntityTypeMapping TypeName="InvestNetworkModel.Project">
               <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ProjectStatusID" ColumnName="ProjectStatusID" />
                 <ScalarProperty Name="LinkToGuaranteeLetter" ColumnName="LinkToGuaranteeLetter" />
                 <ScalarProperty Name="LinkToVideoPresentation" ColumnName="LinkToVideoPresentation" />
                 <ScalarProperty Name="LinkToFinancialPlan" ColumnName="LinkToFinancialPlan" />
@@ -362,6 +548,45 @@
                 <ScalarProperty Name="CountryID" ColumnName="CountryID" />
                 <ScalarProperty Name="RegionName" ColumnName="RegionName" />
                 <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="InvestNetworkModel.Message">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="MessageDate" ColumnName="MessageDate" />
+                <ScalarProperty Name="MessageText" ColumnName="MessageText" />
+                <ScalarProperty Name="ToUserID" ColumnName="ToUserID" />
+                <ScalarProperty Name="FromUserID" ColumnName="FromUserID" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="InvestNetworkModel.Payment">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="Sum" ColumnName="Sum" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentStatuses">
+            <EntityTypeMapping TypeName="InvestNetworkModel.PaymentStatus">
+              <MappingFragment StoreEntitySet="PaymentStatuses">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PaymentStatusID" ColumnName="PaymentStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectStatuses">
+            <EntityTypeMapping TypeName="InvestNetworkModel.ProjectStatus">
+              <MappingFragment StoreEntitySet="ProjectStatuses">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ProjectStatusID" ColumnName="ProjectStatusID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
