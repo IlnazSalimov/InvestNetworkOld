@@ -16,6 +16,13 @@
         <EntityTypeShape EntityType="InvestNetworkModel.Region" Width="1.5" PointX="6.625" PointY="11.625" />
         <AssociationConnector Association="InvestNetworkModel.FK__Cities__RegionID__3B75D760" />
         <AssociationConnector Association="InvestNetworkModel.FK__Regions__Country__38996AB5" />
+        <EntityTypeShape EntityType="InvestNetworkModel.Message" Width="1.5" PointX="3.5727889833845152" PointY="13.31805243218227" />
+        <EntityTypeShape EntityType="InvestNetworkModel.Payment" Width="1.5" PointX="1.6409427363616147" PointY="21.636036242188904" />
+        <EntityTypeShape EntityType="InvestNetworkModel.PaymentStatus" Width="1.5" PointX="5.5" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestNetworkModel.ProjectStatus" Width="1.5" PointX="5.3688683199551273" PointY="18.552990668710784" />
+        <AssociationConnector Association="InvestNetworkModel.FK__Payments__Paymen__00200768" />
+        <AssociationConnector Association="InvestNetworkModel.FK__Payments__Projec__7E37BEF6" />
+        <AssociationConnector Association="InvestNetworkModel.FK__Projects__Projec__73BA3083" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

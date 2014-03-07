@@ -12,18 +12,16 @@ namespace InvestNetwork.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Region
+    public partial class Payment
     {
-        public Region()
-        {
-            this.Cities = new HashSet<City>();
-        }
+        public int PaymentID { get; set; }
+        public int UserID { get; set; }
+        public int ProjectID { get; set; }
+        public decimal Sum { get; set; }
+        public System.DateTime PaymentDate { get; set; }
+        public int PaymentStatus { get; set; }
     
-        public int RegionID { get; set; }
-        public string RegionName { get; set; }
-        public int CountryID { get; set; }
-    
-        public virtual ICollection<City> Cities { get; set; }
-        public virtual Country Country { get; set; }
+        public virtual PaymentStatus PaymentStatus1 { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

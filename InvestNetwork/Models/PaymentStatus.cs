@@ -12,28 +12,16 @@ namespace InvestNetwork.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Project
+    public partial class PaymentStatus
     {
-        public Project()
+        public PaymentStatus()
         {
             this.Payments = new HashSet<Payment>();
         }
     
-        public int ProjectID { get; set; }
-        public int AuthorID { get; set; }
-        public int LocationCityID { get; set; }
-        public string Name { get; set; }
-        public int ScopeID { get; set; }
-        public string Description { get; set; }
-        public string LinkToBusinessPlan { get; set; }
-        public string LinkToFinancialPlan { get; set; }
-        public string LinkToVideoPresentation { get; set; }
-        public string LinkToGuaranteeLetter { get; set; }
-        public int ProjectStatusID { get; set; }
-        public System.DateTime StartDate { get; set; }
+        public int PaymentStatusID { get; set; }
+        public string Status { get; set; }
     
-        public virtual Scope Scope { get; set; }
         public virtual ICollection<Payment> Payments { get; set; }
-        public virtual ProjectStatus ProjectStatus { get; set; }
     }
 }
