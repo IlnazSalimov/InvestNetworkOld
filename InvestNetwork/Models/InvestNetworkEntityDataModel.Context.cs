@@ -12,8 +12,9 @@ namespace InvestNetwork.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using InvestNetwork.Core;
     
-    public partial class InvestNetworkEntities : DbContext
+    public partial class InvestNetworkEntities : DbContext, IDataContext
     {
         public InvestNetworkEntities()
             : base("name=InvestNetworkEntities")
@@ -23,6 +24,11 @@ namespace InvestNetwork.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
+        }
+
+        public new IDbSet<TEntity> Set<TEntity>() where TEntity : class
+        {
+            return base.Set<TEntity>();
         }
     
         public DbSet<Role> Roles { get; set; }

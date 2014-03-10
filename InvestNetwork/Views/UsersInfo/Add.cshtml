@@ -1,0 +1,112 @@
+﻿@model InvestNetwork.Models.UsersInfoDto
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+<h2>Add</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Информация пользователя</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Family)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Family)
+            @Html.ValidationMessageFor(model => model.Family)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Middle)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Middle)
+            @Html.ValidationMessageFor(model => model.Middle)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DateOfBirth)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DateOfBirth)
+            @Html.ValidationMessageFor(model => model.DateOfBirth)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Citizenship)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Citizenship)
+            @Html.ValidationMessageFor(model => model.Citizenship)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PasportSerie)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PasportSerie)
+            @Html.ValidationMessageFor(model => model.PasportSerie)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PhoneNumber)
+            @Html.ValidationMessageFor(model => model.PasportNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PasportIssuedBy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PasportIssuedBy)
+            @Html.ValidationMessageFor(model => model.PasportIssuedBy)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PasportIssueDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PasportIssueDate)
+            @Html.ValidationMessageFor(model => model.PasportIssueDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PhoneNumber)
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        </div>
+
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
