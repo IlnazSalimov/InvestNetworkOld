@@ -14,6 +14,12 @@ namespace InvestNetwork.Controllers
         // GET: /Account/
         private readonly IUserRepository _userRepository;
         private readonly IRoleRepository _roleRepository;
+
+        public AccountController()
+        {
+
+        }
+
         public AccountController(IUserRepository userRepository, IRoleRepository roleRepository)
         {
             _userRepository = userRepository;
@@ -32,18 +38,18 @@ namespace InvestNetwork.Controllers
         }
 
         //TODO: Нужно создать модели-витрины где-нибудь в отдельной папке.
-        /*[HttpPost]
-        public ActionResult SignUp(RegisterModel model)
+        [HttpPost]
+        public ActionResult SignUp(User model)
         {
             if (ModelState.IsValid)
             {
                 _userRepository.Insert(new User { FullName = model.FullName, Email = model.Email, Password = model.Password });
                 _userRepository.Save();
-                FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
+                //FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
                 return RedirectToAction("Index", "Home");
             }
             return View(model);
-        }*/
+        }
 
         /*public ActionResult SetAdminRole()
         {
@@ -65,8 +71,8 @@ namespace InvestNetwork.Controllers
 
 
         //TODO: Нужно создать модели-витрины где-нибудь в отдельной папке.
-        /*[HttpPost]
-        public ActionResult Login(LoginModel model, string returnUrl)
+        [HttpPost]
+        public ActionResult Login(User model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -75,7 +81,7 @@ namespace InvestNetwork.Controllers
 
                 if (_userRepository.ValidateUser(email, password))
                 {
-                    FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
+                    //FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
                     if (Url.IsLocalUrl(returnUrl))
                     {
                         return Redirect(returnUrl);
@@ -92,7 +98,7 @@ namespace InvestNetwork.Controllers
             }
 
             return View(model);
-        }*/
+        }
 
         public ActionResult Logout()
         {

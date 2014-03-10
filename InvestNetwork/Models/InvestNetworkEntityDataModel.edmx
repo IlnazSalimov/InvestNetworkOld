@@ -17,6 +17,7 @@
           <EntitySet Name="Roles" EntityType="InvestNetworkModel.Store.Roles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Scopes" EntityType="InvestNetworkModel.Store.Scopes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Users" EntityType="InvestNetworkModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UsersInfo" EntityType="InvestNetworkModel.Store.UsersInfo" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK__Cities__RegionID__3B75D760" Association="InvestNetworkModel.Store.FK__Cities__RegionID__3B75D760">
             <End Role="Regions" EntitySet="Regions" />
             <End Role="Cities" EntitySet="Cities" />
@@ -146,6 +147,25 @@
           <Property Name="FullName" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="RoleId" Type="int" />
         </EntityType>
+        <EntityType Name="UsersInfo">
+          <Key>
+            <PropertyRef Name="UsersInfoID" />
+          </Key>
+          <Property Name="UsersInfoID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Family" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Middle" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" Nullable="false" MaxLength="1000" />
+          <Property Name="Citizenship" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="PasportSerie" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="PasportNumber" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="PasportIssueDate" Type="date" Nullable="false" />
+          <Property Name="PasportIssuedBy" Type="nvarchar" Nullable="false" MaxLength="1000" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="RegisterDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <Association Name="FK__Cities__RegionID__3B75D760">
           <End Role="Regions" Type="InvestNetworkModel.Store.Regions" Multiplicity="1" />
           <End Role="Cities" Type="InvestNetworkModel.Store.Cities" Multiplicity="*" />
@@ -274,6 +294,7 @@
             <End Role="ProjectStatus" EntitySet="ProjectStatuses" />
             <End Role="Project" EntitySet="Projects" />
           </AssociationSet>
+          <EntitySet Name="UsersInfoes" EntityType="InvestNetworkModel.UsersInfo" />
         </EntityContainer>
         <EntityType Name="Role">
           <Key>
@@ -473,6 +494,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UsersInfo">
+          <Key>
+            <PropertyRef Name="UsersInfoID" />
+          </Key>
+          <Property Type="Int32" Name="UsersInfoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="String" Name="Family" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Middle" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DateOfBirth" Nullable="false" Precision="0" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Citizenship" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PasportSerie" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PasportNumber" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="PasportIssueDate" Nullable="false" Precision="0" />
+          <Property Type="String" Name="PasportIssuedBy" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PhoneNumber" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="RegisterDate" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -587,6 +627,26 @@
               <MappingFragment StoreEntitySet="ProjectStatuses">
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ProjectStatusID" ColumnName="ProjectStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersInfoes">
+            <EntityTypeMapping TypeName="InvestNetworkModel.UsersInfo">
+              <MappingFragment StoreEntitySet="UsersInfo">
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PasportIssuedBy" ColumnName="PasportIssuedBy" />
+                <ScalarProperty Name="PasportIssueDate" ColumnName="PasportIssueDate" />
+                <ScalarProperty Name="PasportNumber" ColumnName="PasportNumber" />
+                <ScalarProperty Name="PasportSerie" ColumnName="PasportSerie" />
+                <ScalarProperty Name="Citizenship" ColumnName="Citizenship" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Middle" ColumnName="Middle" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Family" ColumnName="Family" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UsersInfoID" ColumnName="UsersInfoID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

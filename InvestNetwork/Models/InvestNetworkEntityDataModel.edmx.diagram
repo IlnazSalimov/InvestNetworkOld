@@ -23,6 +23,7 @@
         <AssociationConnector Association="InvestNetworkModel.FK__Payments__Paymen__00200768" />
         <AssociationConnector Association="InvestNetworkModel.FK__Payments__Projec__7E37BEF6" />
         <AssociationConnector Association="InvestNetworkModel.FK__Projects__Projec__73BA3083" />
+        <EntityTypeShape EntityType="InvestNetworkModel.UsersInfo" Width="1.5" PointX="4.7355259213296357" PointY="20.048693398036384" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
