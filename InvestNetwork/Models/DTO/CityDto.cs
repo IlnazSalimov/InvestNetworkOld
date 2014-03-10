@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace InvestNetwork.Models
 {
-    public class CountryDto
+    public class CityDto
     {
+        public int CityID { get; set; }
+        public string CityName { get; set; }
+        public int RegionID { get; set; }
         public int CountryID { get; set; }
-        public string CountryName { get; set; }
     }
 }

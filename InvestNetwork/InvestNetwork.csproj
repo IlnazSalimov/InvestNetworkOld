@@ -115,6 +115,7 @@
   <ItemGroup>
     <Compile Include="Api\CityController.cs" />
     <Compile Include="Api\CountryController.cs" />
+    <Compile Include="Api\LocationController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
@@ -127,6 +128,8 @@
     <Compile Include="Models\Country.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DTO\CityDto.cs" />
+    <Compile Include="Models\DTO\RegionDto.cs" />
     <Compile Include="Models\InvestNetworkEntityDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -339,6 +342,7 @@
     <Content Include="Scripts\tabs\tabwidget\tabwidget.js" />
     <Content Include="Scripts\universal\jquery.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Styles\additional-styles.css" />
     <Content Include="Styles\bg-patterns\pattern-default.css" />
     <Content Include="Styles\bg-patterns\pattern-eight.css" />
     <Content Include="Styles\bg-patterns\pattern-five.css" />

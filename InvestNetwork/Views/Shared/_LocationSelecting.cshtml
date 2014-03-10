@@ -1,14 +1,77 @@
-﻿<select id="ddCountry"></select>
+﻿<section id="location_selecting">
+    <div class="join_select_row clearfix" id="country_row">
+        <div class="join_sel_label fl_l ta_r">Страна:</div>
+        <div class="join_select fl_l"><select id="ddCountries"></select></div>
+    </div>
+    <div class="join_select_row clearfix" id="region_row">
+        <div class="join_sel_label fl_l ta_r">Регион:</div>
+        <div class="join_select fl_l"><select id="ddRegions"></select></div>
+    </div>
+    <div class="join_select_row clearfix" id="city_row">
+        <div class="join_sel_label fl_l ta_r">Город:</div>
+        <div class="join_select fl_l"><select id="ddCities"></select></div>
+    </div>
+</section>
 
 <script src="~/Scripts/jquery-1.9.1.min.js"></script>
 <script>
+    var baseUrl = '@Url.Content("~/")';
+    HideAll();
     (function () {
-        $.getJSON("api/Country/",
+        $.getJSON(baseUrl + "Api/Location/GetAllContries",
             function (data) {
+                $('<option>', { html: "Выберите страну" }).appendTo($('#ddCountries'));
                 $.each(data, function (key, val) {
                     $('<option>', { html: val.CountryName }).attr('data-country_id', val.CountryID).
-                        appendTo($('#ddCountry'));
+                        appendTo($('#ddCountries'));
                 });
             });
+
+        $("#ddCountries").bind("change", function () {
+            var countryId = $(this).children("option:selected").attr("data-country_id");
+            OnCountryChanged(countryId);
+            $.getJSON(baseUrl + "Api/Location/GetCountryRegions/" + countryId,
+            function (data) {
+                $.each(data, function (key, val) {
+                    $('<option>', { html: val.RegionName }).attr('data-region_id', val.RegionID).
+                        appendTo($('#ddRegions'));
+                });
+            });
+        });
+
+        $("#ddRegions").bind("change", function () {
+            var regionId = $(this).children("option:selected").attr("data-region_id");
+            OnRegionChanged(regionId);
+            $.getJSON(baseUrl + "Api/Location/GetRegionCities/" + regionId,
+            function (data) {
+                $.each(data, function (key, val) {
+                    $('<option>', { html: val.CityName }).attr('data-city_id', val.CityID).
+                        appendTo($('#ddCities'));
+                });
+            });
+        });
     })();
+
+    function HideAll() {
+        $("#region_row, #city_row").hide();
+    }
+
+    function OnCountryChanged(countryId) {
+        $('#city_row').slideUp(400);
+        if (countryId)
+            $('#region_row').slideDown(400);
+        else
+            $('#region_row').slideUp(400);
+        $('#ddRegions').empty();
+        $('<option>', { html: "Выберите регион" }).appendTo($('#ddRegions'));
+    }
+    function OnRegionChanged(regionId) {
+        if (regionId)
+            $('#city_row').slideDown(400);
+        else
+            $('#city_row').slideUp(400);
+        $('#ddCities').empty();
+        $('<option>', { html: "Выберите город" }).appendTo($('#ddCities'));
+    }
+
 </script>

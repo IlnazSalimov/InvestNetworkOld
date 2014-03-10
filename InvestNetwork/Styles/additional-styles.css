@@ -1,0 +1,19 @@
+﻿.join_select_row {
+    width: 500px;
+    margin-bottom: 10px;
+}
+.join_sel_label {
+    font-weight: bold;
+    padding: 0px 13px;
+    width: 229px;
+}
+.join_select {
+    width: 200px;
+}
+.ta_r {
+    text-align: right;
+}
+
+.fl_l {
+    float: left;
+}
