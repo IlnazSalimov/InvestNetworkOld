@@ -5,92 +5,67 @@
     Layout = "~/Views/Layouts/_Layout.cshtml";
 }
 
-<h2>Create</h2>
-
-@using (Html.BeginForm()) {
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>Project</legend>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.AuthorID)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.AuthorID)
-            @Html.ValidationMessageFor(model => model.AuthorID)
-        </div>
-
-        <div class="editor-label">
-            @Html.Partial("_LocationSelecting")
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.LocationCityID)
-            @Html.ValidationMessageFor(model => model.LocationCityID)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ScopeID)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ScopeID)
-            @Html.ValidationMessageFor(model => model.ScopeID)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Description)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Description)
-            @Html.ValidationMessageFor(model => model.Description)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.LinkToBusinessPlan)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.LinkToBusinessPlan)
-            @Html.ValidationMessageFor(model => model.LinkToBusinessPlan)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.LinkToFinancialPlan)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.LinkToFinancialPlan)
-            @Html.ValidationMessageFor(model => model.LinkToFinancialPlan)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.LinkToVideoPresentation)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.LinkToVideoPresentation)
-            @Html.ValidationMessageFor(model => model.LinkToVideoPresentation)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.LinkToGuaranteeLetter)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.LinkToGuaranteeLetter)
-            @Html.ValidationMessageFor(model => model.LinkToGuaranteeLetter)
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
+@section Styles{
+    <!-- Datepicker for Bootstrap(http://www.eyecon.ro/bootstrap-datepicker/) -->
+    <link href="~/Styles/datepicker.css" rel="stylesheet" />
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+@section Header{
+    <div class="page_title">
+        <div class="container">
+            <div class="title">
+                <h1>Создание проекта</h1>
+            </div>
+        </div>
+    </div>
+}
+<div class="container">
+    <div class="content_left">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(false)
+
+            <fieldset>
+                <div class="accrodation">
+                    <h2>Встречайте, <strong>ваш новый проект</strong></h2>
+
+
+                    <div class="join_row" id="name_row">
+                        <div class="join_label">@Html.LabelFor(model => model.Name)</div>
+                        <div class="join_element">
+                            @Html.EditorFor(model => model.Name)
+                        </div>
+                    </div>
+
+                    @Html.Partial("_LocationSelecting", Model)
+
+                    @Html.Partial("_ScopeSelecting", Model)
+
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(model => model.Description)</div>
+                        <div class="join_element">
+                            @Html.TextAreaFor(model => model.Description)
+                        </div>
+                    </div>
+
+                    
+                </div>
+
+                <div class="join_row">
+                    <input type="submit" value="Создать" />
+                </div>
+            </fieldset>
+        }
+    </div>
 </div>
+
+@section Scripts{
+    <!-- Datepicker for Bootstrap(http://www.eyecon.ro/bootstrap-datepicker/) -->
+    <script src="@Url.Content("~/Scripts/bootstrap-datepicker.js")" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <script>
+
+    </script>
+}

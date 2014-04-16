@@ -8,13 +8,14 @@ using InvestNetwork.Core;
 
 namespace InvestNetwork.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : Controller//, IGeneralController
     {
         //
         // GET: /Home/
         private readonly IUserRepository _userRepository;
         private readonly ICityRepository _cityRepository;
-        public HomeController(IUserRepository userRepository, ICityRepository cityRepository)
+        //private readonly IInvestContext _sessionState;
+        public HomeController(IUserRepository userRepository, ICityRepository cityRepository/*, ISessionState sessionState*/)
         {
             _userRepository = userRepository;
             _cityRepository = cityRepository;

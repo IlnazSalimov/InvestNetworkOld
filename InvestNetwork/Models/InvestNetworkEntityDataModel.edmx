@@ -90,6 +90,7 @@
           </Key>
           <Property Name="PaymentStatusID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Status" Type="nvarchar" MaxLength="100" />
+          <Property Name="StatusCode" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Projects">
           <Key>
@@ -106,7 +107,8 @@
           <Property Name="LinkToVideoPresentation" Type="varchar" MaxLength="300" />
           <Property Name="LinkToGuaranteeLetter" Type="varchar" MaxLength="300" />
           <Property Name="ProjectStatusID" Type="int" Nullable="false" />
-          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="ProjectStatuses">
           <Key>
@@ -114,6 +116,7 @@
           </Key>
           <Property Name="ProjectStatusID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Status" Type="nvarchar" MaxLength="100" />
+          <Property Name="StatusCode" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Regions">
           <Key>
@@ -343,9 +346,10 @@
           <Property Type="String" Name="LinkToGuaranteeLetter" MaxLength="300" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Scope" Relationship="InvestNetworkModel.FK__Projects__ScopeI__4D94879B" FromRole="Project" ToRole="Scope" />
           <Property Type="Int32" Name="ProjectStatusID" Nullable="false" />
-          <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="StartDate" Precision="3" />
           <NavigationProperty Name="Payments" Relationship="InvestNetworkModel.FK__Payments__Projec__7E37BEF6" FromRole="Project" ToRole="Payment" />
           <NavigationProperty Name="ProjectStatus" Relationship="InvestNetworkModel.FK__Projects__Projec__73BA3083" FromRole="Project" ToRole="ProjectStatus" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Scope">
           <Key>
@@ -449,6 +453,7 @@
           <Property Type="Int32" Name="PaymentStatusID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Status" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Payments" Relationship="InvestNetworkModel.FK__Payments__Paymen__00200768" FromRole="PaymentStatus" ToRole="Payment" />
+          <Property Type="Int32" Name="StatusCode" Nullable="false" />
         </EntityType>
         <EntityType Name="ProjectStatus">
           <Key>
@@ -457,6 +462,7 @@
           <Property Type="Int32" Name="ProjectStatusID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Status" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Projects" Relationship="InvestNetworkModel.FK__Projects__Projec__73BA3083" FromRole="ProjectStatus" ToRole="Project" />
+          <Property Type="Int32" Name="StatusCode" Nullable="false" />
         </EntityType>
         <Association Name="FK__Payments__Paymen__00200768">
           <End Type="InvestNetworkModel.PaymentStatus" Role="PaymentStatus" Multiplicity="1" />
@@ -541,6 +547,7 @@
           <EntitySetMapping Name="Projects">
             <EntityTypeMapping TypeName="InvestNetworkModel.Project">
               <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="ProjectStatusID" ColumnName="ProjectStatusID" />
                 <ScalarProperty Name="LinkToGuaranteeLetter" ColumnName="LinkToGuaranteeLetter" />
@@ -617,6 +624,7 @@
           <EntitySetMapping Name="PaymentStatuses">
             <EntityTypeMapping TypeName="InvestNetworkModel.PaymentStatus">
               <MappingFragment StoreEntitySet="PaymentStatuses">
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="PaymentStatusID" ColumnName="PaymentStatusID" />
               </MappingFragment>
@@ -625,6 +633,7 @@
           <EntitySetMapping Name="ProjectStatuses">
             <EntityTypeMapping TypeName="InvestNetworkModel.ProjectStatus">
               <MappingFragment StoreEntitySet="ProjectStatuses">
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ProjectStatusID" ColumnName="ProjectStatusID" />
               </MappingFragment>

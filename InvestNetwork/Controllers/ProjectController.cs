@@ -7,14 +7,23 @@ using System.Web.Mvc;
 
 namespace InvestNetwork.Controllers
 {
+    public enum ProjectStatus
+    {
+        Сhecking = 1,
+        Active = 5,
+        Inactive = -99
+    }
+
     public class ProjectController : Controller
     {
         //
         // GET: /Project/
         private readonly IProjectRepository _projectRepository;
-        public ProjectController(IProjectRepository projectRepository)
+        private readonly IProjectStatusRepository _projectStatusRepository;
+        public ProjectController(IProjectRepository projectRepository, IProjectStatusRepository projectStatusRepository)
         {
-            _projectRepository = projectRepository;
+            this._projectRepository = projectRepository;
+            this._projectStatusRepository = projectStatusRepository;
         }
 
         public ActionResult Index()
@@ -31,8 +40,19 @@ namespace InvestNetwork.Controllers
         [HttpPost]
         public ActionResult Create(Project model)
         {
-            _projectRepository.Insert(model);
-            _projectRepository.Save();
+            if (ModelState.IsValid)
+            {
+                model.AuthorID = 1;
+                model.CreateDate = DateTime.Now;
+                model.ProjectStatusID = _projectStatusRepository.GetByCode((int)ProjectStatus.Сhecking).ProjectStatusID;
+                model.LinkToBusinessPlan = "";
+                model.LinkToFinancialPlan = "";
+                model.LinkToGuaranteeLetter = "";
+                model.LinkToVideoPresentation = "";
+
+                _projectRepository.Insert(model);
+                _projectRepository.Save();
+            }
             return View(model);
         }
     }
