@@ -13,7 +13,8 @@ namespace InvestNetwork.Models
         void Insert(User model);
         void Update(User model);
         void Delete(User model);
-        bool ValidateUser(string email, string password);
+        User Login(string email, string password);
+        User GetUser(string email);
         void Save();
     }
 }

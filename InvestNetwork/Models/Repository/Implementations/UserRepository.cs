@@ -12,6 +12,7 @@ namespace InvestNetwork.Models
     public class UserRepository : IUserRepository
     {
         private IRepository<User> userRepository;
+        private IRoleRepository roleRepository;
 
         public UserRepository(IRepository<User> userRepository)
         {
@@ -51,14 +52,38 @@ namespace InvestNetwork.Models
             userRepository.Delete(model);
         }
 
-        public bool ValidateUser(string email, string password)
+        public User Login(string email, string password)
         {
-            return userRepository.GetAll().Any(user => string.Equals(user.Email, email) && string.Equals(user.Password, password));
+            return userRepository.GetAll().FirstOrDefault(p => string.Compare(p.Email, email, true) == 0 && p.Password == password);
         }
 
         public void Save()
         {
             userRepository.Save();
+        }
+
+        public bool InRoles(string roles)
+        {
+            if (string.IsNullOrWhiteSpace(roles))
+            {
+                return false;
+            }
+
+            var rolesArray = roles.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var role in rolesArray)
+            {
+                var hasRole = roleRepository.GetAll().Any(p => string.Compare(p.RoleName, role, true) == 0);
+                if (hasRole)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public User GetUser(string email)
+        {
+            return userRepository.GetAll().FirstOrDefault(p => string.Compare(p.Email, email, true) == 0);
         }
     }
 }

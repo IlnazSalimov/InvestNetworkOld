@@ -79,7 +79,7 @@ namespace InvestNetwork.Controllers
                 string email = model.Email;
                 string password = model.Password;
 
-                if (_userRepository.ValidateUser(email, password))
+                if (_userRepository.Login(email, password) != null)
                 {
                     //FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
                     if (Url.IsLocalUrl(returnUrl))

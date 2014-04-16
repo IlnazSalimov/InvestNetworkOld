@@ -21,14 +21,8 @@ namespace InvestNetwork.Controllers
 
         }
 
-        [Authorize]
         public ActionResult Index()
         {
-            /*_userRepository.Insert(new User { FullName = "Salimova Fanzilya", Email = "salimova.fanzilya@gmail.com", Password = "5153637" });
-            _userRepository.Insert(new User { FullName = "sadf", Email = "salimovwera.fanzilya@gmail.com", Password = "5153637" });
-            _userRepository.Insert(new User { FullName = "ertre", Email = "salimwferova.fanzilya@gmail.com", Password = "5153637" });
-            _userRepository.Save();*/
-            ViewData["Users"] = _userRepository.GetAll();
             return View();
         }
 

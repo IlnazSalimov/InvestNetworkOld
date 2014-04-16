@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace InvestNetwork.Controllers
 {
-    public class UsersInfoController : GeneralController
+    public class UsersInfoController : BaseController
     {
         //
         // GET: /UsersInfo/
@@ -29,7 +29,7 @@ namespace InvestNetwork.Controllers
         [HttpPost]
         public ActionResult Add(UsersInfo model)
         {
-            User user = this.GetAccount().User;
+            User user = this.CurrentUser;
             model.UserID = user.Id;
 
             if (_usersInfoRepository.GetByUserId(user.Id) != null)

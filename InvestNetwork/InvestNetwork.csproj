@@ -116,7 +116,7 @@
     <Compile Include="Api\CityController.cs" />
     <Compile Include="Api\CountryController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\General\GeneralController.cs" />
+    <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\UsersInfoController.cs" />
@@ -167,9 +167,15 @@
     </Compile>
     <Compile Include="Models\Repository\Implementations\CityRepository.cs" />
     <Compile Include="Models\Repository\Implementations\CountryRepository.cs" />
+    <Compile Include="Models\Repository\Implementations\Global\Auth\AuthHttpModule.cs" />
+    <Compile Include="Models\Repository\Implementations\Global\Auth\CustomAuthentication.cs" />
+    <Compile Include="Models\Repository\Implementations\Global\Auth\UserIdentity.cs" />
+    <Compile Include="Models\Repository\Implementations\Global\Auth\UserProvider.cs" />
     <Compile Include="Models\Repository\Implementations\ProjectRepository.cs" />
     <Compile Include="Models\Repository\Implementations\RegionRepository.cs" />
     <Compile Include="Models\Repository\Implementations\UsersInfoRepository.cs" />
+    <Compile Include="Models\Repository\Interfaces\Global\Auth\IAuthentication.cs" />
+    <Compile Include="Models\Repository\Interfaces\Global\Auth\IUserProvider.cs" />
     <Compile Include="Models\Repository\Interfaces\ICityRepository.cs" />
     <Compile Include="Models\Repository\Interfaces\ICountryRepository.cs" />
     <Compile Include="Models\Repository\Interfaces\IProjectRepository.cs" />
@@ -701,6 +707,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\UsersInfo\Add.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -711,9 +718,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Layouts\_Layout.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
