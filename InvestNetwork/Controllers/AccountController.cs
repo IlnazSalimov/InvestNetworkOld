@@ -81,7 +81,7 @@ namespace InvestNetwork.Controllers
 
                 if (_userRepository.Login(email, password) != null)
                 {
-                    //FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
+                    FormsAuthentication.SetAuthCookie(model.Email, model.FullName, model.RememberMe);
                     if (Url.IsLocalUrl(returnUrl))
                     {
                         return Redirect(returnUrl);
