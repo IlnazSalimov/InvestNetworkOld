@@ -4,26 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fb25fb18144046a59a997761059d780c" Name="Diagram1">
+      <Diagram DiagramId="fb25fb18144046a59a997761059d780c" Name="Diagram1" ZoomLevel="101">
         <EntityTypeShape EntityType="InvestNetworkModel.Role" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="InvestNetworkModel.User" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
         <AssociationConnector Association="InvestNetworkModel.FK__Users__RoleId__1CF15040" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="InvestNetworkModel.Project" Width="1.5" PointX="6.25" PointY="5.25" IsExpanded="false" />
-        <EntityTypeShape EntityType="InvestNetworkModel.Scope" Width="1.5" PointX="3.125" PointY="7.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="InvestNetworkModel.Project" Width="1.5" PointX="7.375" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvestNetworkModel.Scope" Width="1.5" PointX="4.875" PointY="3.125" IsExpanded="true" />
         <AssociationConnector Association="InvestNetworkModel.FK__Projects__ScopeI__4D94879B" />
-        <EntityTypeShape EntityType="InvestNetworkModel.City" Width="1.5" PointX="0.75" PointY="7.625" />
-        <EntityTypeShape EntityType="InvestNetworkModel.Country" Width="1.5" PointX="3.625" PointY="10.125" />
-        <EntityTypeShape EntityType="InvestNetworkModel.Region" Width="1.5" PointX="6.625" PointY="11.625" />
+        <EntityTypeShape EntityType="InvestNetworkModel.City" Width="1.5" PointX="8.25" PointY="8.125" />
+        <EntityTypeShape EntityType="InvestNetworkModel.Country" Width="1.5" PointX="3.25" PointY="9.25" />
+        <EntityTypeShape EntityType="InvestNetworkModel.Region" Width="1.5" PointX="5.75" PointY="8.75" />
         <AssociationConnector Association="InvestNetworkModel.FK__Cities__RegionID__3B75D760" />
         <AssociationConnector Association="InvestNetworkModel.FK__Regions__Country__38996AB5" />
-        <EntityTypeShape EntityType="InvestNetworkModel.Message" Width="1.5" PointX="4.4651092293044137" PointY="5.95401513853763" />
-        <EntityTypeShape EntityType="InvestNetworkModel.Payment" Width="1.5" PointX="2.2602078906540797" PointY="10.891027813260923" />
-        <EntityTypeShape EntityType="InvestNetworkModel.PaymentStatus" Width="1.5" PointX="0.51883101673742338" PointY="25.997575801796081" />
-        <EntityTypeShape EntityType="InvestNetworkModel.ProjectStatus" Width="1.5" PointX="10.463134573056891" PointY="18.116080530973189" />
+        <EntityTypeShape EntityType="InvestNetworkModel.Message" Width="1.5" PointX="4.875" PointY="5" />
+        <EntityTypeShape EntityType="InvestNetworkModel.Payment" Width="1.5" PointX="1.125" PointY="1.875" />
+        <EntityTypeShape EntityType="InvestNetworkModel.PaymentStatus" Width="1.5" PointX="4.875" PointY="1.375" />
+        <EntityTypeShape EntityType="InvestNetworkModel.ProjectStatus" Width="1.5" PointX="9.5" PointY="3.125" />
         <AssociationConnector Association="InvestNetworkModel.FK__Payments__Paymen__00200768" />
         <AssociationConnector Association="InvestNetworkModel.FK__Payments__Projec__7E37BEF6" />
         <AssociationConnector Association="InvestNetworkModel.FK__Projects__Projec__73BA3083" />
-        <EntityTypeShape EntityType="InvestNetworkModel.UsersInfo" Width="1.5" PointX="4.7355259213296357" PointY="20.048693398036384" />
+        <EntityTypeShape EntityType="InvestNetworkModel.UsersInfo" Width="1.5" PointX="0.75" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

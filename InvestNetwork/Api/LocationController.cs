@@ -49,5 +49,17 @@ namespace InvestNetwork.Api
                 RegionID = c.RegionID
             }).Where(c => c.RegionID == id).ToList();
         }
+
+        public CityDto GetCityById(int id)
+        {
+            City city = _cityRepository.GetById(id);
+            return new CityDto
+            {
+                CityID = city.CityID,
+                CityName = city.CityName,
+                RegionID = city.RegionID,
+                CountryID = city.CountryID
+            };
+        }
     }
 }

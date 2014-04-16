@@ -54,6 +54,8 @@ GO
 
 ---------------------------------------------
 -- Ильназ 12.02.2014
+-- Ильназ 10.03.2014  Добавил ProjectStatusID, StartDate
+-- Ильназ 15.04.2014  Добавил CreateDate, StartDate NOT NULL -> NULL
 ---------------------------------------------
 CREATE TABLE Projects (
 	ProjectID INT IDENTITY (1, 1) PRIMARY KEY,
@@ -65,14 +67,17 @@ CREATE TABLE Projects (
 	LinkToBusinessPlan VARCHAR(300) NOT NULL,
 	LinkToFinancialPlan VARCHAR(300) NOT NULL,
 	LinkToVideoPresentation VARCHAR(300) NULL,
-	LinkToGuaranteeLetter VARCHAR(300) NULL
+	LinkToGuaranteeLetter VARCHAR(300) NULL,
+	ProjectStatusID INT NOT NULL REFERENCES ProjectStatuses (ProjectStatusID),
+	StartDate DateTime NULL,
+	CreateDate DateTime NOT NULL
 )
 GO
 
 ---------------------------------------------
 -- Леха 07.03.2014
 ---------------------------------------------
-CREATE TABLE Messages (
+CREATE TABLE Messages(
 	MessageID INT IDENTITY (1, 1) PRIMARY KEY,
 	FromUserID INT NOT NULL REFERENCES Users (Id),
 	ToUserID INT NOT NULL REFERENCES Users (Id),
@@ -80,14 +85,26 @@ CREATE TABLE Messages (
 	MessageDate DATETIME NOT NULL
 )
 GO
+
+---------------------------------------------
+-- Леха 07.03.2014
+-- Ильназ 07.03.2014  Добавил StatusCode(5 - активный, -99 - удаленный, 1 - проверяется )
+---------------------------------------------
 CREATE TABLE ProjectStatuses(
 	ProjectStatusID INT IDENTITY (1, 1) PRIMARY KEY,
-	Status NVARCHAR(100)
+	Status NVARCHAR(100),
+	StatusCode INT NOT NULL
 )
 GO
+
+---------------------------------------------
+-- Леха 07.03.2014
+-- Ильназ 07.03.2014  Добавил StatusCode(5 - активный, -99 - удаленный, 1 - проверяется )
+---------------------------------------------
 CREATE TABLE PaymentStatuses(
 	PaymentStatusID INT IDENTITY (1, 1) PRIMARY KEY,
-	Status NVARCHAR(100)
+	Status NVARCHAR(100),
+	StatusCode INT NOT NULL
 )
 GO
 CREATE TABLE Payments(
@@ -120,8 +137,3 @@ GO
 CREATE UNIQUE INDEX idxMessageID ON Messages (MessageID);
 CREATE UNIQUE INDEX idxPaymentID ON Payments (PaymentID);
 CREATE UNIQUE INDEX idxUsersInfoID ON UsersInfo (UsersInfoID);
-
-ALTER TABLE Projects ADD StartDate DateTime NOT NULL ;
-GO
-ALTER TABLE Projects ADD ProjectStatusID INT NOT NULL REFERENCES ProjectStatuses (ProjectStatusID);
-GO

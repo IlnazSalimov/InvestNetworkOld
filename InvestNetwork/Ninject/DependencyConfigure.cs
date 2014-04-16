@@ -1,4 +1,5 @@
-﻿using InvestNetwork.Core;
+﻿using InvestNetwork.Controllers;
+using InvestNetwork.Core;
 using InvestNetwork.Models;
 using Ninject;
 using System;
@@ -22,6 +23,9 @@ namespace InvestNetwork.Ninject
             kernel.Bind<IRegionRepository>().To<RegionRepository>();
             kernel.Bind<ICityRepository>().To<CityRepository>();
             kernel.Bind<IProjectRepository>().To<ProjectRepository>();
+            kernel.Bind<IScopeRepository>().To<ScopeRepository>();
+            kernel.Bind<IProjectStatusRepository>().To<ProjectStatusRepository>();
+            //kernel.Bind<ISessionState>().To<SessionState>();
             DependencyResolver.SetResolver(new CustomDependencyResolver(kernel));
             GlobalConfiguration.Configuration.DependencyResolver =
                 new NinjectWebApiResolver(kernel);

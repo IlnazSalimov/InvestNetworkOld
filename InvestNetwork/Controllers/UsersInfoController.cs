@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace InvestNetwork.Controllers
 {
-    public class UsersInfoController : GeneralController
+    /*public class UsersInfoController : GeneralController
     {
         //
         // GET: /UsersInfo/
@@ -45,5 +45,5 @@ namespace InvestNetwork.Controllers
             _usersInfoRepository.Save();
             return View(model);
         }
-    }
+    }*/
 }
