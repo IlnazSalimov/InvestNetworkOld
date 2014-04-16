@@ -5,7 +5,7 @@ using System.Web;
 
 namespace InvestNetwork.Models
 {
-    public class RoleRepository
+    public class RoleRepository : IRoleRepository
     {
         private IRepository<Role> roleRepository;
 

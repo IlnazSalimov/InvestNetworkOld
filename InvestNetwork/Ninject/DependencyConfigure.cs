@@ -25,6 +25,9 @@ namespace InvestNetwork.Ninject
             kernel.Bind<IProjectRepository>().To<ProjectRepository>();
             kernel.Bind<IScopeRepository>().To<ScopeRepository>();
             kernel.Bind<IProjectStatusRepository>().To<ProjectStatusRepository>();
+            kernel.Bind<IInvestContext>().To<InvestContext>();
+            kernel.Bind<IRoleRepository>().To<RoleRepository>();
+
             //kernel.Bind<ISessionState>().To<SessionState>();
             DependencyResolver.SetResolver(new CustomDependencyResolver(kernel));
             GlobalConfiguration.Configuration.DependencyResolver =

@@ -14,17 +14,6 @@ namespace InvestNetwork.Models
         /// </summary>
         public User User { get; set; }
 
-        [Inject]
-        public IAuthentication Auth { get; set; }
-
-        public User CurrentUser
-        {
-            get
-            {
-                return ((IUserProvider)Auth.CurrentUser.Identity).User;
-            }
-        }
-
         public string AuthenticationType
         {
             get
@@ -58,7 +47,7 @@ namespace InvestNetwork.Models
         {
             if (!string.IsNullOrEmpty(email))
             {
-                User = repository.GetUser(email);
+                User = repository.GetByEmail(email);
             }
         }
     }

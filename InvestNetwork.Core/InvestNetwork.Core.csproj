@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\AccountDto.cs" />
     <Compile Include="Data\IDataContext.cs" />
     <Compile Include="Entity\Entity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

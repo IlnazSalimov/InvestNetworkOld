@@ -14,16 +14,13 @@ namespace InvestNetwork.Controllers
         // GET: /Account/
         private readonly IUserRepository _userRepository;
         private readonly IRoleRepository _roleRepository;
+        private readonly IInvestContext _investContext;
 
-        public AccountController()
+        public AccountController(IUserRepository userRepository, IRoleRepository roleRepository, IInvestContext investContext)
         {
-
-        }
-
-        public AccountController(IUserRepository userRepository, IRoleRepository roleRepository)
-        {
-            _userRepository = userRepository;
-            _roleRepository = roleRepository;
+            this._userRepository = userRepository;
+            this._roleRepository = roleRepository;
+            this._investContext = investContext;
         }
 
         public ActionResult Index()
@@ -37,15 +34,14 @@ namespace InvestNetwork.Controllers
             return View();
         }
 
-        //TODO: Нужно создать модели-витрины где-нибудь в отдельной папке.
         [HttpPost]
-        public ActionResult SignUp(User model)
+        public ActionResult SignUp(SignupUser model)
         {
             if (ModelState.IsValid)
             {
                 _userRepository.Insert(new User { FullName = model.FullName, Email = model.Email, Password = model.Password });
                 _userRepository.Save();
-                //FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
+                FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
                 return RedirectToAction("Index", "Home");
             }
             return View(model);
@@ -70,18 +66,14 @@ namespace InvestNetwork.Controllers
         }
 
 
-        //TODO: Нужно создать модели-витрины где-нибудь в отдельной папке.
         [HttpPost]
-        public ActionResult Login(User model, string returnUrl)
+        public ActionResult Login(LoginUser model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
-                string email = model.Email;
-                string password = model.Password;
-
-                if (_userRepository.Login(email, password) != null)
+                if (_userRepository.Login(model.Email, model.Password) != null)
                 {
-                    FormsAuthentication.SetAuthCookie(model.Email, model.FullName, model.RememberMe);
+                    _investContext.SetAuthCookie(model.Email, model.RememberMe);
                     if (Url.IsLocalUrl(returnUrl))
                     {
                         return Redirect(returnUrl);
@@ -103,8 +95,8 @@ namespace InvestNetwork.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-
             return RedirectToAction("Index", "Home");
         }
+
     }
 }

@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace InvestNetwork.Controllers
 {
-    public class UsersInfoController : BaseController
+    public class UsersInfoController : Controller
     {
         //
         // GET: /UsersInfo/
@@ -26,8 +26,8 @@ namespace InvestNetwork.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Add(UsersInfo model)
+        //[HttpPost]
+        /*public ActionResult Add(UsersInfo model)
         {
             User user = this.CurrentUser;
             model.UserID = user.Id;
@@ -44,6 +44,6 @@ namespace InvestNetwork.Controllers
 
             _usersInfoRepository.Save();
             return View(model);
-        }
+        }*/
     }
 }

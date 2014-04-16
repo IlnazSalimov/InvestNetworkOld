@@ -20,10 +20,13 @@ namespace InvestNetwork.Controllers
         // GET: /Project/
         private readonly IProjectRepository _projectRepository;
         private readonly IProjectStatusRepository _projectStatusRepository;
-        public ProjectController(IProjectRepository projectRepository, IProjectStatusRepository projectStatusRepository)
+        private readonly IInvestContext _investContext;
+
+        public ProjectController(IProjectRepository projectRepository, IProjectStatusRepository projectStatusRepository, IInvestContext investContext)
         {
             this._projectRepository = projectRepository;
             this._projectStatusRepository = projectStatusRepository;
+            this._investContext = investContext;
         }
 
         public ActionResult Index()
@@ -42,7 +45,7 @@ namespace InvestNetwork.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.AuthorID = 1;
+                model.AuthorID = ((IUserProvider)_investContext.CurrentUser.Identity).User.Id;
                 model.CreateDate = DateTime.Now;
                 model.ProjectStatusID = _projectStatusRepository.GetByCode((int)ProjectStatus.Сhecking).ProjectStatusID;
                 model.LinkToBusinessPlan = "";

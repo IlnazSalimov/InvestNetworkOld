@@ -5,8 +5,9 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Security;
 using Ninject;
+using InvestNetwork.Models;
 
-namespace InvestNetwork.Models
+namespace InvestNetwork.Context
 {
     public class CustomAuthentication : IAuthentication
     {

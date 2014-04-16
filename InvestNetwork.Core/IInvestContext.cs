@@ -6,13 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace InvestNetwork.Models
+
+namespace InvestNetwork.Core
 {
-    public interface IAuthentication
+    public interface IInvestContext
     {
-        /// <summary>
-        /// Конекст (тут мы получаем доступ к запросу и кукисам)
-        /// </summary>
         HttpContext HttpContext { get; set; }
 
         User Login(string login, string password, bool isPersistent);
@@ -22,5 +20,6 @@ namespace InvestNetwork.Models
         void LogOut();
 
         IPrincipal CurrentUser { get; }
+
     }
 }

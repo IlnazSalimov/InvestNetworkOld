@@ -9,9 +9,6 @@ namespace InvestNetwork.Models
     public class UserProvider : IPrincipal
     {
         private UserIndentity userIdentity { get; set; }
-        private UserRepository userRepository;
-
-        #region IPrincipal Members
 
         public IIdentity Identity
         {
@@ -27,10 +24,12 @@ namespace InvestNetwork.Models
             {
                 return false;
             }
-            return userRepository.InRoles(role);
+            else
+            {
+                return userIdentity.User.InRoles(role);
+            }
+            
         }
-
-        #endregion
 
 
         public UserProvider(string name, IUserRepository repository)

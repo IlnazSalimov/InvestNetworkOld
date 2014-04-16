@@ -54,7 +54,7 @@ namespace InvestNetwork.Models
 
         public User Login(string email, string password)
         {
-            return userRepository.GetAll().FirstOrDefault(p => string.Compare(p.Email, email, true) == 0 && p.Password == password);
+            return userRepository.GetAll().FirstOrDefault(p => string.Equals(p.Email, email) && p.Password == password);
         }
 
         public void Save()
@@ -62,28 +62,9 @@ namespace InvestNetwork.Models
             userRepository.Save();
         }
 
-        public bool InRoles(string roles)
+        public User GetByEmail(string email)
         {
-            if (string.IsNullOrWhiteSpace(roles))
-            {
-                return false;
-            }
-
-            var rolesArray = roles.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (var role in rolesArray)
-            {
-                var hasRole = roleRepository.GetAll().Any(p => string.Compare(p.RoleName, role, true) == 0);
-                if (hasRole)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public User GetUser(string email)
-        {
-            return userRepository.GetAll().FirstOrDefault(p => string.Compare(p.Email, email, true) == 0);
+            return userRepository.GetAll().FirstOrDefault(p => string.Equals(p.Email, email));
         }
     }
 }

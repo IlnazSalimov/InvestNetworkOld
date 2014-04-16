@@ -1,4 +1,4 @@
-﻿@model InvestNetwork.Models.User
+﻿@model InvestNetwork.Models.LoginUser
 
 @{
     ViewBag.Title = "Login";
@@ -39,6 +39,13 @@
                         <div class="join_label">@Html.LabelFor(model => model.Password)</div>
                         <div class="join_element">
                             @Html.EditorFor(model => model.Password)
+                        </div>
+                    </div>
+
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(model => model.RememberMe)</div>
+                        <div class="join_element">
+                            @Html.CheckBoxFor(model => model.RememberMe)
                         </div>
                     </div>
 
