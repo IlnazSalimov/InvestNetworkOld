@@ -73,6 +73,16 @@ namespace InvestNetwork.Controllers
             {
                 if (_userRepository.Login(model.Email, model.Password) != null)
                 {
+                    // достать текущего user'а
+                    //------------------------------------------------------------------------
+                    var cur_user = _investContext.CurrentUser;
+                    User user;
+                    if (cur_user != null)
+                    {
+                        user = ((UserIndentity)cur_user.Identity).User;
+                    }
+                    //------------------------------------------------------------------------
+
                     _investContext.SetAuthCookie(model.Email, model.RememberMe);
                     if (Url.IsLocalUrl(returnUrl))
                     {

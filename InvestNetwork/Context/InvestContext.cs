@@ -13,7 +13,7 @@ namespace InvestNetwork
     public class InvestContext : IInvestContext
     {
         private const string COOKIENAME = "__AUTH_COOKIE";
-        private HttpContext HttpContext { get; set; }
+        //private HttpContextBase HttpContext { get; set; }
         private IUserRepository _userRepository;
 
         public InvestContext(IUserRepository userRepository)
@@ -29,7 +29,7 @@ namespace InvestNetwork
             {
                 try
                 {
-                    HttpCookie authCookie = HttpContext.Request.Cookies.Get(COOKIENAME);
+                    HttpCookie authCookie = HttpContext.Current.Request.Cookies.Get(COOKIENAME);
                     if (authCookie != null && !string.IsNullOrEmpty(authCookie.Value))
                     {
                         var ticket = FormsAuthentication.Decrypt(authCookie.Value);
@@ -69,7 +69,7 @@ namespace InvestNetwork
                 Value = encTicket,
                 Expires = DateTime.Now.Add(FormsAuthentication.Timeout)
             };
-            HttpContext.Response.Cookies.Set(AuthCookie);
+            HttpContext.Current.Response.Cookies.Set(AuthCookie);
         }
     }
 }
