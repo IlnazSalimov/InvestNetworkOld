@@ -1,0 +1,30 @@
+﻿@model IEnumerable<InvestNetwork.Models.Project>
+
+@{
+    ViewBag.Title = "Проекты";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+@section Styles{
+}
+
+@section Header{
+    <div class="page_title">
+        <div class="container">
+            <div class="title">
+                <h1>Создание проекта</h1>
+            </div>
+        </div>
+    </div>
+}
+
+@foreach (InvestNetwork.Models.Project p in Model)
+{
+    <div class="one_fourth">
+        <div class="portfolio_image">
+            <a class="fancybox" href="http://placehold.it/680x400" data-fancybox-group="gallery" title="Desktop packages">
+                <img src="http://placehold.it/680x400" alt=""></a>
+            <div class="title">Desktop packages</div>
+        </div>
+    </div>
+}
