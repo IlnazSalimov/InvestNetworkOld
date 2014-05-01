@@ -115,7 +115,6 @@
   <ItemGroup>
     <Compile Include="Api\LocationController.cs" />
     <Compile Include="Api\ScopeController.cs" />
-    <Compile Include="Context\CustomAuthentication.cs" />
     <Compile Include="Context\HttpModules\AuthHttpModule.cs" />
     <Compile Include="Context\Interfaces\IAuthentication.cs" />
     <Compile Include="Context\Interfaces\IUserProvider.cs" />
