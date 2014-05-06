@@ -11,18 +11,20 @@ namespace InvestNetwork.Context
 {
     public class CustomAuthentication : IAuthentication
     {
+
         private const string cookieName = "__AUTH_COOKIE";
 
         public HttpContext HttpContext { get; set; }
+        public int ddff { get; set; }
 
         [Inject]
-        public IUserRepository Repository { get; set; }
+        public IUserRepository _userRepository { get; set; }
 
         #region IAuthentication Members
 
         public User Login(string userName, string Password, bool isPersistent)
         {
-            User retUser = Repository.Login(userName, Password);
+            User retUser = _userRepository.Login(userName, Password);
             if (retUser != null)
             {
                 CreateCookie(userName, isPersistent);
@@ -30,12 +32,12 @@ namespace InvestNetwork.Context
             return retUser;
         }
 
-        public User Login(string userName)
+        public User Login(string email)
         {
-            User retUser = Repository.GetAll().FirstOrDefault(p => string.Compare(p.Email, userName, true) == 0);
+            User retUser = _userRepository.GetAll().FirstOrDefault(p => string.Compare(p.Email, email, true) == 0);
             if (retUser != null)
             {
-                CreateCookie(userName);
+                CreateCookie(email);
             }
             return retUser;
         }
@@ -86,7 +88,7 @@ namespace InvestNetwork.Context
                         if (authCookie != null && !string.IsNullOrEmpty(authCookie.Value))
                         {
                             var ticket = FormsAuthentication.Decrypt(authCookie.Value);
-                            _currentUser = new UserProvider(ticket.Name, Repository);
+                            _currentUser = new UserProvider(ticket.Name, _userRepository);
                         }
                         else
                         {

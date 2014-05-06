@@ -1,7 +1,10 @@
-﻿using InvestNetwork.Controllers;
+﻿using InvestNetwork.Context;
+using InvestNetwork.Controllers;
 using InvestNetwork.Core;
 using InvestNetwork.Models;
 using Ninject;
+using Ninject.Web;
+using Ninject.Web.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,8 +31,8 @@ namespace InvestNetwork.Ninject
             kernel.Bind<IInvestContext>().To<InvestContext>();
             kernel.Bind<IRoleRepository>().To<RoleRepository>();
             kernel.Bind<IUsersInfoRepository>().To<UsersInfoRepository>();
+            kernel.Bind<IAuthentication>().To<CustomAuthentication>().InSingletonScope();
 
-            //kernel.Bind<ISessionState>().To<SessionState>();
             DependencyResolver.SetResolver(new CustomDependencyResolver(kernel));
             GlobalConfiguration.Configuration.DependencyResolver =
                 new NinjectWebApiResolver(kernel);

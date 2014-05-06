@@ -21,6 +21,7 @@ namespace InvestNetwork.Controllers
         private readonly IProjectRepository _projectRepository;
         private readonly IProjectStatusRepository _projectStatusRepository;
         private readonly IInvestContext _investContext;
+        private const int PROJECT_COUNT_AT_THE_FIRST_VIEWING = 20;
 
         public ProjectController(IProjectRepository projectRepository, IProjectStatusRepository projectStatusRepository, IInvestContext investContext)
         {
@@ -34,6 +35,7 @@ namespace InvestNetwork.Controllers
             return View(_projectRepository.GetAll());
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult Create()
         {
@@ -45,7 +47,7 @@ namespace InvestNetwork.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.AuthorID = ((IUserProvider)_investContext.CurrentUser.Identity).User.Id;
+                model.AuthorID = _investContext.CurrentUser.Id;
                 model.CreateDate = DateTime.Now;
                 model.ProjectStatusID = _projectStatusRepository.GetByCode((int)ProjectStatus.Сhecking).ProjectStatusID;
                 model.LinkToBusinessPlan = "";
@@ -56,7 +58,16 @@ namespace InvestNetwork.Controllers
                 _projectRepository.Insert(model);
                 _projectRepository.Save();
             }
-            return View(model);
+            else
+            {
+                return View(model);
+            }
+            return RedirectToAction("Discover");
+        }
+
+        public ActionResult Discover()
+        {
+            return View(_projectRepository.GetAll().Take(PROJECT_COUNT_AT_THE_FIRST_VIEWING));
         }
     }
 }
