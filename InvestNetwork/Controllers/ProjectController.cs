@@ -35,6 +35,7 @@ namespace InvestNetwork.Controllers
             return View(_projectRepository.GetAll());
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult Create()
         {
@@ -46,7 +47,7 @@ namespace InvestNetwork.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.AuthorID = /*((IUserProvider)_investContext.CurrentUser.Identity).User.Id*/1;
+                model.AuthorID = _investContext.CurrentUser.Id;
                 model.CreateDate = DateTime.Now;
                 model.ProjectStatusID = _projectStatusRepository.GetByCode((int)ProjectStatus.Сhecking).ProjectStatusID;
                 model.LinkToBusinessPlan = "";
@@ -57,7 +58,11 @@ namespace InvestNetwork.Controllers
                 _projectRepository.Insert(model);
                 _projectRepository.Save();
             }
-            return View(model);
+            else
+            {
+                return View(model);
+            }
+            return RedirectToAction("Discover");
         }
 
         public ActionResult Discover()

@@ -1,4 +1,5 @@
-﻿using InvestNetwork.Models;
+﻿using InvestNetwork.Context;
+using InvestNetwork.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,70 +7,33 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.UI;
 
 namespace InvestNetwork
 {
     public class InvestContext : IInvestContext
     {
         private const string COOKIENAME = "__AUTH_COOKIE";
-        //private HttpContextBase HttpContext { get; set; }
+        
+        public IAuthentication Auth { get; set; }
         private IUserRepository _userRepository;
 
-        public InvestContext(IUserRepository userRepository)
+        public InvestContext(IUserRepository userRepository, IAuthentication authentication)
         {
             this._userRepository = userRepository;
+            this.Auth = DependencyResolver.Current.GetService<IAuthentication>();
+            this.Auth.ddff = 5;
         }
 
-        private IPrincipal _currentUser;
-
-        public IPrincipal CurrentUser
+        public User CurrentUser
         {
             get
             {
-                try
-                {
-                    HttpCookie authCookie = HttpContext.Current.Request.Cookies.Get(COOKIENAME);
-                    if (authCookie != null && !string.IsNullOrEmpty(authCookie.Value))
-                    {
-                        var ticket = FormsAuthentication.Decrypt(authCookie.Value);
-                        _currentUser = new UserProvider(ticket.Name, _userRepository);
-                    }
-                    else
-                    {
-                        _currentUser = null;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    _currentUser = null;
-                }
-
-                return _currentUser;
+                return ((IUserProvider)Auth.CurrentUser.Identity).User;
             }
         }
 
-        public void SetAuthCookie(string email, bool isPersistent = false)
-        {
-            var ticket = new FormsAuthenticationTicket(
-                  1,
-                  email,
-                  DateTime.Now,
-                  DateTime.Now.Add(FormsAuthentication.Timeout),
-                  isPersistent,
-                  string.Empty,
-                  FormsAuthentication.FormsCookiePath);
-
-            // Encrypt the ticket.
-            var encTicket = FormsAuthentication.Encrypt(ticket);
-
-            // Create the cookie.
-            var AuthCookie = new HttpCookie(COOKIENAME)
-            {
-                Value = encTicket,
-                Expires = DateTime.Now.Add(FormsAuthentication.Timeout)
-            };
-            HttpContext.Current.Response.Cookies.Set(AuthCookie);
-        }
     }
 }

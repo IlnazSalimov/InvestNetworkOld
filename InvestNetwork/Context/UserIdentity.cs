@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using Ninject;
+using InvestNetwork.Context;
 
 namespace InvestNetwork.Models
 {
@@ -13,6 +14,17 @@ namespace InvestNetwork.Models
         /// Текщий пользователь
         /// </summary>
         public User User { get; set; }
+
+        [Inject]
+        public IAuthentication Auth { get; set; }
+
+        public User CurrentUser
+        {
+            get
+            {
+                return ((IUserProvider)Auth.CurrentUser.Identity).User;
+            }
+        }
 
         public string AuthenticationType
         {

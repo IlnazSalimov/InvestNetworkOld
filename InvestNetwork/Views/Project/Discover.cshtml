@@ -1,4 +1,5 @@
-﻿@model IEnumerable<InvestNetwork.Models.Project>
+﻿@using InvestNetwork.Models;
+@model IEnumerable<Project>
 
 @{
     ViewBag.Title = "Проекты";
@@ -12,19 +13,33 @@
     <div class="page_title">
         <div class="container">
             <div class="title">
-                <h1>Создание проекта</h1>
+                <h1>Откройте для себя проекты</h1>
             </div>
         </div>
     </div>
 }
 
-@foreach (InvestNetwork.Models.Project p in Model)
-{
-    <div class="one_fourth">
-        <div class="portfolio_image">
-            <a class="fancybox" href="http://placehold.it/680x400" data-fancybox-group="gallery" title="Desktop packages">
-                <img src="http://placehold.it/680x400" alt=""></a>
-            <div class="title">Desktop packages</div>
+<div class="our_team_box_big">
+    <h2>Начни  <strong>изучать!</strong></h2>
+    @foreach (Project p in Model)
+    {
+        <div class="one_fourth">
+            <div class="cont-area">
+                <img src="http://placehold.it/210x230" alt="" class="teammempic">
+                <ul>
+                    <li><strong>@p.Name<i> by @p.AuthorFullName</i></strong></li>
+                    <li><a href="#"><i class="icon-facebook icon-large"></i></a></li>
+                    <li><a href="#"><i class="icon-twitter icon-large"></i></a></li>
+                    <li><a href="#"><i class="icon-google-plus icon-large"></i></a></li>
+                    <li><a href="#"><i class="icon-linkedin icon-large"></i></a></li>
+                    <li><a href="#"><i class="icon-pinterest icon-large"></i></a></li>
+                </ul>
+            </div>
+            <p>@p.Description</p>
         </div>
-    </div>
+}
+</div>
+<div class="clearfix mar_top5"></div>
+
+@section Scripts{
 }

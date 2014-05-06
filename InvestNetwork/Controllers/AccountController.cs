@@ -71,19 +71,11 @@ namespace InvestNetwork.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_userRepository.Login(model.Email, model.Password) != null)
+                var user = _investContext.Auth.Login(model.Email, model.Password, model.RememberMe);
+                var isA1 = _investContext.Auth.CurrentUser.Identity.IsAuthenticated;
+                var isA = User.Identity.IsAuthenticated;
+                if (user != null)
                 {
-                    // достать текущего user'а
-                    //------------------------------------------------------------------------
-                    var cur_user = _investContext.CurrentUser;
-                    User user;
-                    if (cur_user != null)
-                    {
-                        user = ((UserIndentity)cur_user.Identity).User;
-                    }
-                    //------------------------------------------------------------------------
-
-                    _investContext.SetAuthCookie(model.Email, model.RememberMe);
                     if (Url.IsLocalUrl(returnUrl))
                     {
                         return Redirect(returnUrl);
@@ -104,9 +96,8 @@ namespace InvestNetwork.Controllers
 
         public ActionResult Logout()
         {
-            FormsAuthentication.SignOut();
+            _investContext.Auth.LogOut();
             return RedirectToAction("Index", "Home");
         }
-
     }
 }

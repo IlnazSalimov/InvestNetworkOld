@@ -42,5 +42,10 @@ namespace InvestNetwork.Models
         public DbSet<Payment> Payments { get; set; }
         public DbSet<PaymentStatus> PaymentStatuses { get; set; }
         public DbSet<ProjectStatus> ProjectStatuses { get; set; }
+
+        DbEntityEntry<TEntity> IDataContext.Entry<TEntity>(TEntity entity)
+        {
+            return this.Entry(entity);
+        }
     }
 }

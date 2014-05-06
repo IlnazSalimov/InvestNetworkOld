@@ -1,4 +1,5 @@
-﻿using InvestNetwork.Models;
+﻿using InvestNetwork.Context;
+using InvestNetwork.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ using System.Web;
 
 namespace InvestNetwork
 {
-    public interface IInvestContext
+    public interface IInvestContext 
     {
-        IPrincipal CurrentUser { get; }
-        void SetAuthCookie(string email, bool isPersistent = false);
+        IAuthentication Auth { get; set; }
+        User CurrentUser { get; }
     }
 }
