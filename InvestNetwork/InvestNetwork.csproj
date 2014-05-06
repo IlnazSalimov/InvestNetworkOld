@@ -161,6 +161,7 @@
     </Compile>
     <Compile Include="Models\MetaData\ProjectMetaData.cs" />
     <Compile Include="Models\MetaData\UserMetaData.cs" />
+    <Compile Include="Models\MetaData\UsersInfoMetaData.cs" />
     <Compile Include="Models\Payment.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>

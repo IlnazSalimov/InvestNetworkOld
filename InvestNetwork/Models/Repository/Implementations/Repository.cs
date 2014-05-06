@@ -46,7 +46,8 @@ namespace InvestNetwork.Models
         {
             if (entity == null)
                 throw new ArgumentNullException("entity");
-            //Entities.Find(entity_ => entity_
+            Entities.Find(entity);
+            dataContext.SaveChanges();
         }
 
         public void Delete(TEntity entity)
