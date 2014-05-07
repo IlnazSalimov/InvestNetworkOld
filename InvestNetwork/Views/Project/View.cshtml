@@ -1,0 +1,53 @@
+﻿@model InvestNetwork.Models.Project
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+@section Styles{}
+
+@section Header{
+    <div class="page_title">
+        <div class="container">
+            <div class="title">
+                <h1>@Model.Name</h1>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="content_fullwidth">
+    <div class="portfolio_area">
+
+        <div class="portfolio_area_left"><a href="#" target="_blank">
+            <img src="@Model.LinkToImg" alt=""></a></div>
+
+        <div class="portfolio_area_right">
+
+            <h3>Описание проекта</h3>
+            <p>@Model.Description</p>
+            <a href="#" class="addto_favorites"><strong><i class="icon-heart"></i>Добавить в избранное</strong></a>
+            <ul class="small_social_links">
+                <li><a href="#"><i class="icon-facebook"></i></a></li>
+                <li><a href="#"><i class="icon-twitter"></i></a></li>
+                <li><a href="#"><i class="icon-google-plus"></i></a></li>
+                <li><a href="#"><i class="icon-linkedin"></i></a></li>
+                <li><a href="#"><i class="icon-pinterest"></i></a></li>
+            </ul>
+
+            <div class="project_details">
+                <h3>Детали проекта</h3>
+                <span><strong>До окончания</strong> <em>@(Model.EndDate.Value.Day - Model.StartDate.Value.Day)</em></span>
+                <span><strong>Категория</strong> <em><a href="#">@Model.Scope.Title</a></em></span>
+                <span><strong>Автор</strong> <em>@Model.AuthorFullName</em></span>
+                <div class="clearfix mar_top3"></div>
+                <a href="#" class="but_goback"><i class="icon-hand-right icon-large"></i>Инвестировать</a>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{}

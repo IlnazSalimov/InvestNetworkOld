@@ -22,7 +22,7 @@ namespace InvestNetwork.Ninject
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            return _kernel.GetAll(serviceType);
+            return _kernel.GetAll(serviceType).ToList();
         }
     }
 }

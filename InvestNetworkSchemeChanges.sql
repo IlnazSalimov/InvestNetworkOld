@@ -56,6 +56,7 @@ GO
 -- Ильназ 12.02.2014
 -- Ильназ 10.03.2014  Добавил ProjectStatusID, StartDate
 -- Ильназ 15.04.2014  Добавил CreateDate, StartDate NOT NULL -> NULL
+-- Ильназ 07.05.2014  Добавил LinkToImg, EndDate
 ---------------------------------------------
 CREATE TABLE Projects (
 	ProjectID INT IDENTITY (1, 1) PRIMARY KEY,
@@ -70,7 +71,9 @@ CREATE TABLE Projects (
 	LinkToGuaranteeLetter VARCHAR(300) NULL,
 	ProjectStatusID INT NOT NULL REFERENCES ProjectStatuses (ProjectStatusID),
 	StartDate DateTime NULL,
-	CreateDate DateTime NOT NULL
+	CreateDate DateTime NOT NULL,
+	LinkToImg VARCHAR(300) NOT NULL,
+	EndDate DateTime NULL
 )
 GO
 

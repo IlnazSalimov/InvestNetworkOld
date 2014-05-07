@@ -14,6 +14,11 @@ namespace InvestNetwork.Controllers
         Inactive = -99
     }
 
+    public enum VotingPeriod
+    {
+        _30Days = 30
+    }
+
     public class ProjectController : Controller
     {
         //
@@ -36,12 +41,12 @@ namespace InvestNetwork.Controllers
         }
 
         [Authorize]
-        [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Create(Project model)
         {
@@ -68,6 +73,11 @@ namespace InvestNetwork.Controllers
         public ActionResult Discover()
         {
             return View(_projectRepository.GetAll().Take(PROJECT_COUNT_AT_THE_FIRST_VIEWING));
+        }
+
+        public ActionResult View(int id)
+        {
+            return View(_projectRepository.GetById(id));
         }
     }
 }

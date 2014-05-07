@@ -24,7 +24,6 @@ namespace InvestNetwork
         {
             this._userRepository = userRepository;
             this.Auth = DependencyResolver.Current.GetService<IAuthentication>();
-            this.Auth.ddff = 5;
         }
 
         public User CurrentUser

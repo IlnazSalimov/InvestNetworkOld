@@ -32,6 +32,8 @@ namespace InvestNetwork.Models
         public int ProjectStatusID { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public System.DateTime CreateDate { get; set; }
+        public string LinkToImg { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
     
         public virtual Scope Scope { get; set; }
         public virtual ICollection<Payment> Payments { get; set; }

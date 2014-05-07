@@ -19,40 +19,42 @@
         </div>
     </div>
 }
-<div class="one_full">
-    @using (Html.BeginForm())
-    {
-        @Html.ValidationSummary(false)
+<div class="content_fullwidth">
+    <div class="one_full">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(false)
 
-        <fieldset>
-            <div class="accrodation">
-                <h2>Встречайте, <strong>ваш новый проект</strong></h2>
+            <fieldset>
+                <div class="accrodation">
+                    <h2>Встречайте, <strong>ваш новый проект</strong></h2>
 
 
-                <div class="join_row" id="name_row">
-                    <div class="join_label">@Html.LabelFor(model => model.Name)</div>
-                    <div class="join_element">
-                        @Html.EditorFor(model => model.Name)
+                    <div class="join_row" id="name_row">
+                        <div class="join_label">@Html.LabelFor(model => model.Name)</div>
+                        <div class="join_element">
+                            @Html.EditorFor(model => model.Name)
+                        </div>
+                    </div>
+
+                    @Html.Partial("_LocationSelecting", Model)
+
+                    @Html.Partial("_ScopeSelecting", Model)
+
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(model => model.Description)</div>
+                        <div class="join_element">
+                            @Html.TextAreaFor(model => model.Description)
+                        </div>
+                    </div>
+
+                    <div class="join_row">
+                        <input type="submit" value="Создать" />
                     </div>
                 </div>
-
-                @Html.Partial("_LocationSelecting", Model)
-
-                @Html.Partial("_ScopeSelecting", Model)
-
-                <div class="join_row">
-                    <div class="join_label">@Html.LabelFor(model => model.Description)</div>
-                    <div class="join_element">
-                        @Html.TextAreaFor(model => model.Description)
-                    </div>
-                </div>
-
-                <div class="join_row">
-                    <input type="submit" value="Создать" />
-                </div>
-            </div>
-        </fieldset>
+            </fieldset>
         }
+    </div>
 </div>
 
 @section Scripts{

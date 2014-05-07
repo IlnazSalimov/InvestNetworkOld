@@ -15,7 +15,6 @@ namespace InvestNetwork.Context
         private const string cookieName = "__AUTH_COOKIE";
 
         public HttpContext HttpContext { get; set; }
-        public int ddff { get; set; }
 
         [Inject]
         public IUserRepository _userRepository { get; set; }

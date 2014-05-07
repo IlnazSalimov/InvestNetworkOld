@@ -109,6 +109,8 @@
           <Property Name="ProjectStatusID" Type="int" Nullable="false" />
           <Property Name="StartDate" Type="datetime" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="LinkToImg" Type="varchar" Nullable="false" MaxLength="300" />
+          <Property Name="EndDate" Type="datetime" />
         </EntityType>
         <EntityType Name="ProjectStatuses">
           <Key>
@@ -350,6 +352,8 @@
           <NavigationProperty Name="Payments" Relationship="InvestNetworkModel.FK__Payments__Projec__7E37BEF6" FromRole="Project" ToRole="Payment" />
           <NavigationProperty Name="ProjectStatus" Relationship="InvestNetworkModel.FK__Projects__Projec__73BA3083" FromRole="Project" ToRole="ProjectStatus" />
           <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="3" />
+          <Property Type="String" Name="LinkToImg" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="EndDate" Precision="3" />
         </EntityType>
         <EntityType Name="Scope">
           <Key>
@@ -547,6 +551,8 @@
           <EntitySetMapping Name="Projects">
             <EntityTypeMapping TypeName="InvestNetworkModel.Project">
               <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="LinkToImg" ColumnName="LinkToImg" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="ProjectStatusID" ColumnName="ProjectStatusID" />

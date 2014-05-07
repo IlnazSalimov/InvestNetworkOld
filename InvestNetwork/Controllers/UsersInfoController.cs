@@ -26,7 +26,7 @@ namespace InvestNetwork.Controllers
             return View();
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public ActionResult Add(UsersInfo model)
         {
             if (ModelState.IsValid)
@@ -55,6 +55,6 @@ namespace InvestNetwork.Controllers
                 }
             }
             return View(model);
-        }
+        }*/
     }
 }

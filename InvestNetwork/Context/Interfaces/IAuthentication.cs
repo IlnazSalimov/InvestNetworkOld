@@ -15,7 +15,7 @@ namespace InvestNetwork.Context
         /// Конекст (тут мы получаем доступ к запросу и кукисам)
         /// </summary>
         HttpContext HttpContext { get; set; }
-        int ddff { get; set; }
+
         User Login(string login, string password, bool isPersistent);
 
         User Login(string login);

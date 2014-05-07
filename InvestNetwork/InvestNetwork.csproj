@@ -47,8 +47,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject.Web.Common">
-      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject.Web.Common.3.2.1.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\packages\Ninject.MVC4.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -115,10 +119,14 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0.5\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\LocationController.cs" />
     <Compile Include="Api\ScopeController.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Context\CustomAuthentication.cs" />
     <Compile Include="Context\HttpModules\AuthHttpModule.cs" />
     <Compile Include="Context\Interfaces\IAuthentication.cs" />
@@ -222,10 +230,10 @@
     <Compile Include="Models\UsersInfo.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Ninject\CustomDependencyResolver.cs" />
-    <Compile Include="Ninject\DependencyConfigure.cs" />
-    <Compile Include="Ninject\NinjectWebApiResolver.cs" />
-    <Compile Include="Ninject\NinjectWebApiScope.cs" />
+    <Compile Include="NinjectCustom\CustomDependencyResolver.cs" />
+    <Compile Include="NinjectCustom\DependencyConfigure.cs" />
+    <Compile Include="NinjectCustom\NinjectWebApiResolver.cs" />
+    <Compile Include="NinjectCustom\NinjectWebApiScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -573,6 +581,7 @@
     </Content>
     <Content Include="Views\Shared\_ScopeSelecting.cshtml" />
     <Content Include="Views\Project\Discover.cshtml" />
+    <Content Include="Views\Project\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -72,8 +72,7 @@ namespace InvestNetwork.Controllers
             if (ModelState.IsValid)
             {
                 var user = _investContext.Auth.Login(model.Email, model.Password, model.RememberMe);
-                var isA1 = _investContext.Auth.CurrentUser.Identity.IsAuthenticated;
-                var isA = User.Identity.IsAuthenticated;
+
                 if (user != null)
                 {
                     if (Url.IsLocalUrl(returnUrl))

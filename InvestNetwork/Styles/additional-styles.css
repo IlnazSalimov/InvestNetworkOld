@@ -89,3 +89,7 @@ input[type=password] {
         text-align: right;
     }
 }
+
+.our_team_box_big li a.project_name {
+    margin: 0
+}
