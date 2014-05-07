@@ -137,6 +137,14 @@
                                     @if (Request.IsAuthenticated)
                                     {
                                         <li class="last"><a href="#">@User.Identity.Name</a>
+                                            
+                                            <ul>
+                                                <li><a href="#">Профиль</a></li>
+                                                @if(User.IsInRole("Admin"))
+                                                {
+                                                    <li><a href="#">Панель администратора</a></li>
+                                                }
+                                            </ul>
                                             [ @Html.ActionLink("Log Out", "Logout", "Account") ]
                                         </li>
                                     }
