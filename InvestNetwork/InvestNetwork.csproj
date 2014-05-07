@@ -173,6 +173,7 @@
     <Compile Include="Models\Message.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MetaData\Partials\InvestNetworkEntities.cs" />
     <Compile Include="Models\MetaData\ProjectMetaData.cs" />
     <Compile Include="Models\MetaData\UserMetaData.cs" />
     <Compile Include="Models\MetaData\UsersInfoMetaData.cs" />

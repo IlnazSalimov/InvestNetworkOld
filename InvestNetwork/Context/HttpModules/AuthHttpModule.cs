@@ -21,6 +21,7 @@ namespace InvestNetwork.Context
             var auth = DependencyResolver.Current.GetService<IAuthentication>();
             auth.HttpContext = context;
             context.User = auth.CurrentUser;
+            var auth1 = DependencyResolver.Current.GetService<IAuthentication>();
         }
 
         public void Dispose() { }

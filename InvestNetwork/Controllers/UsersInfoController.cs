@@ -13,7 +13,7 @@ namespace InvestNetwork.Controllers
         // GET: /UsersInfo/
         private readonly IUsersInfoRepository _usersInfoRepository;
         private readonly IInvestContext _investContext;
-        
+
         public UsersInfoController(IUsersInfoRepository usersInfoRepository, IInvestContext investContext)
         {
             _usersInfoRepository = usersInfoRepository;
@@ -26,35 +26,32 @@ namespace InvestNetwork.Controllers
             return View();
         }
 
-        /*[HttpPost]
+        [Authorize]
+        [HttpPost]
         public ActionResult Add(UsersInfo model)
         {
             if (ModelState.IsValid)
             {
-                // достать текущего user'а
-                //------------------------------------------------------------------------
-                var cur_user = _investContext.CurrentUser;
-                User user;
-                if (cur_user != null)
+                User user = _investContext.CurrentUser;
+
+                model.UserID = user.Id;
+                UsersInfo usersInfo = _usersInfoRepository.GetByUserId(user.Id);
+
+                if (usersInfo == null)
                 {
-                    user = ((UserIndentity)cur_user.Identity).User;
-
-                    model.UserID = user.Id;
-
-                    if (_usersInfoRepository.GetByUserId(user.Id) == null)
-                    {
-                        model.RegisterDate = DateTime.Now;
-                        _usersInfoRepository.Insert(model);
-                    }
-                    else
-                    {
-                        _usersInfoRepository.Update(model);
-                    }
-
-                    _usersInfoRepository.Save();
+                    model.RegisterDate = DateTime.Now;
+                    _usersInfoRepository.Insert(model);
                 }
+                else
+                {
+                    model.UsersInfoID = usersInfo.UsersInfoID;
+                    _usersInfoRepository.Update(model);
+                }
+
+                _usersInfoRepository.Save();
+
             }
             return View(model);
-        }*/
+        }
     }
 }
