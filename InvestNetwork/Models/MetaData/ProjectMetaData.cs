@@ -8,21 +8,6 @@ using System.Web.Mvc;
 
 namespace InvestNetwork.Models
 {
-    [MetadataType(typeof(ProjectMetaData))]
-    public partial class Project
-    {
-        private IUserRepository _userRepository;
-
-        public string AuthorFullName
-        {
-            get
-            {
-                _userRepository = DependencyResolver.Current.GetService<IUserRepository>();
-                return _userRepository.GetById(this.AuthorID).FullName;
-            }
-        }
-    }
-
     public class ProjectMetaData
     {
         [Required]

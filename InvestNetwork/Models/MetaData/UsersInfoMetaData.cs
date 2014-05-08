@@ -6,11 +6,6 @@ using System.Web;
 
 namespace InvestNetwork.Models
 {
-    [MetadataType(typeof(UsersInfoMetaData))]
-    public partial class UsersInfo
-    {
-    }
-
     public class UsersInfoMetaData
     {
         [Required]

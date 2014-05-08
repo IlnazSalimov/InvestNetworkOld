@@ -173,10 +173,22 @@
     <Compile Include="Models\Message.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MetaData\Partials\InvestNetworkEntities.cs" />
+    <Compile Include="Models\Partials\City.cs" />
+    <Compile Include="Models\Partials\Message.cs" />
+    <Compile Include="Models\Partials\Payment.cs" />
+    <Compile Include="Models\Partials\PaymentStatus.cs" />
+    <Compile Include="Models\Partials\Project.cs" />
+    <Compile Include="Models\Partials\ProjectStatus.cs" />
+    <Compile Include="Models\Partials\Region.cs" />
+    <Compile Include="Models\Partials\Role.cs" />
+    <Compile Include="Models\Partials\Scope.cs" />
+    <Compile Include="Models\Partials\User.cs" />
+    <Compile Include="Models\Partials\Country.cs" />
+    <Compile Include="Models\Partials\InvestNetworkEntities.cs" />
     <Compile Include="Models\MetaData\ProjectMetaData.cs" />
     <Compile Include="Models\MetaData\UserMetaData.cs" />
     <Compile Include="Models\MetaData\UsersInfoMetaData.cs" />
+    <Compile Include="Models\Partials\UsersInfo.cs" />
     <Compile Include="Models\Payment.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>

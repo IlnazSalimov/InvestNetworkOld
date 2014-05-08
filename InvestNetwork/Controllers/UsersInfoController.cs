@@ -45,6 +45,7 @@ namespace InvestNetwork.Controllers
                 else
                 {
                     model.UsersInfoID = usersInfo.UsersInfoID;
+                    model.RegisterDate = usersInfo.RegisterDate;
                     _usersInfoRepository.Update(model);
                 }
 
