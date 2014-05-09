@@ -13,6 +13,7 @@ namespace InvestNetwork.Models
         void Insert(UsersInfo model);
         void Update(UsersInfo model);
         void Delete(UsersInfo model);
+        List<PartycipationUsersInfo> GetPartycipation(int id);
         //bool ValidateUser(string email, string password);
         void SaveChanges();
     }

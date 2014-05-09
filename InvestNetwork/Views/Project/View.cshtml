@@ -45,6 +45,7 @@
                 <span><strong>До окончания</strong> <em>@((Model.EndDate.Value - Model.StartDate.Value).Days)</em></span>
                 <span><strong>Необходимо собрать</strong> <em>@Model.NecessaryFunding</em></span>
                 <span><strong>Собрано</strong> <em>@Model.Payments.Sum(s => s.Sum)</em></span>
+                }
                 <span><strong>Категория</strong> <em><a href="#">@Model.Scope.Title</a></em></span>
                 <span><strong>Автор</strong> <em>@Model.AuthorFullName</em></span>
                 <div class="clearfix mar_top3"></div>

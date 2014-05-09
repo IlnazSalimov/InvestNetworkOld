@@ -43,6 +43,24 @@
                         </div>
                     </div>
 
+                    <div class="join_row" style="display: none">
+                        <div class="join_element">
+                            @Html.HiddenFor(model => model.UserID)
+                        </div>
+                    </div>
+
+                    <div class="join_row" style="display: none">
+                        <div class="join_element">
+                            @Html.HiddenFor(model => model.UsersInfoID)
+                        </div>
+                    </div>
+
+                    <div class="join_row" style="display: none">
+                        <div class="join_element">
+                            @Html.HiddenFor(model => model.RegisterDate)
+                        </div>
+                    </div>
+
                     <div class="join_row">
                         <div class="join_label">@Html.LabelFor(model => model.Middle)</div>
                         <div class="join_element">
