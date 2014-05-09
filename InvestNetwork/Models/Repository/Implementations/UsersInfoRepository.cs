@@ -12,10 +12,20 @@ namespace InvestNetwork.Models
     public class UsersInfoRepository : IUsersInfoRepository
     {
         private IRepository<UsersInfo> usersInfoRepository;
+        private IRepository<Payment> paymentRepository;
+        private IRepository<Project> projectRepository;
+        private IRepository<PaymentStatus> paymentStatusRepository;
+        private IRepository<ProjectStatus> projectStatusRepository;
 
-        public UsersInfoRepository(IRepository<UsersInfo> usersInfoRepository)
+        public UsersInfoRepository(IRepository<UsersInfo> usersInfoRepository, IRepository<Payment> paymentRepository,
+                                   IRepository<Project> projectRepository, IRepository<PaymentStatus> paymentStatusRepository,
+                                   IRepository<ProjectStatus> projectStatusRepository)
         {
             this.usersInfoRepository = usersInfoRepository;
+            this.paymentRepository = paymentRepository;
+            this.projectRepository = projectRepository;
+            this.paymentStatusRepository = paymentStatusRepository;
+            this.projectStatusRepository = projectStatusRepository;
         }
 
         public UsersInfo GetById(int id)
@@ -23,6 +33,33 @@ namespace InvestNetwork.Models
             if (id == 0)
                 return null;
             return usersInfoRepository.GetById(id);
+        }
+
+        public List<PartycipationUsersInfo> GetPartycipation(int id)
+        {
+            List<Payment> payments = paymentRepository.GetAll().Where(e => e.UserID == id).ToList();
+
+            List<PartycipationUsersInfo> participations = new List<PartycipationUsersInfo>();
+
+            foreach (Payment payment in payments)
+            {
+                PartycipationUsersInfo partycipation = new PartycipationUsersInfo();
+
+                partycipation.PaymentId = payment.PaymentID;
+                partycipation.PaymentDate = payment.PaymentDate;
+                partycipation.Sum = payment.Sum;
+                partycipation.PaymentStatus = paymentStatusRepository.GetById(partycipation.PaymentId).Status;
+                partycipation.ProjectId = payment.ProjectID;
+
+                Project project = projectRepository.GetById(partycipation.ProjectId);
+
+                partycipation.ProjectName = project.Name;
+                partycipation.ProjectStatus = projectStatusRepository.GetById(project.ProjectStatusID).Status;
+
+                participations.Add(partycipation);
+            }
+
+            return participations;
         }
 
         public UsersInfo GetByUserId(int id)

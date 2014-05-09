@@ -38,7 +38,7 @@
                     <div class="join_row">
                         <div class="join_label">@Html.LabelFor(model => model.Password)</div>
                         <div class="join_element">
-                            @Html.EditorFor(model => model.Password)
+                            @Html.PasswordFor(model => model.Password)
                         </div>
                     </div>
 
@@ -58,9 +58,6 @@
     </div>
 </div>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 @section Scripts{
 
 }

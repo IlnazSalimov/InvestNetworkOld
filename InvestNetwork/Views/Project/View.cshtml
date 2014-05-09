@@ -38,7 +38,10 @@
 
             <div class="project_details">
                 <h3>Детали проекта</h3>
+                @if (Model.StartDate != null && Model.EndDate != null)
+                {
                 <span><strong>До окончания</strong> <em>@(Model.EndDate.Value.Day - Model.StartDate.Value.Day)</em></span>
+                }
                 <span><strong>Категория</strong> <em><a href="#">@Model.Scope.Title</a></em></span>
                 <span><strong>Автор</strong> <em>@Model.AuthorFullName</em></span>
                 <div class="clearfix mar_top3"></div>

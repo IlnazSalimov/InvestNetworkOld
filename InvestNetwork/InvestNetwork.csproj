@@ -173,8 +173,10 @@
     <Compile Include="Models\Message.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MetaData\PartycipationUsersInfoMetaData.cs" />
     <Compile Include="Models\Partials\City.cs" />
     <Compile Include="Models\Partials\Message.cs" />
+    <Compile Include="Models\Partials\PartycipationUsersInfo.cs" />
     <Compile Include="Models\Partials\Payment.cs" />
     <Compile Include="Models\Partials\PaymentStatus.cs" />
     <Compile Include="Models\Partials\Project.cs" />
@@ -235,6 +237,7 @@
     <Compile Include="Models\Scope.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Showcases\UsersInfo\PartycipationUsersInfo.cs" />
     <Compile Include="Models\Showcases\Users\LoginUser.cs" />
     <Compile Include="Models\Showcases\Users\SignupUser.cs" />
     <Compile Include="Models\User.cs">
@@ -595,6 +598,7 @@
     <Content Include="Views\Shared\_ScopeSelecting.cshtml" />
     <Content Include="Views\Project\Discover.cshtml" />
     <Content Include="Views\Project\View.cshtml" />
+    <Content Include="Views\UsersInfo\HistoryParticipation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

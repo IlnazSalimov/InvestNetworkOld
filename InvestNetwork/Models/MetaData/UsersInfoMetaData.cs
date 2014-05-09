@@ -22,6 +22,8 @@ namespace InvestNetwork.Models
 
         [Required]
         [Display(Name = "Дата Рождения")]
+        [DisplayFormat(ApplyFormatInEditMode = true, 
+               DataFormatString = "{0:dd.MM.yyyy}")]
         public DateTime DateOfBirth { get; set; }
 
         [Required]
@@ -42,6 +44,8 @@ namespace InvestNetwork.Models
 
         [Required]
         [Display(Name = "Дата выдачи паспорта")]
+        [DisplayFormat(ApplyFormatInEditMode = true,
+               DataFormatString = "{0:dd.MM.yyyy}")]
         public DateTime PasportIssueDate { get; set; }
 
         [Required]

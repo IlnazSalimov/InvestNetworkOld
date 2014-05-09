@@ -21,9 +21,13 @@ namespace InvestNetwork.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Add()
         {
-            return View();
+            User user = _investContext.CurrentUser;
+            UsersInfo usersInfo = _usersInfoRepository.GetByUserId(user.Id);
+
+            return View(usersInfo);
         }
 
         [Authorize]
@@ -53,6 +57,17 @@ namespace InvestNetwork.Controllers
 
             }
             return View(model);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult HistoryParticipation()
+        {
+            User user = _investContext.CurrentUser;
+
+            List<PartycipationUsersInfo> part = _usersInfoRepository.GetPartycipation(user.ID);
+
+            return View(part);
         }
     }
 }

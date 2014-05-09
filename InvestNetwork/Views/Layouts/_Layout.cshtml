@@ -139,7 +139,7 @@
                                         <li class="last"><a href="#">@User.Identity.Name</a>
                                             
                                             <ul>
-                                                <li><a href="#">Профиль</a></li>
+                                                <li>@Html.ActionLink("Личный кабинет", "Add", "UsersInfo")</li>
                                                 @if(User.IsInRole("Admin"))
                                                 {
                                                     <li><a href="#">Панель администратора</a></li>
