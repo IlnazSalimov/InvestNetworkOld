@@ -25,6 +25,19 @@ namespace InvestNetwork.Models
         [Required]
         [Display(Name = "Описание")]
         public string Description { get; set; }
+
+        [Required]
+        [MinLength(40, ErrorMessage = "{0} должно быть больше {2} символов")]
+        [MaxLength(120, ErrorMessage = "{0} должно быть меньше {2} символов")] 
+        [Display(Name = "Краткое описание")]
+        public string ShortDescription { get; set; }
+
+        [Required]
+        [Display(Name = "Необходимое финансирование")]
+        public string NecessaryFunding { get; set; }
+
+        /*[Required]
+        public string LinkToImg { get; set; }*/
     }
 
 

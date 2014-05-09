@@ -135,6 +135,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -595,6 +596,9 @@
     <Content Include="Views\Shared\_ScopeSelecting.cshtml" />
     <Content Include="Views\Project\Discover.cshtml" />
     <Content Include="Views\Project\View.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\ReviewProject.cshtml" />
+    <Content Include="Views\Admin\GetСheckingProjects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -651,7 +655,7 @@
     <Content Include="Views\Project\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Project\Create.cshtml" />
+    <Content Include="Views\Project\Start.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.9.1.min.map" />

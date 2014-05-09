@@ -7,18 +7,6 @@ using System.Web.Mvc;
 
 namespace InvestNetwork.Controllers
 {
-    public enum ProjectStatus
-    {
-        Сhecking = 1,
-        Active = 5,
-        Inactive = -99
-    }
-
-    public enum VotingPeriod
-    {
-        _30Days = 30
-    }
-
     public class ProjectController : Controller
     {
         //
@@ -41,27 +29,28 @@ namespace InvestNetwork.Controllers
         }
 
         [Authorize]
-        public ActionResult Create()
+        public ActionResult Start()
         {
             return View();
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult Create(Project model)
+        public ActionResult Start(Project model)
         {
             if (ModelState.IsValid)
             {
                 model.AuthorID = _investContext.CurrentUser.Id;
                 model.CreateDate = DateTime.Now;
-                model.ProjectStatusID = _projectStatusRepository.GetByCode((int)ProjectStatus.Сhecking).ProjectStatusID;
+                model.Status = ProjectStatusEnum.OnReview;
                 model.LinkToBusinessPlan = "";
                 model.LinkToFinancialPlan = "";
                 model.LinkToGuaranteeLetter = "";
                 model.LinkToVideoPresentation = "";
+                model.LinkToImg = "";
 
                 _projectRepository.Insert(model);
-                _projectRepository.Save();
+                _projectRepository.SaveChanges();
             }
             else
             {
@@ -72,7 +61,7 @@ namespace InvestNetwork.Controllers
 
         public ActionResult Discover()
         {
-            return View(_projectRepository.GetAll().Take(PROJECT_COUNT_AT_THE_FIRST_VIEWING));
+            return View(_projectRepository.GetAll().Where(p => p.Status == ProjectStatusEnum.Active).Take(PROJECT_COUNT_AT_THE_FIRST_VIEWING));
         }
 
         public ActionResult View(int id)

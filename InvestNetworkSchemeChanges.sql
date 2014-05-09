@@ -57,6 +57,7 @@ GO
 -- Ильназ 10.03.2014  Добавил ProjectStatusID, StartDate
 -- Ильназ 15.04.2014  Добавил CreateDate, StartDate NOT NULL -> NULL
 -- Ильназ 07.05.2014  Добавил LinkToImg, EndDate
+-- Ильназ 09.05.2014  Добавил NecessaryFunding, ShortDescription
 ---------------------------------------------
 CREATE TABLE Projects (
 	ProjectID INT IDENTITY (1, 1) PRIMARY KEY,
@@ -64,7 +65,7 @@ CREATE TABLE Projects (
 	LocationCityID INT NOT NULL REFERENCES Cities (CityID),
 	Name VARCHAR (150) NOT NULL,
 	ScopeID INT NOT NULL REFERENCES Scopes (ScopeID),
-	Description NVARCHAR(MAX) NULL,
+	[Description] NVARCHAR(MAX) NULL,
 	LinkToBusinessPlan VARCHAR(300) NOT NULL,
 	LinkToFinancialPlan VARCHAR(300) NOT NULL,
 	LinkToVideoPresentation VARCHAR(300) NULL,
@@ -73,7 +74,9 @@ CREATE TABLE Projects (
 	StartDate DateTime NULL,
 	CreateDate DateTime NOT NULL,
 	LinkToImg VARCHAR(300) NOT NULL,
-	EndDate DateTime NULL
+	EndDate DateTime NULL,
+	NecessaryFunding MONEY NOT NULL,
+	ShortDescription NVARCHAR(115) NOT NULL
 )
 GO
 
@@ -91,7 +94,7 @@ GO
 
 ---------------------------------------------
 -- Леха 07.03.2014
--- Ильназ 07.03.2014  Добавил StatusCode(5 - активный, -99 - удаленный, 1 - проверяется )
+-- Ильназ 07.03.2014  Добавил StatusCode(5 - активный, -99 - удаленный, 1 - проверяется, -1 - блокированный)
 ---------------------------------------------
 CREATE TABLE ProjectStatuses(
 	ProjectStatusID INT IDENTITY (1, 1) PRIMARY KEY,
@@ -102,7 +105,7 @@ GO
 
 ---------------------------------------------
 -- Леха 07.03.2014
--- Ильназ 07.03.2014  Добавил StatusCode(5 - активный, -99 - удаленный, 1 - проверяется )
+-- Ильназ 07.03.2014  Добавил StatusCode(5 - активный, -99 - удаленный, 1 - проверяется,  )
 ---------------------------------------------
 CREATE TABLE PaymentStatuses(
 	PaymentStatusID INT IDENTITY (1, 1) PRIMARY KEY,

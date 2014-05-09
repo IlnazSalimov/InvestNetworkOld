@@ -49,7 +49,7 @@ namespace InvestNetwork.Controllers
                     _usersInfoRepository.Update(model);
                 }
 
-                _usersInfoRepository.Save();
+                _usersInfoRepository.SaveChanges();
 
             }
             return View(model);

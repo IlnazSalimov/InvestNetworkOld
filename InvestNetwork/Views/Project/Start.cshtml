@@ -1,7 +1,7 @@
 ﻿@model InvestNetwork.Models.Project
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Создание проекта";
     Layout = "~/Views/Layouts/_Layout.cshtml";
 }
 
@@ -14,7 +14,7 @@
     <div class="page_title">
         <div class="container">
             <div class="title">
-                <h1>Создание проекта</h1>
+                <h1>@ViewBag.Title</h1>
             </div>
         </div>
     </div>
@@ -30,7 +30,7 @@
                     <h2>Встречайте, <strong>ваш новый проект</strong></h2>
 
 
-                    <div class="join_row" id="name_row">
+                    <div class="join_row">
                         <div class="join_label">@Html.LabelFor(model => model.Name)</div>
                         <div class="join_element">
                             @Html.EditorFor(model => model.Name)
@@ -40,6 +40,20 @@
                     @Html.Partial("_LocationSelecting", Model)
 
                     @Html.Partial("_ScopeSelecting", Model)
+
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(model => model.NecessaryFunding)</div>
+                        <div class="join_element">
+                            @Html.EditorFor(model => model.NecessaryFunding)
+                        </div>
+                    </div>
+
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(model => model.ShortDescription)</div>
+                        <div class="join_element">
+                            @Html.TextAreaFor(model => model.ShortDescription)
+                        </div>
+                    </div>
 
                     <div class="join_row">
                         <div class="join_label">@Html.LabelFor(model => model.Description)</div>

@@ -1,0 +1,82 @@
+﻿@using InvestNetwork.Models;
+@model Project
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+@section Styles{}
+
+@section Header{
+    <div class="page_title">
+        <div class="container">
+            <div class="title">
+                <h1>@Model.Name</h1>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="content_fullwidth">
+    <div class="portfolio_area">
+
+        <div class="portfolio_area_left">
+            <a href="#" target="_blank">
+                <img src="images/project2.jpg" alt=""></a>
+        </div>
+
+        <div class="portfolio_area_right">
+
+            <h3>Описание проекта</h3>
+            <p>@Model.Description</p>
+            <ul class="small_social_links">
+                <li><a href="#"><i class="icon-facebook"></i></a></li>
+                <li><a href="#"><i class="icon-twitter"></i></a></li>
+                <li><a href="#"><i class="icon-google-plus"></i></a></li>
+                <li><a href="#"><i class="icon-linkedin"></i></a></li>
+                <li><a href="#"><i class="icon-pinterest"></i></a></li>
+            </ul>
+            @{
+                var isProjectOnReview = Model.Status == ProjectStatusEnum.OnReview;
+                var isProjectBlocked = Model.Status == ProjectStatusEnum.Blocked;
+                var isProjectActive = Model.Status == ProjectStatusEnum.Active;
+            }
+            <div class="project_details">
+                <h3>Детали проекта</h3>
+                <span><strong>Дата создания</strong> <em>@Model.CreateDate.ToString("d MMMM yyyy hh:mm")</em></span>
+                @if (isProjectActive)
+                {
+                    <span><strong>Дата начала инвестирования</strong> <em>@Model.StartDate.Value.ToString("d MMMM yyyy hh:mm")</em></span>
+                    <span><strong>Дата конца инвестирования</strong> <em>@Model.EndDate.Value.ToString("d MMMM yyyy hh:mm")</em></span>
+                    <span><strong>Дней до окончания</strong> <em>@((Model.EndDate.Value - Model.StartDate.Value).Days)</em></span>
+                }
+                <span><strong>Статус</strong> <em>@Model.ProjectStatus.Status</em></span>
+                <span><strong>Необходимо собрать</strong> <em>@Model.NecessaryFunding</em></span>
+                <span><strong>Собрано</strong> <em>@Model.Payments.Sum(s => s.Sum)</em></span>
+                <span><strong>Категория</strong> <em><a href="#">@Model.Scope.Title</a></em></span>
+                <span><strong>Автор</strong> <em>@Model.AuthorFullName</em></span>
+                <div class="clearfix mar_top3"></div>
+
+                <ul class="list_empty">
+                    @if (isProjectOnReview || isProjectBlocked)
+                    {
+                        <li>
+                            <a href="@Url.Action("PublishProject", "Admin", new { Id = Model.ProjectID }, null)" class="but_star"><i class="icon-ok icon-large"></i> Публиковать</a>
+                        </li>
+                    }
+                    @if (isProjectOnReview || isProjectActive)
+                    {
+                        <li>
+                            <a href="@Url.Action("BlockProject", "Admin", new { Id = Model.ProjectID }, null)" class="but_lock"><i class="icon-lock icon-large"></i> Заблокировать</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{}

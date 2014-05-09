@@ -14,6 +14,6 @@ namespace InvestNetwork.Models
         void Insert(ProjectStatus model);
         void Update(ProjectStatus model);
         void Delete(ProjectStatus model);
-        void Save();
+        void SaveChanges();
     }
 }

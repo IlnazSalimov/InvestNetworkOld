@@ -48,9 +48,9 @@ namespace InvestNetwork.Models
             projectRepository.Delete(model);
         }
 
-        public void Save()
+        public void SaveChanges()
         {
-            projectRepository.Save();
+            projectRepository.SaveChanges();
         }
     }
 }

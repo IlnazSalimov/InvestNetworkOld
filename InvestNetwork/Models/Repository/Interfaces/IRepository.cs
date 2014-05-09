@@ -15,6 +15,6 @@ namespace InvestNetwork.Models
         void Insert(TEntity entity);
         void Update(TEntity entity);
         void Delete(TEntity entity);
-        void Save();
+        void SaveChanges();
     }
 }

@@ -13,6 +13,6 @@ namespace InvestNetwork.Models
         void Insert(Role model);
         void Update(Role model);
         void Delete(Role model);
-        void Save();
+        void SaveChanges();
     }
 }

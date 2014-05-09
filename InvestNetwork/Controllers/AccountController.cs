@@ -40,7 +40,7 @@ namespace InvestNetwork.Controllers
             if (ModelState.IsValid)
             {
                 _userRepository.Insert(new User { FullName = model.FullName, Email = model.Email, Password = model.Password });
-                _userRepository.Save();
+                _userRepository.SaveChanges();
                 FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
                 return RedirectToAction("Index", "Home");
             }

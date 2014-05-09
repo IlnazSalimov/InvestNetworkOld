@@ -66,9 +66,9 @@ namespace InvestNetwork.Models
         //    return usersInfoRepository.GetAll().Any(user => string.Equals(user.Email, email) && string.Equals(user.Password, password));
         //}
 
-        public void Save()
+        public void SaveChanges()
         {
-            usersInfoRepository.Save();
+            usersInfoRepository.SaveChanges();
         }
     }
 }

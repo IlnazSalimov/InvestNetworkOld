@@ -48,14 +48,14 @@
     <!--<link rel="stylesheet" href="~/Styles/bg-patterns/pattern-eight.css" />-->
     <!--<link rel="stylesheet" href="~/Styles/bg-patterns/pattern-nine.css" />-->
 
-    <link rel="stylesheet" href="~/Styles/font-awesome/Styles/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Styles/font-awesome/css/font-awesome.min.css">
 
     <!-- style switcher -->
     <link rel="stylesheet" media="screen" href="~/Scripts/style-switcher/color-switcher.css" />
 
     <!-- REVOLUTION SLIDER -->
     <link rel="stylesheet" type="text/css" href="~/Scripts/revolutionslider/Styles/fullwidth.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="~/Scripts/revolutionslider/rs-plugin/Styles/settings.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/revolutionslider/rs-plugin/css/settings.css" media="screen" />
 
     <!-- jquery jcarousel -->
     <link rel="stylesheet" type="text/css" href="~/Scripts/jcarousel/skin.css" />
@@ -94,45 +94,7 @@
 
                                     <li>@Html.ActionLink("Проекты", "Discover", "Project")</li>
 
-                                    <li><a href="index.html" class="active">Home</a>
-
-                                        <ul>
-                                            <li><a href="index-page1.html">Home Page 1</a></li>
-                                            <li><a href="index-page2.html">Home Page 2</a></li>
-                                            <li><a href="index-page3.html">Home Page 3</a></li>
-                                            <li><a href="index-page4.html">Home Page 4</a></li>
-                                            <li><a href="index-page5.html">Home Page 5</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li><a href="#">Headers</a>
-
-                                        <ul>
-                                            <li><a href="http://gsrthemes.com/avira/layout2/fullwidth/index.html">Header Style 1</a></li>
-                                            <li><a href="http://gsrthemes.com/avira/layout3/fullwidth/index.html">Header Style 2</a></li>
-                                            <li><a href="http://gsrthemes.com/avira/layout1/fullwidth/index.html">Header Style 3</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li><a href="#">Footers</a>
-
-                                        <ul>
-                                            <li><a href="http://gsrthemes.com/avira/layout2/fullwidth/index.html">Footer Style 1</a></li>
-                                            <li><a href="http://gsrthemes.com/avira/layout3/fullwidth/index.html">Footer Style 2</a></li>
-                                            <li><a href="http://gsrthemes.com/avira/layout1/fullwidth/index.html">Footer Style 3</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li><a href="#">Sliders</a>
-
-                                        <ul>
-                                            <li><a href="index.html">Revolution Slider</a></li>
-                                            <li><a href="index-slider-2.html">Nivo Slider</a></li>
-                                            <li><a href="index-slider-1.html">ios Slider</a></li>
-                                            <li><a href="index-slider-3.html">Static Image</a></li>
-                                            <li><a href="index-slider-4.html">Video Slider</a></li>
-                                        </ul>
-                                    </li>
+                                    <li>@Html.ActionLink("Старт", "Start", "Project")</li>
 
                                     @if (Request.IsAuthenticated)
                                     {
@@ -142,16 +104,16 @@
                                                 <li><a href="#">Профиль</a></li>
                                                 @if(User.IsInRole("Admin"))
                                                 {
-                                                    <li><a href="#">Панель администратора</a></li>
+                                                    <li>@Html.ActionLink("Панель администратора", "Index", "Admin")</li>
                                                 }
+                                                <li>@Html.ActionLink("Выйти", "Logout", "Account")</li>
                                             </ul>
-                                            [ @Html.ActionLink("Log Out", "Logout", "Account") ]
                                         </li>
                                     }
                                     else
                                     {
                                         <li class="last">
-                                            [ @Html.ActionLink("Log In", "Login", "Account") ]
+                                            @Html.ActionLink("Войти", "Login", "Account")
                                         </li>
                                     }
 
@@ -179,6 +141,7 @@
         <div class="container">
                 @RenderBody()
         </div>
+        <div class="clearfix mar_top5"></div>
 
         <!-- Footer
             ======================================= -->

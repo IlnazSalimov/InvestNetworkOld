@@ -21,13 +21,17 @@
     <div class="portfolio_area">
 
         <div class="portfolio_area_left"><a href="#" target="_blank">
-            <img src="@Model.LinkToImg" alt=""></a></div>
+            <img src="@Model.LinkToImg" alt=""></a>
+            <p>
+                @Model.Description
+            </p>
+        </div>
 
         <div class="portfolio_area_right">
 
             <h3>Описание проекта</h3>
-            <p>@Model.Description</p>
-            <a href="#" class="addto_favorites"><strong><i class="icon-heart"></i>Добавить в избранное</strong></a>
+            <p>@Model.ShortDescription</p>
+            <a href="#" class="addto_favorites"><strong><i class="icon-heart"></i> В избранное</strong></a>
             <ul class="small_social_links">
                 <li><a href="#"><i class="icon-facebook"></i></a></li>
                 <li><a href="#"><i class="icon-twitter"></i></a></li>
@@ -38,11 +42,13 @@
 
             <div class="project_details">
                 <h3>Детали проекта</h3>
-                <span><strong>До окончания</strong> <em>@(Model.EndDate.Value.Day - Model.StartDate.Value.Day)</em></span>
+                <span><strong>До окончания</strong> <em>@((Model.EndDate.Value - Model.StartDate.Value).Days)</em></span>
+                <span><strong>Необходимо собрать</strong> <em>@Model.NecessaryFunding</em></span>
+                <span><strong>Собрано</strong> <em>@Model.Payments.Sum(s => s.Sum)</em></span>
                 <span><strong>Категория</strong> <em><a href="#">@Model.Scope.Title</a></em></span>
                 <span><strong>Автор</strong> <em>@Model.AuthorFullName</em></span>
                 <div class="clearfix mar_top3"></div>
-                <a href="#" class="but_goback"><i class="icon-hand-right icon-large"></i>Инвестировать</a>
+                <a href="#" class="but_goback"><i class="icon-hand-right icon-large"></i> Инвестировать</a>
             </div>
 
         </div>

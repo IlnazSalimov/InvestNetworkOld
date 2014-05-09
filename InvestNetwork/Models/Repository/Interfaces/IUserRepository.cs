@@ -15,6 +15,6 @@ namespace InvestNetwork.Models
         void Delete(User model);
         User Login(string email, string password);
         User GetByEmail(string email);
-        void Save();
+        void SaveChanges();
     }
 }

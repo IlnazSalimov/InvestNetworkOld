@@ -57,9 +57,9 @@ namespace InvestNetwork.Models
             return userRepository.GetAll().FirstOrDefault(p => string.Equals(p.Email, email) && p.Password == password);
         }
 
-        public void Save()
+        public void SaveChanges()
         {
-            userRepository.Save();
+            userRepository.SaveChanges();
         }
 
         public User GetByEmail(string email)

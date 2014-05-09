@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Data.Metadata.Edm;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
@@ -91,9 +93,22 @@ namespace InvestNetwork.Models
             }
         }
 
-        public void Save()
+        public void SaveChanges()
         {
-            this.dataContext.SaveChanges();
+            try
+            {
+                this.dataContext.SaveChanges();
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                    }
+                }
+            }
         }
     }
 }

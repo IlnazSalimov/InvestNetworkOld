@@ -47,9 +47,9 @@ namespace InvestNetwork.Models
             roleRepository.Delete(model);
         }
 
-        public void Save()
+        public void SaveChanges()
         {
-            roleRepository.Save();
+            roleRepository.SaveChanges();
         }
     }
 }

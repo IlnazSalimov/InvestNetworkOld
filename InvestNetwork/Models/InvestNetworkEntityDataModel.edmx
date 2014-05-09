@@ -111,6 +111,8 @@
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="LinkToImg" Type="varchar" Nullable="false" MaxLength="300" />
           <Property Name="EndDate" Type="datetime" />
+          <Property Name="NecessaryFunding" Type="money" Nullable="false" />
+          <Property Name="ShortDescription" Type="nvarchar" Nullable="false" MaxLength="115" />
         </EntityType>
         <EntityType Name="ProjectStatuses">
           <Key>
@@ -354,6 +356,8 @@
           <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="3" />
           <Property Type="String" Name="LinkToImg" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="EndDate" Precision="3" />
+          <Property Type="Decimal" Name="NecessaryFunding" Nullable="false" Precision="19" Scale="4" />
+          <Property Type="String" Name="ShortDescription" Nullable="false" MaxLength="115" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Scope">
           <Key>
@@ -551,6 +555,8 @@
           <EntitySetMapping Name="Projects">
             <EntityTypeMapping TypeName="InvestNetworkModel.Project">
               <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="NecessaryFunding" ColumnName="NecessaryFunding" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="LinkToImg" ColumnName="LinkToImg" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
