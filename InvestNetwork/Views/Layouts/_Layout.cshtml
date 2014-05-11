@@ -50,6 +50,9 @@
 
     <link rel="stylesheet" href="~/Styles/font-awesome/css/font-awesome.min.css">
 
+    <link rel="stylesheet" href="~/js/tabs/tabs.css" type="text/css" />
+    <link rel="stylesheet" href="~/js/tabs/tabs-style2.css" type="text/css" />
+
     <!-- style switcher -->
     <link rel="stylesheet" media="screen" href="~/Scripts/style-switcher/color-switcher.css" />
 
@@ -101,7 +104,7 @@
                                         <li class="last"><a href="#">@User.Identity.Name</a>
                                             
                                             <ul>
-                                                <li>@Html.ActionLink("Личный кабинет", "Add", "UsersInfo")</li>
+                                                <li>@Html.ActionLink("Личный кабинет", "Index", "PrivateOffice")</li>
                                                 @if(User.IsInRole("Admin"))
                                                 {
                                                     <li>@Html.ActionLink("Панель администратора", "Index", "Admin")</li>
@@ -275,7 +278,9 @@
     <script src="~/Scripts/style-switcher/jquery-1.js"></script>
     <script src="~/Scripts/style-switcher/styleselector.js"></script>
 
-    
+    <script src="~/js/tabs/tabs.js"></script>
+    <script src="~/js/tabs/tabs-style2.js"></script>
+
 
     <!-- main menu -->
     <script type="text/javascript" src="~/Scripts/mainmenu/ddsmoothmenu.js"></script>
