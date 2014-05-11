@@ -1,16 +1,15 @@
-﻿using InvestNetwork.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using InvestNetwork.Models;
 
-namespace InvestNetwork.Controllers
+namespace InvestNetwork.Api
 {
-    public class UsersInfoController : Controller
+    public class UsersInfoController : ApiController
     {
-        //
-        // GET: /UsersInfo/
         private readonly IUsersInfoRepository _usersInfoRepository;
         private readonly IInvestContext _investContext;
 
@@ -20,20 +19,12 @@ namespace InvestNetwork.Controllers
             _investContext = investContext;
         }
 
-        [HttpGet]
-        [Authorize]
-        public ActionResult Add()
-        {
-            User user = _investContext.CurrentUser;
-            UsersInfo usersInfo = _usersInfoRepository.GetByUserId(user.Id);
-
-            return View(usersInfo);
-        }
-
         [Authorize]
         [HttpPost]
-        public ActionResult Add(UsersInfo model)
+        public UsersInfo Edit(UsersInfo model)
         {
+            if (model.DateOfBirth == DateTime.MinValue) return model;
+
             if (ModelState.IsValid)
             {
                 User user = _investContext.CurrentUser;
@@ -56,18 +47,7 @@ namespace InvestNetwork.Controllers
                 _usersInfoRepository.SaveChanges();
 
             }
-            return View(model);
-        }
-
-        [HttpGet]
-        [Authorize]
-        public ActionResult HistoryParticipation()
-        {
-            User user = _investContext.CurrentUser;
-
-            List<PartycipationUsersInfo> part = _usersInfoRepository.GetPartycipation(user.ID);
-
-            return View(part);
+            return model;
         }
     }
 }

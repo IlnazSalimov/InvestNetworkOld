@@ -20,7 +20,6 @@ namespace InvestNetwork.Models
         [Display(Name = "Отчество")]
         public string Middle { get; set; }
 
-        [Required]
         [Display(Name = "Дата Рождения")]
         [DisplayFormat(ApplyFormatInEditMode = true, 
                DataFormatString = "{0:dd.MM.yyyy}")]
@@ -42,7 +41,6 @@ namespace InvestNetwork.Models
         [Display(Name = "Номер паспорта")]
         public string PasportNumber { get; set; }
 
-        [Required]
         [Display(Name = "Дата выдачи паспорта")]
         [DisplayFormat(ApplyFormatInEditMode = true,
                DataFormatString = "{0:dd.MM.yyyy}")]
@@ -56,6 +54,9 @@ namespace InvestNetwork.Models
         [Display(Name = "Номер телефона")]
         public string PhoneNumber { get; set; }
 
+        [DisplayFormat(ApplyFormatInEditMode = true,
+               DataFormatString = "{0:dd.MM.yyyy}")]
+        public DateTime RegisterDate { get; set; }
     }
 
 

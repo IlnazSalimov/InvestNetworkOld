@@ -101,8 +101,13 @@
                                     {
                                         <li class="last"><a href="#">@User.Identity.Name</a>
                                             <ul>
-                                                <li>@Html.ActionLink("Личный кабинет", "Index", "PrivateOffice")</li>
+<<<<<<< HEAD
+                                                <li>@Html.ActionLink("Личный кабинет", "Add", "UsersInfo")</li>
                                                 @if (User.IsInRole("Admin"))
+=======
+                                                <li>@Html.ActionLink("Личный кабинет", "Index", "PrivateOffice")</li>
+                                                @if(User.IsInRole("Admin"))
+>>>>>>> d6a8d79021a6b541e02bf2594f106ca28a416149
                                                 {
                                                     <li>@Html.ActionLink("Панель администратора", "Index", "Admin")</li>
                                                 }
@@ -275,8 +280,11 @@
     <!--<script src="~/Scripts/style-switcher/jquery-1.js"></script>-->
     <script src="~/Scripts/style-switcher/styleselector.js"></script>
 
+<<<<<<< HEAD
+=======
     <script src="~/js/tabs/tabs.js"></script>
     <script src="~/js/tabs/tabs-style2.js"></script>
+>>>>>>> d6a8d79021a6b541e02bf2594f106ca28a416149
 
 
     <!-- main menu -->

@@ -1,0 +1,300 @@
+﻿@model InvestNetwork.Models.User
+
+@{
+    ViewBag.Title = "Личный кабинет";
+    Layout = "~/Views/Layouts/_Layout.cshtml";
+}
+
+@section Styles{
+
+}
+
+@section Header{
+    <div class="page_title">
+        <div class="container">
+            <div class="title">
+                <h2>Личный кабинет</h2>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<div class="container">
+
+    <img src="@Model.Avatar"  alt="" class="teammempic" />
+    <h2><strong>@Model.FullName</strong></h2>
+
+    <div class="content_fullwidth">
+
+        <div id="tabs-two">
+
+            <ul class="tabs-two fullpage">
+                <li class=""><a href="#tab-two1">Данные</a></li>
+                <li class=""><a href="#tab-two2">История</a></li>
+                <li class=""><a href="#tab-two3">Сообщения</a></li>
+                <li class=""><a href="#tab-two4">Настройки</a></li>
+
+            </ul>
+            <!-- /# end tab links -->
+
+
+            <div class="tab-container-two fullpage">
+
+                <div id="tab-two1" class="tab-content-two fullpage" style="display: block;">
+                    <div class="container">
+                        <h2><strong>Личные данные</strong></h2>
+                        <div class="content_left">
+                            @{
+                                var usersInfo = ViewBag.usersInfo as InvestNetwork.Models.UsersInfo;
+            
+                                @Html.ValidationSummary(true)
+
+                                <fieldset>
+
+                                    <div class="accrodation">
+                                        <div class="join_row">
+                                            <div class="join_label">@Html.LabelFor(model => usersInfo.Family)</div>
+                                            <div class="join_element">
+                                                @Html.EditorFor(model => usersInfo.Family)
+                                            </div>
+                                        </div>
+
+                                        <div class="join_row">
+                                            <div class="join_label">@Html.LabelFor(model => usersInfo.Name)</div>
+                                            <div class="join_element">
+                                                @Html.EditorFor(model => usersInfo.Name)
+                                            </div>
+                                        </div>
+
+                                        @Html.HiddenFor(model => usersInfo.UserID)
+
+                                        @Html.HiddenFor(model => usersInfo.UsersInfoID)
+
+                                        @Html.HiddenFor(model => usersInfo.RegisterDate)
+
+                                        <div class="join_row">
+                                            <div class="join_label">@Html.LabelFor(model => usersInfo.Middle)</div>
+                                            <div class="join_element">
+                                                @Html.EditorFor(model => usersInfo.Middle)
+                                            </div>
+                                        </div>
+
+                                        <div class="join_row">
+                                            <div class="join_label">@Html.LabelFor(model => usersInfo.DateOfBirth)</div>
+                                            <div class="join_element">
+                                                @Html.EditorFor(model => usersInfo.DateOfBirth)
+                                            </div>
+                                        </div>
+
+                                        <div class="join_row">
+                                            <div class="join_label">@Html.LabelFor(model => usersInfo.Address)</div>
+                                            <div class="join_element">
+                                                @Html.EditorFor(model => usersInfo.Address)
+                                            </div>
+                                        </div>
+
+                                        <div class="join_row">
+                                            <div class="join_label">@Html.LabelFor(model => usersInfo.Citizenship)</div>
+                                            <div class="join_element">
+                                                @Html.EditorFor(model => usersInfo.Citizenship)
+                                            </div>
+                                        </div>
+
+                                        <div class="join_row">
+                                            <div class="join_label">@Html.LabelFor(model => usersInfo.PasportSerie)</div>
+                                            <div class="join_element">
+                                                @Html.EditorFor(model => usersInfo.PasportSerie)
+                                            </div>
+                                        </div>
+
+                                        <div class="join_row">
+                                            <div class="join_label">@Html.LabelFor(model => usersInfo.PasportNumber)</div>
+                                            <div class="join_element">
+                                                @Html.EditorFor(model => usersInfo.PasportNumber)
+                                            </div>
+                                        </div>
+
+                                        <div class="join_row">
+                                            <div class="join_label">@Html.LabelFor(model => usersInfo.PasportIssuedBy)</div>
+                                            <div class="join_element">
+                                                @Html.EditorFor(model => usersInfo.PasportIssuedBy)
+                                            </div>
+                                        </div>
+
+                                        <div class="join_row">
+                                            <div class="join_label">@Html.LabelFor(model => usersInfo.PasportIssueDate)</div>
+                                            <div class="join_element">
+                                                @Html.EditorFor(model => usersInfo.PasportIssueDate)
+                                            </div>
+                                        </div>
+
+                                        <div class="join_row">
+                                            <div class="join_label">@Html.LabelFor(model => usersInfo.PhoneNumber)</div>
+                                            <div class="join_element">
+                                                @Html.EditorFor(model => usersInfo.PhoneNumber)
+                                            </div>
+                                        </div>
+
+                                        <div class="join_row">
+                                            <input type="button" id="btnEdit" value="Сохранить" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                
+                                <script>
+
+                                    var UsersInfoID = '@usersInfo.UsersInfoID';
+                                    var UserID = '@usersInfo.UserID';
+                                    var Family = $('#usersInfo_Family').val();
+                                    var Name = $('#usersInfo_Name').val();
+                                    var Middle = $('#usersInfo_Middle').val();
+                                    var arr = $('#usersInfo_DateOfBirth').val().split(".");
+                                    var day = arr[0];
+                                    var mon = arr[1];
+                                    var year = arr[2];
+                                    var DateOfBirth = new Date(year, mon, day);
+                                    var Address = $('#usersInfo_Address').val();
+                                    var Citizenship = $('#usersInfo_Citizenship').val();
+                                    var PasportSerie = $('#usersInfo_PasportSerie').val();
+                                    var PasportNumber = $('#usersInfo_PasportNumber').val();
+                                    arr = $('#usersInfo_PasportIssueDate').val().split(".");
+                                    day = arr[0];
+                                    mon = arr[1];
+                                    year = arr[2];
+                                    var PasportIssueDate = new Date(year, mon, day);
+                                    var PasportIssuedBy = $('#usersInfo_PasportIssuedBy').val();
+                                    var PhoneNumber = $('#usersInfo_PhoneNumber').val();
+                                    var RegisterDate = '@usersInfo.RegisterDate';
+                                    var ID = '@usersInfo.UsersInfoID';
+
+                                    var usersInfo = {
+                                        UsersInfoID: UsersInfoID,
+                                        UserID: UserID,
+                                        Family: Family,
+                                        Name: Name,
+                                        Middle: Middle,
+                                        DateOfBirth: DateOfBirth,
+                                        Address: Address,
+                                        Citizenship: Citizenship,
+                                        PasportSerie: PasportSerie,
+                                        PasportNumber: PasportNumber,
+                                        PasportIssueDate: PasportIssueDate,
+                                        PasportIssuedBy: PasportIssuedBy,
+                                        PhoneNumber: PhoneNumber,
+                                        RegisterDate: RegisterDate,
+                                        ID: ID
+                                    };
+
+                                    var baseUrl = '@Url.Content("~/")';
+                                    (function () {
+                                        $("#btnEdit").bind("click", function () {
+
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: baseUrl + "Api/UsersInfo/Edit",
+                                                data: { model: usersInfo },
+                                                success: function (jsonResponse) {
+                                                    if ($.isEmptyObject(jsonResponse)) {
+                                                        alert("Error");
+                                                    }
+                                                    else {
+                                                        callback(jsonResponse);
+                                                    }
+                                                },
+                                                error: function () {
+                                                    alert("Encountered an unexpected situation.");
+                                                },
+                                                dataType: "json"
+                                            });
+                                        });
+                                    })();
+                                </script>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!-- end tab single section -->
+
+
+                <div id="tab-two2" class="tab-content-two fullpage" style="display: none;">
+                    <div class="container">
+                        <h2><strong>История участия</strong></h2>
+                        <div class="content_left">
+                            <table class="table-list">
+                                <tr>
+                                    <th>Имя проекта</th>
+                                    <th>Статус проекта</th>
+                                    <th>Взнос</th>
+                                    <th>Статус взноса</th>
+                                    <th>Дата взноса</th>
+                                </tr>
+
+                                @{
+                                    var partycipations = ViewBag.partycipations as List<InvestNetwork.Models.PartycipationUsersInfo>;
+                                }
+
+                                @foreach (InvestNetwork.Models.PartycipationUsersInfo part in partycipations)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(model => part.ProjectName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => part.ProjectStatus)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => part.Sum)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => part.PaymentStatus)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => part.PaymentDate)
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- end tab single section -->
+
+
+                <div id="tab-two3" class="tab-content-two fullpage" style="display: none;">
+                    <h4>Technology</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscursus felis vel lacus cursus ullamcorper. Maecenas sed enim neque, quis rutrum arcu. Meceasa justo enim. Suspendisse suscipit malesuada magna, at sagittis augue varius ut. Donec vitae libero magna. Duis at ipsum ac mi tempor pulvinar. Vimus ut tincdunt assa. Quisque pulvinar neque eu lorem tincidunt imperdiet porta mauris molesie. Pelltesque blandit suscipit molestie. Phasellus porta lorc ipsum cursus conguet lobortis pellentesque ornare aliquet condimentum.</p>
+
+                    <p>Pelltesque blandit suscipit molestie. Phasellus porta lorem ac ipsum cursus congue. Ut lobortis pellentesque nare. Pellentesque tincidunt aliquet condimentum. Nunc rhoncus porta erat, in ornare dolor facilisis in. Aliquam aeque nulla, vitae convallis mauris. Pelltesque blandit suscipit molestie. Phasellus porta lorem ac ipsum cursus congue. Ut lobortis pellentesque nare. Pellentesque tincidunt aliquet condimentum. Nunc rhoncus porta erat, in ornare dolor facilisis in. Aliquam aeque nulla, vitae convallis mauris.</p>
+                </div>
+                <!-- end tab single section -->
+
+                <div id="tab-two4" class="tab-content-two fullpage" style="display: none;">
+                    <h4>Marketing</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscursus felis vel lacus cursus ullamcorper. Maecenas sed enim neque, quis rutrum arcu. Meceasa justo enim. Suspendisse suscipit malesuada magna, at sagittis augue varius ut. Donec vitae libero magna. Duis at ipsum ac mi tempor pulvinar. Vimus ut tincdunt assa. Quisque pulvinar neque eu lorem tincidunt imperdiet porta mauris molesie. Pelltesque blandit suscipit molestie. Phasellus porta lorc ipsum cursus conguet lobortis pellentesque ornare aliquet condimentum.</p>
+
+                    <p>Pelltesque blandit suscipit molestie. Phasellus porta lorem ac ipsum cursus congue. Ut lobortis pellentesque nare. Pellentesque tincidunt aliquet condimentum. Nunc rhoncus porta erat, in ornare dolor facilisis in. Aliquam aeque nulla, vitae convallis mauris. Pelltesque blandit suscipit molestie. Phasellus porta lorem ac ipsum cursus congue. Ut lobortis pellentesque nare. Pellentesque tincidunt aliquet condimentum. Nunc rhoncus porta erat, in ornare dolor facilisis in. Aliquam aeque nulla, vitae convallis mauris.</p>
+                </div>
+                <!-- end tab single section -->
+
+                <div id="tab-two5" class="tab-content-two fullpage" style="display: none;">
+                    <h4>Solutions</h4>
+                    <p><strong>Lorem ipsum dolor sit amet, consectetur adipiscursus felis</strong> vel lacus cursus ullamcorper. Maecenas sed enim neque, quis rutrum arcu. Meceasa justo enim. Suspendisse suscipit malesuada magna, at sagittis augue varius ut. Donec vitae libero magna. Duis at ipsum ac mi tempor pulvinar. Vimus ut tincdunt assa. Quisque pulvinar neque eu lorem tincidunt imperdiet porta mauris molesie. Pelltesque blandit suscipit molestie. Phasellus porta lorc ipsum cursus conguet lobortis pellentesque ornare aliquet condimentum.</p>
+                    <br>
+                    <p>Pelltesque blandit suscipit molestie. Phasellus porta lorem ac ipsum cursus congue. Ut lobortis pellentesque nare. Pellentesque tincidunt aliquet condimentum. Nunc rhoncus porta erat, in ornare dolor facilisis in. Aliquam aeque nulla, vitae convallis mauris. Duis tristique, lectus sit amet pharetra vehicula. Pellentesque tincidunt aliquet condimentum. Nunc rhoncus porta erat, <strong>in ornare dolor facilisis</strong> in. Aliquam a neque nulla, vitae convallis mauris. Duis tristique, lectus sit amet pharetra vehicula, velit lectus hendrerit lorem, eu rutrum velit mi vitae augue. Mauris congue, leo nec ullamcorper vestibulum, orci augue tristique mi, eget bibendum mauris turpis sed metus. Vestibulum quam risu volutpat quis aliquam eu, dictum id massa.</p>
+                </div>
+                <!-- end tab single section -->
+
+            </div>
+
+        </div>
+        <!-- end tab -->
+
+    </div>
+
+</div>
+
+@section Scripts{
+
+}
