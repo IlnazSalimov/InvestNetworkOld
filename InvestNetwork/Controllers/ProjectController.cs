@@ -1,8 +1,11 @@
 ﻿using InvestNetwork.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace InvestNetwork.Controllers
@@ -36,10 +39,12 @@ namespace InvestNetwork.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Start(Project model)
+        public ActionResult Start(Project model, HttpPostedFileBase projectImg)
         {
             if (ModelState.IsValid)
             {
+                DateTime now = DateTime.Now;
+
                 model.AuthorID = _investContext.CurrentUser.Id;
                 model.CreateDate = DateTime.Now;
                 model.Status = ProjectStatusEnum.OnReview;
@@ -48,9 +53,39 @@ namespace InvestNetwork.Controllers
                 model.LinkToGuaranteeLetter = "";
                 model.LinkToVideoPresentation = "";
                 model.LinkToImg = "";
+                model.StartDate = now;
+                model.EndDate = now.AddDays(model.FundingDuration);
+                model.IsInspected = false;
 
                 _projectRepository.Insert(model);
                 _projectRepository.SaveChanges();
+
+
+                if ((projectImg != null && projectImg.ContentLength > 0))
+                {
+                    string relativePath = Path.Combine(
+                        ConfigurationManager.AppSettings["FileUploadDirectory"].ToString(),
+                        model.ID.ToString() +
+                        "in" +
+                        model.CreateDate.ToString("dd_MM_yyyy"));
+                    string FullPathOfDir = Server.MapPath(relativePath);
+                    if (!Directory.Exists(FullPathOfDir))
+                    {
+                        Directory.CreateDirectory(FullPathOfDir);
+                    }
+                    string savedFilePath = Path.Combine(FullPathOfDir, projectImg.FileName);
+                    projectImg.SaveAs(savedFilePath);
+
+                    model.LinkToImg = relativePath;
+                    _projectRepository.SaveChanges();
+                }
+                else
+                {
+                    return View(model);
+                }
+
+                
+                
             }
             else
             {
@@ -58,6 +93,8 @@ namespace InvestNetwork.Controllers
             }
             return RedirectToAction("Discover");
         }
+
+
 
         public ActionResult Discover()
         {

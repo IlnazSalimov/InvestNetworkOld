@@ -58,6 +58,7 @@ GO
 -- Ильназ 15.04.2014  Добавил CreateDate, StartDate NOT NULL -> NULL
 -- Ильназ 07.05.2014  Добавил LinkToImg, EndDate
 -- Ильназ 09.05.2014  Добавил NecessaryFunding, ShortDescription
+-- Ильназ 11.05.2014  Добавил FundingDuration
 ---------------------------------------------
 CREATE TABLE Projects (
 	ProjectID INT IDENTITY (1, 1) PRIMARY KEY,
@@ -76,9 +77,13 @@ CREATE TABLE Projects (
 	LinkToImg VARCHAR(300) NOT NULL,
 	EndDate DateTime NULL,
 	NecessaryFunding MONEY NOT NULL,
-	ShortDescription NVARCHAR(115) NOT NULL
+	ShortDescription NVARCHAR(135) NOT NULL,
+	FundingDuration INT NOT NULL,
+	IsInspected BIT NOT NULL
 )
 GO
+
+ALTER TABLE projects add IsInspected bit not null default 0
 
 ---------------------------------------------
 -- Леха 07.03.2014

@@ -8,6 +8,12 @@ using System.Web.Mvc;
 
 namespace InvestNetwork.Models
 {
+    public enum FundingDurationRanges
+    {
+        Min = 1,
+        Max = 60
+    }
+
     public class ProjectMetaData
     {
         [Required]
@@ -27,8 +33,8 @@ namespace InvestNetwork.Models
         public string Description { get; set; }
 
         [Required]
-        [MinLength(40, ErrorMessage = "{0} должно быть больше {2} символов")]
-        [MaxLength(120, ErrorMessage = "{0} должно быть меньше {2} символов")] 
+        [MinLength(40, ErrorMessage = "Краткое описание должно быть больше 40 символов")]
+        [MaxLength(135, ErrorMessage = "Краткое описание должно быть меньше 135 символов")]
         [Display(Name = "Краткое описание")]
         public string ShortDescription { get; set; }
 
@@ -36,8 +42,14 @@ namespace InvestNetwork.Models
         [Display(Name = "Необходимое финансирование")]
         public string NecessaryFunding { get; set; }
 
-        /*[Required]
-        public string LinkToImg { get; set; }*/
+        [Required]
+        [Display(Name = "Изображение проекта")]
+        public string LinkToImg { get; set; }
+
+        [Required]
+        [Range((int)FundingDurationRanges.Min, (int)FundingDurationRanges.Max, ErrorMessage = "Продолжительность финансирования должна быть в пределах от 1 до 60 дней")]
+        [Display(Name = "Продолжительность финансирования")]
+        public string FundingDuration { get; set; }
     }
 
 

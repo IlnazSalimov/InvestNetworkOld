@@ -112,7 +112,9 @@
           <Property Name="LinkToImg" Type="varchar" Nullable="false" MaxLength="300" />
           <Property Name="EndDate" Type="datetime" />
           <Property Name="NecessaryFunding" Type="money" Nullable="false" />
-          <Property Name="ShortDescription" Type="nvarchar" Nullable="false" MaxLength="115" />
+          <Property Name="ShortDescription" Type="nvarchar" Nullable="false" MaxLength="135" />
+          <Property Name="FundingDuration" Type="int" Nullable="false" />
+          <Property Name="IsInspected" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ProjectStatuses">
           <Key>
@@ -357,7 +359,9 @@
           <Property Type="String" Name="LinkToImg" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="EndDate" Precision="3" />
           <Property Type="Decimal" Name="NecessaryFunding" Nullable="false" Precision="19" Scale="4" />
-          <Property Type="String" Name="ShortDescription" Nullable="false" MaxLength="115" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ShortDescription" Nullable="false" MaxLength="135" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="FundingDuration" Nullable="false" />
+          <Property Type="Boolean" Name="IsInspected" Nullable="false" />
         </EntityType>
         <EntityType Name="Scope">
           <Key>
@@ -555,6 +559,8 @@
           <EntitySetMapping Name="Projects">
             <EntityTypeMapping TypeName="InvestNetworkModel.Project">
               <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="IsInspected" ColumnName="IsInspected" />
+                <ScalarProperty Name="FundingDuration" ColumnName="FundingDuration" />
                 <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
                 <ScalarProperty Name="NecessaryFunding" ColumnName="NecessaryFunding" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />

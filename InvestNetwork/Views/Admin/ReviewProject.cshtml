@@ -59,10 +59,17 @@
                 <div class="clearfix mar_top3"></div>
 
                 <ul class="list_empty">
+                    @if (!Model.IsInspected && isProjectActive)
+                    {
+                        <li>
+                            <a href="@Url.Action("ApproveProject", "Admin", new { Id = Model.ProjectID }, null)" class="but_star"><i class="icon-ok icon-large"></i> Одобрить</a>
+                        </li>
+                    }
+
                     @if (isProjectOnReview || isProjectBlocked)
                     {
                         <li>
-                            <a href="@Url.Action("PublishProject", "Admin", new { Id = Model.ProjectID }, null)" class="but_star"><i class="icon-ok icon-large"></i> Публиковать</a>
+                            <a href="@Url.Action("PublishProject", "Admin", new { Id = Model.ProjectID }, null)" class="but_star"><i class="icon-check icon-large"></i> Публиковать</a>
                         </li>
                     }
                     @if (isProjectOnReview || isProjectActive)

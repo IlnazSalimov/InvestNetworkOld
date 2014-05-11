@@ -36,6 +36,8 @@ namespace InvestNetwork.Models
         public Nullable<System.DateTime> EndDate { get; set; }
         public decimal NecessaryFunding { get; set; }
         public string ShortDescription { get; set; }
+        public int FundingDuration { get; set; }
+        public bool IsInspected { get; set; }
     
         public virtual Scope Scope { get; set; }
         public virtual ICollection<Payment> Payments { get; set; }

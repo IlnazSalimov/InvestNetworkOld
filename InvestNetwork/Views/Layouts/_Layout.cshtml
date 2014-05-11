@@ -8,15 +8,13 @@
 
 <html>
 <head>
+    <script src="~/Scripts/jquery-1.9.1.js"></script>
+
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
 
-    <!-- jquery intellisense-->
-    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
-    <script src="~/Scripts/jquery-1.9.1.intellisense.js"></script>
-
     <!-- ######### CSS STYLES ######### -->
-    @RenderSection("Styles")
+    @RenderSection("Styles", false)
 
     <link rel="stylesheet" href="~/Styles/reset.css" type="text/css" />
     <link rel="stylesheet" href="~/Styles/style.css" type="text/css" />
@@ -54,7 +52,7 @@
     <link rel="stylesheet" media="screen" href="~/Scripts/style-switcher/color-switcher.css" />
 
     <!-- REVOLUTION SLIDER -->
-    <link rel="stylesheet" type="text/css" href="~/Scripts/revolutionslider/Styles/fullwidth.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="~/Scripts/revolutionslider/css/fullwidth.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="~/Scripts/revolutionslider/rs-plugin/css/settings.css" media="screen" />
 
     <!-- jquery jcarousel -->
@@ -99,10 +97,9 @@
                                     @if (Request.IsAuthenticated)
                                     {
                                         <li class="last"><a href="#">@User.Identity.Name</a>
-                                            
                                             <ul>
                                                 <li>@Html.ActionLink("Личный кабинет", "Add", "UsersInfo")</li>
-                                                @if(User.IsInRole("Admin"))
+                                                @if (User.IsInRole("Admin"))
                                                 {
                                                     <li>@Html.ActionLink("Панель администратора", "Index", "Admin")</li>
                                                 }
@@ -131,15 +128,15 @@
             </div>
             <!-- end nav menu -->
 
-            
-        @RenderSection("Header")
+
+            @RenderSection("Header")
 
         </div>
         <!-- end top -->
         <div class="clearfix"></div>
 
         <div class="container">
-                @RenderBody()
+            @RenderBody()
         </div>
         <div class="clearfix mar_top5"></div>
 
@@ -266,16 +263,16 @@
 
 
     <!-- ######### JS FILES ######### -->
-    @RenderSection("Scripts")
+
 
     <!-- get jQuery from the google apis -->
-    <script type="text/javascript" src="~/Scripts/universal/jquery.js"></script>
+    <!--<script type="text/javascript" src="~/Scripts/universal/jquery.js"></script>-->
 
     <!-- style switcher -->
-    <script src="~/Scripts/style-switcher/jquery-1.js"></script>
+    <!--<script src="~/Scripts/style-switcher/jquery-1.js"></script>-->
     <script src="~/Scripts/style-switcher/styleselector.js"></script>
 
-    
+
 
     <!-- main menu -->
     <script type="text/javascript" src="~/Scripts/mainmenu/ddsmoothmenu.js"></script>
@@ -286,8 +283,8 @@
     <script type="text/javascript" src="~/Scripts/jcarousel/jquery.jcarousel.min.js"></script>
 
     <!-- REVOLUTION SLIDER -->
-    <script type="text/javascript" src="~/Scripts/revolutionslider/rs-plugin/Scripts/jquery.themepunch.plugins.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/revolutionslider/rs-plugin/Scripts/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/revolutionslider/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/revolutionslider/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 
     <script type="text/javascript" src="~/Scripts/mainmenu/scripts.js"></script>
 
@@ -313,6 +310,9 @@
 
         });
     </script>
+
+    <!-- jquery intellisense-->
+    <script src="~/Scripts/jquery-1.9.1.intellisense.js"></script>
 
     <!-- jquery jcarousel -->
     <script type="text/javascript">
@@ -393,6 +393,9 @@
 
         });
     </script>
-
+    <!-- Scripts Section -->
+    @RenderSection("Scripts", false)
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 </body>
 </html>

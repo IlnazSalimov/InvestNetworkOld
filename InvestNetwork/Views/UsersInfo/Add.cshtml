@@ -6,7 +6,7 @@
 }
 
 @section Styles{
-
+    <link href="~/Styles/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" />
 }
 
 @section Header{
@@ -19,8 +19,8 @@
     </div>
 }
 
-<div class="container">
-    <div class="content_left">
+<div class="content_fullwidth">
+    <div class="one_full">
         @using (Html.BeginForm())
         {
             @Html.ValidationSummary(true)
@@ -74,6 +74,7 @@
                             @Html.EditorFor(model => model.DateOfBirth)
                         </div>
                     </div>
+
 
                     <div class="join_row">
                         <div class="join_label">@Html.LabelFor(model => model.Address)</div>
@@ -130,11 +131,12 @@
                 </div>
             </fieldset>
         }
+    </div>
+</div>
+<script src="~/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
 
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-
-@section Scripts{
-
-}
+            $('#DateOfBirth, #PasportIssueDate').datepicker({ dateFormat: 'dd.mm.yy' });
+        });
+    </script>

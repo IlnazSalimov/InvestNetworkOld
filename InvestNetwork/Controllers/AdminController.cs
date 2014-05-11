@@ -35,6 +35,7 @@ namespace InvestNetwork.Controllers
 
         public ActionResult GetСheckingProjects()
         {
+
             return View(_projectRepository.GetAll().Where(p => p.Status == ProjectStatusEnum.OnReview));
         }
 
@@ -49,9 +50,15 @@ namespace InvestNetwork.Controllers
         {
             Project reviewingProject = _projectRepository.GetById(Id);
             reviewingProject.Status = ProjectStatusEnum.Active;
-            DateTime startDate = DateTime.Now;
-            reviewingProject.StartDate = startDate;
-            reviewingProject.EndDate = startDate.AddDays((int)FundingPeriod._30Days);
+            reviewingProject.IsInspected = true;
+            _projectRepository.SaveChanges();
+            return RedirectToAction("ReviewProject", new { Id = Id });
+        }
+
+        public ActionResult ApproveProject(int Id)
+        {
+            Project reviewingProject = _projectRepository.GetById(Id);
+            reviewingProject.IsInspected = true;
             _projectRepository.SaveChanges();
             return RedirectToAction("ReviewProject", new { Id = Id });
         }
