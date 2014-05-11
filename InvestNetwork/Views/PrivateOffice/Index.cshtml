@@ -6,7 +6,7 @@
 }
 
 @section Styles{
-
+    <link href="~/Styles/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" />
 }
 
 @section Header{
@@ -43,8 +43,10 @@
             <div class="tab-container-two fullpage">
 
                 <div id="tab-two1" class="tab-content-two fullpage" style="display: block;">
-                    <div class="container">
                         <h2><strong>Личные данные</strong></h2>
+                        
+                        <div class="result-message"></div>
+
                         <div class="content_left">
                             @{
                                 var usersInfo = ViewBag.usersInfo as InvestNetwork.Models.UsersInfo;
@@ -144,63 +146,19 @@
                                 </fieldset>
                                 
                                 <script>
-
-                                    var UsersInfoID = '@usersInfo.UsersInfoID';
-                                    var UserID = '@usersInfo.UserID';
-                                    var Family = $('#usersInfo_Family').val();
-                                    var Name = $('#usersInfo_Name').val();
-                                    var Middle = $('#usersInfo_Middle').val();
-                                    var arr = $('#usersInfo_DateOfBirth').val().split(".");
-                                    var day = arr[0];
-                                    var mon = arr[1];
-                                    var year = arr[2];
-                                    var DateOfBirth = new Date(year, mon, day);
-                                    var Address = $('#usersInfo_Address').val();
-                                    var Citizenship = $('#usersInfo_Citizenship').val();
-                                    var PasportSerie = $('#usersInfo_PasportSerie').val();
-                                    var PasportNumber = $('#usersInfo_PasportNumber').val();
-                                    arr = $('#usersInfo_PasportIssueDate').val().split(".");
-                                    day = arr[0];
-                                    mon = arr[1];
-                                    year = arr[2];
-                                    var PasportIssueDate = new Date(year, mon, day);
-                                    var PasportIssuedBy = $('#usersInfo_PasportIssuedBy').val();
-                                    var PhoneNumber = $('#usersInfo_PhoneNumber').val();
-                                    var RegisterDate = '@usersInfo.RegisterDate';
-                                    var ID = '@usersInfo.UsersInfoID';
-
-                                    var usersInfo = {
-                                        UsersInfoID: UsersInfoID,
-                                        UserID: UserID,
-                                        Family: Family,
-                                        Name: Name,
-                                        Middle: Middle,
-                                        DateOfBirth: DateOfBirth,
-                                        Address: Address,
-                                        Citizenship: Citizenship,
-                                        PasportSerie: PasportSerie,
-                                        PasportNumber: PasportNumber,
-                                        PasportIssueDate: PasportIssueDate,
-                                        PasportIssuedBy: PasportIssuedBy,
-                                        PhoneNumber: PhoneNumber,
-                                        RegisterDate: RegisterDate,
-                                        ID: ID
-                                    };
-
                                     var baseUrl = '@Url.Content("~/")';
                                     (function () {
                                         $("#btnEdit").bind("click", function () {
-
                                             $.ajax({
                                                 type: 'POST',
                                                 url: baseUrl + "Api/UsersInfo/Edit",
-                                                data: { model: usersInfo },
-                                                success: function (jsonResponse) {
-                                                    if ($.isEmptyObject(jsonResponse)) {
-                                                        alert("Error");
+                                                data: getCurrentUserInfo(),
+                                                success: function (response) {
+                                                    if (response.isSuccess) {
+                                                        showMesage(response.isSuccess, response.successMessage);
                                                     }
                                                     else {
-                                                        callback(jsonResponse);
+                                                        showMesage(response.isSuccess, response.errorMessage);
                                                     }
                                                 },
                                                 error: function () {
@@ -210,10 +168,53 @@
                                             });
                                         });
                                     })();
+
+                                    function getCurrentUserInfo() {
+                                        var UsersInfoID = '@usersInfo.UsersInfoID';
+                                        var UserID = '@usersInfo.UserID';
+                                        var Family = $('#usersInfo_Family').val();
+                                        var Name = $('#usersInfo_Name').val();
+                                        var Middle = $('#usersInfo_Middle').val();
+                                        var DateOfBirth = $('#usersInfo_DateOfBirth').val();
+                                        var Address = $('#usersInfo_Address').val();
+                                        var Citizenship = $('#usersInfo_Citizenship').val();
+                                        var PasportSerie = $('#usersInfo_PasportSerie').val();
+                                        var PasportNumber = $('#usersInfo_PasportNumber').val();
+                                        var PasportIssueDate = $('#usersInfo_PasportIssueDate').val();
+                                        var PasportIssuedBy = $('#usersInfo_PasportIssuedBy').val();
+                                        var PhoneNumber = $('#usersInfo_PhoneNumber').val();
+                                        var RegisterDate = '@usersInfo.RegisterDate';
+
+                                        return {
+                                            UsersInfoID: UsersInfoID,
+                                            UserID: UserID,
+                                            Family: Family,
+                                            Name: Name,
+                                            Middle: Middle,
+                                            DateOfBirth: DateOfBirth,
+                                            Address: Address,
+                                            Citizenship: Citizenship,
+                                            PasportSerie: PasportSerie,
+                                            PasportNumber: PasportNumber,
+                                            PasportIssueDate: PasportIssueDate,
+                                            PasportIssuedBy: PasportIssuedBy,
+                                            PhoneNumber: PhoneNumber,
+                                            RegisterDate: RegisterDate
+                                        };
+                                    }
+
+                                    function showMesage(isSuccess, message) {
+                                        debugger;
+                                        var container = $("<div>").addClass(isSuccess ? "success" : "error");
+                                        $("div.result-message").empty().append(container.append(
+                                            $("<div>").addClass("message-box-wrap").text(message)));
+                                        $('html, body').animate({
+                                            scrollTop: $("div.result-message").offset().top - 300
+                                        }, 500);
+                                    }
                                 </script>
                             }
                         </div>
-                    </div>
                 </div>
                 <!-- end tab single section -->
 
@@ -295,6 +296,13 @@
 
 </div>
 
-@section Scripts{
+<script src="~/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
+<script>
+    (function () {
+        $("#usersInfo_DateOfBirth, #usersInfo_PasportIssueDate").datepicker({ dateFormat: 'dd.mm.yy' });
+    })();
+</script>
 
+@section Scripts{
+    
 }

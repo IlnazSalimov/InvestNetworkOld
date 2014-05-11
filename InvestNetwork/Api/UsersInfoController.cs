@@ -21,10 +21,8 @@ namespace InvestNetwork.Api
 
         [Authorize]
         [HttpPost]
-        public UsersInfo Edit(UsersInfo model)
+        public object Edit(UsersInfo model)
         {
-            if (model.DateOfBirth == DateTime.MinValue) return model;
-
             if (ModelState.IsValid)
             {
                 User user = _investContext.CurrentUser;
@@ -47,7 +45,11 @@ namespace InvestNetwork.Api
                 _usersInfoRepository.SaveChanges();
 
             }
-            return model;
+            else
+            {
+                return new { isSuccess = false, errorMessage = "Данные введены некорректно", successMessage = "" }; // Может быть создать отделный класс ответов и ошибки описывать подробнее до полей где произошла ошибка
+            }
+            return new {isSuccess = true, errorMessage = "", successMessage = "Данные успешно сохранены" };
         }
     }
 }
