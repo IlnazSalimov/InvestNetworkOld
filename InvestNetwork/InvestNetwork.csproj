@@ -610,7 +610,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\UsersInfo\Add.cshtml" />
     <Content Include="Views\Shared\_LocationSelecting.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -618,7 +617,6 @@
     <Content Include="Views\Project\Discover.cshtml" />
     <Content Include="Views\Project\View.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\UsersInfo\HistoryParticipation.cshtml" />
     <Content Include="Views\Admin\ReviewProject.cshtml" />
     <Content Include="Views\Admin\GetСheckingProjects.cshtml" />
     <Content Include="Views\PrivateOffice\Index.cshtml" />
