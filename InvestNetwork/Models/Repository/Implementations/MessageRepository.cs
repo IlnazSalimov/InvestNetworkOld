@@ -35,7 +35,7 @@ namespace InvestNetwork.Models
         {
             if (id == 0)
                 return null;
-            var list = messageRepository.GetAll().Where(e => e.ToUserID == id).OrderBy(e => e.MessageDate).ToList();
+            var list = messageRepository.GetAll().Where(e => e.ToUserID == id).OrderByDescending(e => e.MessageDate).ToList();
             foreach(Message message in list)
             {
                 message.User = userRepository.GetById(message.FromUserID);

@@ -289,7 +289,7 @@
                             </div>
                             <div class="comment_text">
                                 <p>@message.MessageText</p>
-                                <a class="modalbox" href="#inline" onclick="beforeOpen()">Ответить</a>
+                                <a class="modalbox" href="#inline" onclick="beforeOpen()" data-user-id="@message.User.Id">Ответить</a>
                             </div>
                         </div>
                     </div>
@@ -302,14 +302,20 @@
                         <label for="msg">Введите сообщение</label>
                         <textarea id="msg" name="msg" class="txtarea"></textarea>
                         <input type="button" id="send" value="Отправить" />
+                        <em id="sending">Отправка...</em>
                     </form>
                 </div>
 
                 <script>
                     var baseUrl = '@Url.Content("~/")';
                     (function () {
+                        $(".modalbox").bind("click", function () {
+                            var id = $(this).attr("data-user-id");
+                            $("#contact").attr("data-user-id", id);
+                        });
+
                         $("#send").bind("click", function () {
-                            
+
                             var msgval = $("#msg").val();
                             var msglen = msgval.length;
                             // Проверка длины сообщения
@@ -322,14 +328,14 @@
 
                             if (msglen >= 1) {
                                 // сначала мы скрываем кнопку отправки
-                                $("#send").replaceWith("<em>отправка...</em>");
-
+                                $("#send").hide();
+                                $("#sending").show();
                                 $.ajax({
                                     type: 'POST',
                                     url: baseUrl + 'Api/Message/Send',
                                     data: {
                                         Message: msgval,
-                                        ToUserID: 1
+                                        ToUserID: $("#contact").attr("data-user-id")
                                     },
                                     dataType: "json",
                                     success: function (data) {
@@ -358,9 +364,10 @@
                     })();
 
                     function beforeOpen() {
-                        debugger;
                         $("#send-result").remove();
                         $("#msg").val(null);
+                        $("#sending").hide();
+                        $("#send").show();
                         $("#contact").show();
                     };
                 </script>
