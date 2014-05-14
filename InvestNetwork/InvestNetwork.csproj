@@ -130,24 +130,26 @@
     <Compile Include="Api\UserSettingsController.cs" />
     <Compile Include="Api\UsersInfoController.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
-    <Compile Include="Context\CustomAuthentication.cs" />
-    <Compile Include="Context\HttpModules\AuthHttpModule.cs" />
-    <Compile Include="Context\Interfaces\IAuthentication.cs" />
-    <Compile Include="Context\Interfaces\IUserProvider.cs" />
-    <Compile Include="Context\UserIdentity.cs">
+    <Compile Include="Application\Context\CustomAuthentication.cs" />
+    <Compile Include="Application\Context\HttpModules\AuthHttpModule.cs" />
+    <Compile Include="Application\Context\Interfaces\IAuthentication.cs" />
+    <Compile Include="Application\Context\Interfaces\IUserProvider.cs" />
+    <Compile Include="Application\Context\UserIdentity.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\FundingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\PrivateOfficeController.cs" />
+    <Compile Include="Application\Core\Extensions\Html\HtmlHelperExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Context\Interfaces\IInvestContext.cs" />
-    <Compile Include="Context\InvestContext.cs" />
+    <Compile Include="Application\Context\Interfaces\IInvestContext.cs" />
+    <Compile Include="Application\Context\InvestContext.cs" />
     <Compile Include="Models\City.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -213,7 +215,7 @@
     </Compile>
     <Compile Include="Models\Repository\Implementations\CityRepository.cs" />
     <Compile Include="Models\Repository\Implementations\CountryRepository.cs" />
-    <Compile Include="Context\UserProvider.cs">
+    <Compile Include="Application\Context\UserProvider.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\Repository\Implementations\MessageRepository.cs" />
@@ -255,10 +257,10 @@
     <Compile Include="Models\UsersInfo.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="NinjectCustom\CustomDependencyResolver.cs" />
-    <Compile Include="NinjectCustom\DependencyConfigure.cs" />
-    <Compile Include="NinjectCustom\NinjectWebApiResolver.cs" />
-    <Compile Include="NinjectCustom\NinjectWebApiScope.cs" />
+    <Compile Include="Application\Core\NinjectCustom\CustomDependencyResolver.cs" />
+    <Compile Include="Application\Core\NinjectCustom\DependencyConfigure.cs" />
+    <Compile Include="Application\Core\NinjectCustom\NinjectWebApiResolver.cs" />
+    <Compile Include="Application\Core\NinjectCustom\NinjectWebApiScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -625,8 +627,9 @@
     <Content Include="Views\Project\View.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\ReviewProject.cshtml" />
-    <Content Include="Views\Admin\GetСheckingProjects.cshtml" />
+    <Content Include="Views\Admin\GetInspectingProjects.cshtml" />
     <Content Include="Views\PrivateOffice\Index.cshtml" />
+    <Content Include="Views\Funding\DetermineAmount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

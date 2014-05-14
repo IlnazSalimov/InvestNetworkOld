@@ -1,4 +1,6 @@
-﻿@model InvestNetwork.Models.Project
+﻿@using InvestNetwork.Application.Core.Extensions.Html;
+
+@model InvestNetwork.Models.Project
 
 @{
     ViewBag.Title = "View";
@@ -20,8 +22,9 @@
 <div class="content_fullwidth">
     <div class="portfolio_area">
 
-        <div class="portfolio_area_left"><a href="#" target="_blank">
-            <img src="@Model.LinkToImg" alt=""></a>
+        <div class="portfolio_area_left">
+            @Html.ProjectImage(Model.ID)
+            <div class="mar_top2"></div>
             <p>
                 @Model.Description
             </p>
@@ -42,18 +45,17 @@
 
             <div class="project_details">
                 <h3>Детали проекта</h3>
-                <span><strong>До окончания</strong> <em>@((Model.EndDate.Value - Model.StartDate.Value).Days)</em></span>
-                <span><strong>Необходимо собрать</strong> <em>@Model.NecessaryFunding</em></span>
-                <span><strong>Собрано</strong> <em>@Model.Payments.Sum(s => s.Sum)</em></span>
-                }
+                <span><strong>Дней до окончания</strong> <em>@((Model.EndDate.Value - Model.StartDate.Value).Days)</em></span>
+                <span><strong>Необходимо собрать</strong> <em>@Model.NecessaryFunding.ToString("C0")</em></span>
+                <span><strong>Собрано</strong> <em>@Model.Payments.Sum(s => s.Sum).ToString("C0")</em></span>
                 <span><strong>Категория</strong> <em><a href="#">@Model.Scope.Title</a></em></span>
-                <span><strong>Автор</strong> <em>@Model.AuthorFullName</em></span>
+                <span><strong>Автор</strong> <em>@Html.UserLink(Model.AuthorID)</em></span>
                 <div class="clearfix mar_top3"></div>
-                <a href="#" class="but_goback"><i class="icon-hand-right icon-large"></i> Инвестировать</a>
+                
             </div>
-
+            <a href="@Url.Action("DetermineAmount", "Funding", new {Id = Model.ID })" class="but_goback"><i class="icon-hand-right icon-large"></i> Инвестировать</a>
         </div>
-
+        
     </div>
 </div>
 

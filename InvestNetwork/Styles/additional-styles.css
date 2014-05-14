@@ -1,4 +1,6 @@
-﻿.join_row * {
+﻿
+/*-------------  Стиль форм --------------*/
+.join_row * {
     box-sizing: border-box;
 }
 
@@ -89,7 +91,21 @@ input[type=password] {
         text-align: right;
     }
 }
+/*------------------------------------------------*/
 
 .our_team_box_big li a.project_name {
     margin: 0
+}
+
+input.amount-input {
+    -webkit-border-radius: 6px; 
+    -moz-border-radius: 6px; 
+    border-radius: 6px; 
+    outline:0; 
+    height:45px; 
+    width: 275px; 
+    padding-left:10px; 
+    padding-right:10px;
+    font-size: 28px;
+    font-weight: bold;
 }

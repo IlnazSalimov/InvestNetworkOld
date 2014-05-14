@@ -297,3 +297,13 @@ html .content_fullwidth ul.tabs li.active, html .content_fullwidth ul.tabs li.ac
 	color: #fff;
 	background-color: #278ef3;
 }
+
+/*-------------------------------------------------------*/
+input.amount-input {
+    border: 1px solid #0a70e3;
+    color: #0a70e3;
+}
+
+.recent_posts_list.amount li a.label {
+    color: #0a70e3;
+}

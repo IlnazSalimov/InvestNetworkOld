@@ -47,7 +47,7 @@ namespace InvestNetwork.Controllers
 
                 model.AuthorID = _investContext.CurrentUser.Id;
                 model.CreateDate = DateTime.Now;
-                model.Status = ProjectStatusEnum.OnReview;
+                model.Status = ProjectStatusEnum.Active;
                 model.LinkToBusinessPlan = "";
                 model.LinkToFinancialPlan = "";
                 model.LinkToGuaranteeLetter = "";
@@ -73,19 +73,17 @@ namespace InvestNetwork.Controllers
                     {
                         Directory.CreateDirectory(FullPathOfDir);
                     }
-                    string savedFilePath = Path.Combine(FullPathOfDir, projectImg.FileName);
+                    string fileName = "full_photo.jpg";
+                    string savedFilePath = Path.Combine(FullPathOfDir, fileName);
                     projectImg.SaveAs(savedFilePath);
 
-                    model.LinkToImg = relativePath;
+                    model.LinkToImg = Path.Combine(relativePath, fileName);
                     _projectRepository.SaveChanges();
                 }
                 else
                 {
                     return View(model);
                 }
-
-                
-                
             }
             else
             {

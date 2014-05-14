@@ -42,7 +42,6 @@ namespace InvestNetwork.Models
         [Display(Name = "Необходимое финансирование")]
         public string NecessaryFunding { get; set; }
 
-        [Required]
         [Display(Name = "Изображение проекта")]
         public string LinkToImg { get; set; }
 
