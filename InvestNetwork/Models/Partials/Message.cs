@@ -12,5 +12,6 @@ namespace InvestNetwork.Models
         {
             get { return this.MessageID; }
         }
+        public User User { set; get; }
     }
 }

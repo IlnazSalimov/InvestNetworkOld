@@ -11,6 +11,7 @@ namespace InvestNetwork.Models
     {
         [Required]
         [Display(Name = "E-mail")]
+        [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*\\.([a-z]{2,4})$", ErrorMessage = "Некорректный E-mail")]
         public string Email { get; set; }
 
         [Required]

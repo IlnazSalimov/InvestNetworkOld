@@ -125,7 +125,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\LocationController.cs" />
+    <Compile Include="Api\MessageController.cs" />
     <Compile Include="Api\ScopeController.cs" />
+    <Compile Include="Api\UserSettingsController.cs" />
     <Compile Include="Api\UsersInfoController.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Application\Context\CustomAuthentication.cs" />
@@ -178,6 +180,7 @@
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MetaData\PartycipationUsersInfoMetaData.cs" />
+    <Compile Include="Models\MetaData\UserSettingsMetaData.cs" />
     <Compile Include="Models\Partials\City.cs" />
     <Compile Include="Models\Partials\Message.cs" />
     <Compile Include="Models\Partials\PartycipationUsersInfo.cs" />
@@ -215,6 +218,7 @@
     <Compile Include="Application\Context\UserProvider.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Repository\Implementations\MessageRepository.cs" />
     <Compile Include="Models\Repository\Implementations\ProjectRepository.cs" />
     <Compile Include="Models\Repository\Implementations\ProjectStatusRepository.cs" />
     <Compile Include="Models\Repository\Implementations\RegionRepository.cs" />
@@ -222,6 +226,7 @@
     <Compile Include="Models\Repository\Implementations\UsersInfoRepository.cs" />
     <Compile Include="Models\Repository\Interfaces\ICityRepository.cs" />
     <Compile Include="Models\Repository\Interfaces\ICountryRepository.cs" />
+    <Compile Include="Models\Repository\Interfaces\IMessageRepository.cs" />
     <Compile Include="Models\Repository\Interfaces\IProjectRepository.cs" />
     <Compile Include="Models\Repository\Interfaces\IProjectStatusRepository.cs" />
     <Compile Include="Models\Repository\Interfaces\IRegionRepository.cs" />
@@ -241,7 +246,9 @@
     <Compile Include="Models\Scope.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Showcases\Message\MessageSending.cs" />
     <Compile Include="Models\Showcases\UsersInfo\PartycipationUsersInfo.cs" />
+    <Compile Include="Models\Showcases\Users\UserSettings.cs" />
     <Compile Include="Models\Showcases\Users\LoginUser.cs" />
     <Compile Include="Models\Showcases\Users\SignupUser.cs" />
     <Compile Include="Models\User.cs">

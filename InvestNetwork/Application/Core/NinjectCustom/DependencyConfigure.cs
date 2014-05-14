@@ -32,6 +32,7 @@ namespace InvestNetwork.Ninject
             kernel.Bind<IRoleRepository>().To<RoleRepository>();
             kernel.Bind<IUsersInfoRepository>().To<UsersInfoRepository>();
             kernel.Bind<IAuthentication>().To<CustomAuthentication>().InRequestScope();
+            kernel.Bind<IMessageRepository>().To<MessageRepository>();
 
             DependencyResolver.SetResolver(new CustomDependencyResolver(kernel));
             GlobalConfiguration.Configuration.DependencyResolver =
