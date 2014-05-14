@@ -48,7 +48,8 @@
   <ItemGroup>
     <Compile Include="Data\IDataContext.cs" />
     <Compile Include="Entity\IEntity.cs" />
-    <Compile Include="ImageHelper.cs" />
+    <Compile Include="ImageTools\GarageTools.cs" />
+    <Compile Include="ImageTools\ImageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

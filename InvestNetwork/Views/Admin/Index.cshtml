@@ -5,9 +5,6 @@
     Layout = "~/Views/Layouts/_Layout.cshtml";
 }
 
-@section Styles{
-}
-
 @section Header{
     <div class="page_title">
         <div class="container">
@@ -17,6 +14,7 @@
         </div>
     </div>
 }
+
 <div class="content_left">
 
     <h2>Image with <strong>Lightboxes</strong></h2>
@@ -91,7 +89,7 @@
         </div>
         <ul class="arrows_list1">
             <li><a href="#"><i class="icon-angle-right"></i> Все проекты</a></li>
-            <li><a href="@Url.Action("GetСheckingProjects", "Admin")"><i class="icon-angle-right"></i> Проекты ожидающие проверку</a></li>
+            <li><a href="@Url.Action("GetInspectingProjects", "Admin")"><i class="icon-angle-right"></i> Проекты ожидающие проверку</a></li>
             <li><a href="#"><i class="icon-angle-right"></i> Пользователи</a></li>
         </ul>
     </div>
@@ -110,7 +108,7 @@
             {
                 <li>
                     <span><a href="#">
-                        <img src="@p.LinkToImg" alt=""></a></span>
+                        <img src="@(p.LinkToImg + "@50x50sc")" alt=""></a></span>
                     <a href="@Url.Action("ReviewProject", new { Id = p.ProjectID })">@p.Name</a>
                     <i>@p.CreateDate.ToString("MMMM d, yyyy")</i>
                 </li>

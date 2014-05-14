@@ -1,4 +1,5 @@
-﻿@using InvestNetwork.Models;
+﻿@using InvestNetwork.Application.Core.Extensions.Html;
+@using InvestNetwork.Models;
 @model IEnumerable<Project>
 
 @{
@@ -21,13 +22,15 @@
 <div class="content_fullwidth">
     <div class="our_team_box_big">
         <h2>Начни  <strong>изучать!</strong></h2>
+        @{var i = 0;}
         @foreach (Project p in Model)
         {
-            <div class="one_fourth">
+            i++;
+            <div class="one_fourth @(i%4 == 0 ? "last" : String.Empty)">
                 <div class="cont-area">
-                    <img src="http://placehold.it/210x230" alt="" class="teammempic">
+                    @Html.ProjectImage(p.ID, true, false, 210, 230, new { @class = "teammempic" })
                     <ul>
-                        <li><strong>@Html.ActionLink(p.Name, "View", "Project", new { id = p.ProjectID }, new { @class="project_name" })&nbsp;<i> @p.AuthorFullName</i></strong></li>
+                        <li><strong>@Html.ActionLink(p.Name, "View", "Project", new { id = p.ProjectID }, new { @class="project_name" })&nbsp;<i>от автора&nbsp;&nbsp;@p.AuthorFullName</i></strong></li>
                         <li><a href="#"><i class="icon-facebook icon-large"></i></a></li>
                         <li><a href="#"><i class="icon-twitter icon-large"></i></a></li>
                         <li><a href="#"><i class="icon-google-plus icon-large"></i></a></li>
@@ -35,7 +38,7 @@
                         <li><a href="#"><i class="icon-pinterest icon-large"></i></a></li>
                     </ul>
                 </div>
-                <p>@p.Description</p>
+                <p>@p.ShortDescription</p>
             </div>
         }
     </div>

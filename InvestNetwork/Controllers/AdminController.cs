@@ -10,8 +10,6 @@ namespace InvestNetwork.Controllers
     [Authorize(Roles="Admin")]
     public class AdminController : Controller
     {
-        //
-        // GET: /Admin/
         private const int RECENT_PROJECT_CNT = 3;
         private readonly IProjectRepository _projectRepository;
         private readonly IProjectStatusRepository _projectStatusRepository;
@@ -33,10 +31,15 @@ namespace InvestNetwork.Controllers
             return View(_projectRepository.GetById(Id));
         }
 
-        public ActionResult GetСheckingProjects()
+        public ActionResult GetReviewingProjects()
         {
 
             return View(_projectRepository.GetAll().Where(p => p.Status == ProjectStatusEnum.OnReview));
+        }
+
+        public ActionResult GetInspectingProjects()
+        {
+            return View(_projectRepository.GetAll().Where(p => !p.IsInspected));
         }
 
         public ActionResult BlockProject(int Id)

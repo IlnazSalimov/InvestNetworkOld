@@ -22,7 +22,7 @@ namespace InvestNetwork.Core
 
         }
 
-        private static Bitmap Resize(Bitmap sourceImage, int newWidth, int newHeight)
+        public static Bitmap Resize(Bitmap sourceImage, int newWidth, int newHeight)
         {
             //меняем размеры логотипа с помощью графики
             var newLogo = new Bitmap(newWidth, newHeight);

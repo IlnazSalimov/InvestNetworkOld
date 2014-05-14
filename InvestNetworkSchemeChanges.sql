@@ -83,8 +83,6 @@ CREATE TABLE Projects (
 )
 GO
 
-ALTER TABLE projects add IsInspected bit not null default 0
-
 ---------------------------------------------
 -- Леха 07.03.2014
 ---------------------------------------------
