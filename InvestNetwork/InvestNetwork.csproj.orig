@@ -1321,8 +1321,8 @@
     <Content Include="Views\Admin\GetInspectingProjects.cshtml" />
     <Content Include="Views\PrivateOffice\Index.cshtml" />
     <Content Include="Views\Funding\DetermineAmount.cshtml" />
+<<<<<<< HEAD
     <Content Include="Scripts\kendo\2014.1.415\jquery.min.map" />
-    <Content Include="Views\Profile\GetProfile.cshtml" />
     <Content Include="Scripts\kendo\2014.1.415\kendo.all.min.js.map" />
     <Content Include="Scripts\kendo\2014.1.415\kendo.aspnetmvc.min.js.map" />
     <Content Include="Scripts\kendo\2014.1.415\kendo.autocomplete.min.js.map" />
@@ -1420,6 +1420,9 @@
     <Content Include="Scripts\kendo\2014.1.415\kendo.web.min.js.map" />
     <Content Include="Scripts\kendo\2014.1.415\kendo.window.min.js.map" />
     <Content Include="Views\Project\CompleteSecondStepOfStart.cshtml" />
+=======
+    <Content Include="Views\Profile\GetProfile.cshtml" />
+>>>>>>> 9359ae32819f657b59fa37e140323f2844cb6cbe
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

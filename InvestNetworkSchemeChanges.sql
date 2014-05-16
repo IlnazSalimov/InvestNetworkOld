@@ -160,3 +160,10 @@ GO
 CREATE UNIQUE INDEX idxMessageID ON Messages (MessageID);
 CREATE UNIQUE INDEX idxPaymentID ON Payments (PaymentID);
 CREATE UNIQUE INDEX idxUsersInfoID ON UsersInfo (UsersInfoID);
+
+---------------------------------------------
+-- Леха 14.05.2014  Добавил ссылку на аватарку и поле О СЕБЕ
+---------------------------------------------
+alter table Users add Avatar nvarchar(300);
+alter table Users add PostNotice bit default 1;
+alter table UsersInfo add AboutMyself nvarchar(max);

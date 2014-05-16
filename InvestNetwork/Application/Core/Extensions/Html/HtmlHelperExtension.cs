@@ -42,8 +42,11 @@ namespace InvestNetwork.Application.Core.Extensions.Html
             var builder = new TagBuilder("a");
 
             builder.SetInnerText(user.FullName);
-            builder.MergeAttribute("href", "#");
-            builder.MergeAttributes(new RouteValueDictionary(optionalHtmlAttributes));
+            UrlHelper urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            string linkToUser = urlHelper.Action("GetProfile", "Profile", new { Id = user.Id });
+            builder.MergeAttribute("href", linkToUser);
+            if (optionalHtmlAttributes != null)
+                builder.MergeAttributes(new RouteValueDictionary(optionalHtmlAttributes));
 
             return builder;
         }
@@ -63,6 +66,29 @@ namespace InvestNetwork.Application.Core.Extensions.Html
             
             if (wrapToLink){
                 TagBuilder wrapper = GetProjectLinkBuilder(projectId, null, isLinkToAdminView);
+                wrapper.InnerHtml = builder.ToString(TagRenderMode.SelfClosing);
+                return wrapper;
+            }
+
+            return builder;
+        }
+
+        private static TagBuilder GetUserImgBuilder(int userId, bool wrapToLink = false, int? optionalHeight = null, int? optionalWidth = null, object optionalHtmlAttributes = null)
+        {
+            User user = _userRepository.GetById(userId);
+            if (user == null)
+                return new TagBuilder(String.Empty);
+            TagBuilder builder = new TagBuilder("img");
+
+            builder.MergeAttribute("src", (user.Avatar ?? "/UPLOAD/Custom/210x230.jpeg") + ((optionalHeight != null && optionalWidth != null) ?
+                String.Format("@{0}x{1}sc", optionalHeight, optionalWidth) : ""));
+
+            if (optionalHtmlAttributes != null)
+                builder.MergeAttributes(new RouteValueDictionary(optionalHtmlAttributes));
+
+            if (wrapToLink)
+            {
+                TagBuilder wrapper = GetUserLinkBuilder(userId, null);
                 wrapper.InnerHtml = builder.ToString(TagRenderMode.SelfClosing);
                 return wrapper;
             }
@@ -188,6 +214,22 @@ namespace InvestNetwork.Application.Core.Extensions.Html
             return new MvcHtmlString(builder.ToString(wrapToLink ? TagRenderMode.Normal : TagRenderMode.SelfClosing));
         }
 
+        /// <summary>  
+        /// Создает HTML элемент c заданными атрибутами и размером, со ссылкой на пользователя или без, который является изображением пользователя с заданными идентификатором.</summary>  
+        /// <param name="helper">Объект к которому будет применен данный метод расширения</param>
+        /// <param name="userId">Идентификатор пользователя</param>
+        /// <param name="wrapToLink">true для установки ссылки, false в противном случае</param>
+        /// <param name="isLinkToAdminView">true для установки ссылки на администраторское представление, false в противном случае</param>
+        /// <param name="height">Высота изображения</param>
+        /// <param name="width">Ширина изображения</param>
+        /// <param name="htmlAttributes">Объект, который содержит HTML атрибуты для элемента.</param>
+        /// <returns>HTML элемент, который визуализирует изображение пользователя.</returns>
+        public static MvcHtmlString UserImage(this HtmlHelper helper, int userId, bool wrapToLink, int height, int width, object htmlAttributes)
+        {
+            TagBuilder builder = GetUserImgBuilder(userId, wrapToLink, height, width, htmlAttributes);
+
+            return new MvcHtmlString(builder.ToString(wrapToLink ? TagRenderMode.Normal : TagRenderMode.SelfClosing));
+        }
 
         /// <summary>  
         /// Создает HTML элемент, который является ссылкой на проект с заданными идентификатором.</summary>  

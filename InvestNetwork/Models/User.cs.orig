@@ -12,18 +12,20 @@ namespace InvestNetwork.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Region
+    public partial class User
     {
-        public Region()
-        {
-            this.Cities = new HashSet<City>();
-        }
+        public int Id { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string FullName { get; set; }
+        public Nullable<int> RoleId { get; set; }
+        public string Avatar { get; set; }
+        public Nullable<bool> PostNotice { get; set; }
+<<<<<<< HEAD
+        public string FilesBrowserDirectory { get; set; }
+=======
+>>>>>>> 9359ae32819f657b59fa37e140323f2844cb6cbe
     
-        public int RegionID { get; set; }
-        public string RegionName { get; set; }
-        public int CountryID { get; set; }
-    
-        public virtual ICollection<City> Cities { get; set; }
-        public virtual Country Country { get; set; }
+        public virtual Role Role { get; set; }
     }
 }
