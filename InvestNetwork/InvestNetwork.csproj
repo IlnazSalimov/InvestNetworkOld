@@ -149,7 +149,6 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\FundingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\PrivateOfficeController.cs" />
@@ -259,7 +258,6 @@
     <Compile Include="Models\Showcases\Project\ProjectStart.cs" />
     <Compile Include="Models\Showcases\Project\ProjectStartingSecondStep.cs" />
     <Compile Include="Models\Showcases\UsersInfo\PartycipationUsersInfo.cs" />
-    <Compile Include="Models\Showcases\Users\UserProfile.cs" />
     <Compile Include="Models\Showcases\Users\UserSettings.cs" />
     <Compile Include="Models\Showcases\Users\LoginUser.cs" />
     <Compile Include="Models\Showcases\Users\SignupUser.cs" />
@@ -1299,6 +1297,19 @@
     <Content Include="Styles\reset.css" />
     <Content Include="Styles\responsive-leyouts.css" />
     <Content Include="Styles\style.css" />
+    <Content Include="Upload\User1\1011in10_05_2014\Снимок.PNG" />
+    <Content Include="Upload\User1\1012in12_05_2014\photo-main.jpg" />
+    <Content Include="Upload\User1\2012in13_05_2014\full_photo %281%29.png" />
+    <Content Include="Upload\User1\2014in13_05_2014\full_photo.jpg" />
+    <Content Include="Upload\User1\2015in14_05_2014\full_photo.jpg" />
+    <Content Include="Upload\User1\2016in14_05_2014\full_photo.jpg" />
+    <Content Include="Upload\User1\project2017in16_05_2014\embed_asset %281%29.png" />
+    <Content Include="Upload\User1\project2017in16_05_2014\embed_asset %282%29.png" />
+    <Content Include="Upload\User1\project2017in16_05_2014\embed_asset.png" />
+    <Content Include="Upload\User1\project2017in16_05_2014\full_photo %282%29.jpg" />
+    <Content Include="Upload\User1\project2018in16_05_2014\embed_asset %283%29.png" />
+    <Content Include="Upload\User1\project2018in16_05_2014\full_photo %284%29.jpg" />
+    <Content Include="Upload\User1\project2019in17_05_2014\full_photo %285%29.jpg" />
     <Content Include="Upload\user2\Lomogram_25012014.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1322,7 +1333,6 @@
     <Content Include="Views\PrivateOffice\Index.cshtml" />
     <Content Include="Views\Funding\DetermineAmount.cshtml" />
     <Content Include="Scripts\kendo\2014.1.415\jquery.min.map" />
-    <Content Include="Views\Profile\GetProfile.cshtml" />
     <Content Include="Scripts\kendo\2014.1.415\kendo.all.min.js.map" />
     <Content Include="Scripts\kendo\2014.1.415\kendo.aspnetmvc.min.js.map" />
     <Content Include="Scripts\kendo\2014.1.415\kendo.autocomplete.min.js.map" />
@@ -1423,6 +1433,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Upload\User1\project0in16_05_2014\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
