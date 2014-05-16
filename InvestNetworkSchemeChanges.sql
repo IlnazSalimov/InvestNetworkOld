@@ -84,9 +84,6 @@ CREATE TABLE Projects (
 )
 GO
 
-ALTER TABLE Projects alter column LinkToImg NVARCHAR(300) NULL
-ALTER TABLE Projects DROP CONSTRAINT DF__Projects__LinkTo__14270015;
-
 CREATE TABLE [dbo].[Users] (
     [Id]         INT            IDENTITY (1, 1) NOT NULL,
     [Email]      NVARCHAR (128) NOT NULL,
