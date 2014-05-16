@@ -28,5 +28,6 @@ namespace InvestNetwork.Models
         public string PasportIssuedBy { get; set; }
         public string PhoneNumber { get; set; }
         public System.DateTime RegisterDate { get; set; }
+        public string AboutMyself { get; set; }
     }
 }

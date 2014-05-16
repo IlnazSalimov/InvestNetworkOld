@@ -26,11 +26,11 @@ namespace InvestNetwork.Models
             return projectRepository.GetById(id);
         }
 
-        public void Insert(Project model)
+        public int Insert(Project model)
         {
             if (model == null)
                 throw new ArgumentNullException("project");
-            projectRepository.Insert(model);
+            return projectRepository.Insert(model);
         }
 
         public void Update(Project model)

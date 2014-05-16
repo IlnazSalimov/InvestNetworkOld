@@ -12,7 +12,7 @@ namespace InvestNetwork.Models
     {
         IQueryable<TEntity> GetAll();
         TEntity GetById(object id);
-        void Insert(TEntity entity);
+        int Insert(TEntity entity);
         void Update(TEntity entity);
         void Delete(TEntity entity);
         void SaveChanges();

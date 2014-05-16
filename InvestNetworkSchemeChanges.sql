@@ -63,25 +63,42 @@ GO
 CREATE TABLE Projects (
 	ProjectID INT IDENTITY (1, 1) PRIMARY KEY,
 	AuthorID INT NOT NULL REFERENCES Users (Id),
-	LocationCityID INT NOT NULL REFERENCES Cities (CityID),
-	Name VARCHAR (150) NOT NULL,
-	ScopeID INT NOT NULL REFERENCES Scopes (ScopeID),
+	LocationCityID INT NULL REFERENCES Cities (CityID),
+	Name NVARCHAR (150) NULL,
+	ScopeID INT NULL REFERENCES Scopes (ScopeID),
 	[Description] NVARCHAR(MAX) NULL,
-	LinkToBusinessPlan VARCHAR(300) NOT NULL,
-	LinkToFinancialPlan VARCHAR(300) NOT NULL,
-	LinkToVideoPresentation VARCHAR(300) NULL,
-	LinkToGuaranteeLetter VARCHAR(300) NULL,
+	LinkToBusinessPlan NVARCHAR(300) NULL,
+	LinkToFinancialPlan NVARCHAR(300) NULL,
+	LinkToVideoPresentation NVARCHAR(300) NULL,
+	LinkToGuaranteeLetter NVARCHAR(300) NULL,
 	ProjectStatusID INT NOT NULL REFERENCES ProjectStatuses (ProjectStatusID),
 	StartDate DateTime NULL,
 	CreateDate DateTime NOT NULL,
-	LinkToImg VARCHAR(300) NOT NULL,
+	LinkToImg NVARCHAR(300) NULL,
 	EndDate DateTime NULL,
-	NecessaryFunding MONEY NOT NULL,
-	ShortDescription NVARCHAR(135) NOT NULL,
-	FundingDuration INT NOT NULL,
-	IsInspected BIT NOT NULL
+	NecessaryFunding MONEY NULL,
+	ShortDescription NVARCHAR(135) NULL,
+	FundingDuration INT NULL,
+	IsInspected BIT NOT NULL,
+	ProjectFilesDirectory NVARCHAR(256) NOT NULL,
 )
 GO
+
+ALTER TABLE Projects alter column LinkToImg NVARCHAR(300) NULL
+ALTER TABLE Projects DROP CONSTRAINT DF__Projects__LinkTo__14270015;
+
+CREATE TABLE [dbo].[Users] (
+    [Id]         INT            IDENTITY (1, 1) NOT NULL,
+    [Email]      NVARCHAR (128) NOT NULL,
+    [Password]   NVARCHAR (128) NOT NULL,
+    [FullName]   NVARCHAR (128) NOT NULL,
+    [RoleId]     INT            NULL,
+    [Avatar]     NVARCHAR (300) NULL,
+    [PostNotice] BIT            DEFAULT ((1)) NULL,
+	FilesBrowserDirectory NVARCHAR(256) NOT NULL,
+    CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([RoleId]) REFERENCES [dbo].[Roles] ([Id])
+);
 
 ---------------------------------------------
 -- Леха 07.03.2014

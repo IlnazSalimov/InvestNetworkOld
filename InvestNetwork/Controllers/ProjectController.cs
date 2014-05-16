@@ -1,4 +1,5 @@
-﻿using InvestNetwork.Models;
+﻿using InvestNetwork.Application.Core;
+using InvestNetwork.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -39,60 +40,91 @@ namespace InvestNetwork.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Start(Project model, HttpPostedFileBase projectImg)
+        public ActionResult Start(ProjectStart model)
         {
             if (ModelState.IsValid)
             {
-                DateTime now = DateTime.Now;
-
-                model.AuthorID = _investContext.CurrentUser.Id;
-                model.CreateDate = DateTime.Now;
-                model.Status = ProjectStatusEnum.Active;
-                model.LinkToBusinessPlan = "";
-                model.LinkToFinancialPlan = "";
-                model.LinkToGuaranteeLetter = "";
-                model.LinkToVideoPresentation = "";
-                model.LinkToImg = "";
-                model.StartDate = now;
-                model.EndDate = now.AddDays(model.FundingDuration);
-                model.IsInspected = false;
-
-                _projectRepository.Insert(model);
-                _projectRepository.SaveChanges();
-
-
-                if ((projectImg != null && projectImg.ContentLength > 0))
+                Project project = new Project
                 {
-                    string relativePath = Path.Combine(
-                        ConfigurationManager.AppSettings["FileUploadDirectory"].ToString(),
-                        model.ID.ToString() +
-                        "in" +
-                        model.CreateDate.ToString("dd_MM_yyyy"));
-                    string FullPathOfDir = Server.MapPath(relativePath);
-                    if (!Directory.Exists(FullPathOfDir))
-                    {
-                        Directory.CreateDirectory(FullPathOfDir);
-                    }
-                    string fileName = "full_photo.jpg";
-                    string savedFilePath = Path.Combine(FullPathOfDir, fileName);
-                    projectImg.SaveAs(savedFilePath);
+                    AuthorID = _investContext.CurrentUser.Id,
+                    CreateDate = DateTime.Now,
+                    Status = ProjectStatusEnum.Uncreated,
+                    IsInspected = false,
+                    ProjectFilesDirectory = "",
+                    Name = model.Name,
+                    FundingDuration = model.FundingDuration,
+                    LocationCityID = model.LocationCityID,
+                    NecessaryFunding = model.NecessaryFunding,
+                    ScopeID = model.ScopeID,
+                    ShortDescription = model.ShortDescription
+                };
 
-                    model.LinkToImg = Path.Combine(relativePath, fileName);
+                try
+                {
+                    project.ProjectID = _projectRepository.Insert(project);
+                    _projectRepository.SaveChanges();
+
+                    string projectFilesDirectoryName = String.Format("project{0}in{1}", project.ID.ToString(), project.CreateDate.ToString("dd_MM_yyyy"));
+                    string userDirRelPath = Path.Combine(ConfigurationManager.AppSettings["FileUploadDirectory"].ToString(), _investContext.CurrentUser.FilesBrowserDirectory);
+                    string projectDirRelPath = Path.Combine(userDirRelPath, projectFilesDirectoryName);
+                    
+                    Directory.CreateDirectory(Server.MapPath(projectDirRelPath));
+                    project.ProjectFilesDirectory = projectFilesDirectoryName;
+                    
                     _projectRepository.SaveChanges();
                 }
-                else
-                {
-                    return View(model);
-                }
+                catch (Exception ex) { }
+
+                return RedirectToAction("CompleteSecondStepOfStart", new { Id = project.ID });
             }
             else
             {
                 return View(model);
             }
-            return RedirectToAction("Discover");
+
+            
         }
 
+        [Authorize]
+        public ActionResult CompleteSecondStepOfStart(int Id)
+        {
+            try
+            {
+                Project fillingProject = _projectRepository.GetById(Id);
+                return View(new ProjectStartingSecondStep { 
+                    ProjectID = fillingProject.ID,
+                    ProjectFilesDirectory = fillingProject.ProjectFilesDirectory 
+                });
+            }
+            catch (Exception ex) { }
 
+            return Start();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult CompleteSecondStepOfStart(ProjectStartingSecondStep model, HttpPostedFileBase LinkToImg)
+        {
+            if (ModelState.IsValid && (LinkToImg != null && LinkToImg.ContentLength > 0))
+            {
+                Project fillingProject = _projectRepository.GetById(model.ProjectID);
+                fillingProject.Description = model.Description;
+                fillingProject.Status = ProjectStatusEnum.Active;
+                fillingProject.StartDate = DateTime.Now;
+                fillingProject.EndDate = fillingProject.StartDate.Value.AddDays((int)fillingProject.FundingDuration.Value);
+                fillingProject.LinkToImg = FileUploader.Upload(LinkToImg, fillingProject.ProjectFilesDirectory);
+                
+                _projectRepository.SaveChanges();
+
+                return RedirectToAction("Discover");
+            }
+            else
+            {
+                return View(model);
+            }
+
+            
+        }
 
         public ActionResult Discover()
         {

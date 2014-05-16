@@ -16,7 +16,7 @@ namespace InvestNetwork.Models
 
     public class ProjectMetaData
     {
-        [Required]
+        /*[Required]
         [Display(Name = "Месторасположение")]
         public int LocationCityID { get; set; }
 
@@ -30,6 +30,7 @@ namespace InvestNetwork.Models
 
         [Required]
         [Display(Name = "Описание")]
+        [UIHint("TinyMCE_yourtemplatename"), AllowHtml]
         public string Description { get; set; }
 
         [Required]
@@ -42,13 +43,14 @@ namespace InvestNetwork.Models
         [Display(Name = "Необходимое финансирование")]
         public string NecessaryFunding { get; set; }
 
+        [Required]
         [Display(Name = "Изображение проекта")]
         public string LinkToImg { get; set; }
 
         [Required]
         [Range((int)FundingDurationRanges.Min, (int)FundingDurationRanges.Max, ErrorMessage = "Продолжительность финансирования должна быть в пределах от 1 до 60 дней")]
         [Display(Name = "Продолжительность финансирования")]
-        public string FundingDuration { get; set; }
+        public string FundingDuration { get; set; }*/
     }
 
 

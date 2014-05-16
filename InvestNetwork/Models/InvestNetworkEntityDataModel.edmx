@@ -98,23 +98,24 @@
           </Key>
           <Property Name="ProjectID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="AuthorID" Type="int" Nullable="false" />
-          <Property Name="LocationCityID" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="LocationCityID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
           <Property Name="ScopeID" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="LinkToBusinessPlan" Type="varchar" Nullable="false" MaxLength="300" />
-          <Property Name="LinkToFinancialPlan" Type="varchar" Nullable="false" MaxLength="300" />
-          <Property Name="LinkToVideoPresentation" Type="varchar" MaxLength="300" />
-          <Property Name="LinkToGuaranteeLetter" Type="varchar" MaxLength="300" />
+          <Property Name="LinkToBusinessPlan" Type="nvarchar" MaxLength="300" />
+          <Property Name="LinkToFinancialPlan" Type="nvarchar" MaxLength="300" />
+          <Property Name="LinkToVideoPresentation" Type="nvarchar" MaxLength="300" />
+          <Property Name="LinkToGuaranteeLetter" Type="nvarchar" MaxLength="300" />
           <Property Name="ProjectStatusID" Type="int" Nullable="false" />
           <Property Name="StartDate" Type="datetime" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
-          <Property Name="LinkToImg" Type="varchar" Nullable="false" MaxLength="300" />
+          <Property Name="LinkToImg" Type="nvarchar" MaxLength="300" />
           <Property Name="EndDate" Type="datetime" />
-          <Property Name="NecessaryFunding" Type="money" Nullable="false" />
-          <Property Name="ShortDescription" Type="nvarchar" Nullable="false" MaxLength="135" />
-          <Property Name="FundingDuration" Type="int" Nullable="false" />
+          <Property Name="NecessaryFunding" Type="money" />
+          <Property Name="ShortDescription" Type="nvarchar" MaxLength="135" />
+          <Property Name="FundingDuration" Type="int" />
           <Property Name="IsInspected" Type="bit" Nullable="false" />
+          <Property Name="ProjectFilesDirectory" Type="nvarchar" Nullable="false" MaxLength="256" />
         </EntityType>
         <EntityType Name="ProjectStatuses">
           <Key>
@@ -155,6 +156,9 @@
           <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="FullName" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="RoleId" Type="int" />
+          <Property Name="Avatar" Type="nvarchar" MaxLength="300" />
+          <Property Name="PostNotice" Type="bit" />
+          <Property Name="FilesBrowserDirectory" Type="nvarchar" Nullable="false" MaxLength="256" />
         </EntityType>
         <EntityType Name="UsersInfo">
           <Key>
@@ -174,6 +178,7 @@
           <Property Name="PasportIssuedBy" Type="nvarchar" Nullable="false" MaxLength="1000" />
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
           <Property Name="RegisterDate" Type="datetime" Nullable="false" />
+          <Property Name="AboutMyself" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK__Cities__RegionID__3B75D760">
           <End Role="Regions" Type="InvestNetworkModel.Store.Regions" Multiplicity="1" />
@@ -323,6 +328,9 @@
           <Property Name="FullName" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
           <Property Name="RoleId" Type="Int32" />
           <NavigationProperty Name="Role" Relationship="InvestNetworkModel.FK__Users__RoleId__1CF15040" FromRole="Users" ToRole="Roles" />
+          <Property Type="String" Name="Avatar" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="PostNotice" />
+          <Property Type="String" Name="FilesBrowserDirectory" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__Users__RoleId__1CF15040">
           <End Role="Roles" Type="InvestNetworkModel.Role" Multiplicity="0..1" />
@@ -342,26 +350,27 @@
           </Key>
           <Property Type="Int32" Name="ProjectID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="AuthorID" Nullable="false" />
-          <Property Type="Int32" Name="LocationCityID" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LocationCityID" />
+          <Property Type="String" Name="Name" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="ScopeID" Nullable="false" />
           <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LinkToBusinessPlan" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LinkToFinancialPlan" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LinkToVideoPresentation" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LinkToGuaranteeLetter" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LinkToBusinessPlan" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LinkToFinancialPlan" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LinkToVideoPresentation" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LinkToGuaranteeLetter" MaxLength="300" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Scope" Relationship="InvestNetworkModel.FK__Projects__ScopeI__4D94879B" FromRole="Project" ToRole="Scope" />
           <Property Type="Int32" Name="ProjectStatusID" Nullable="false" />
           <Property Type="DateTime" Name="StartDate" Precision="3" />
           <NavigationProperty Name="Payments" Relationship="InvestNetworkModel.FK__Payments__Projec__7E37BEF6" FromRole="Project" ToRole="Payment" />
           <NavigationProperty Name="ProjectStatus" Relationship="InvestNetworkModel.FK__Projects__Projec__73BA3083" FromRole="Project" ToRole="ProjectStatus" />
           <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="3" />
-          <Property Type="String" Name="LinkToImg" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LinkToImg" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="EndDate" Precision="3" />
-          <Property Type="Decimal" Name="NecessaryFunding" Nullable="false" Precision="19" Scale="4" />
-          <Property Type="String" Name="ShortDescription" Nullable="false" MaxLength="135" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="FundingDuration" Nullable="false" />
+          <Property Type="Decimal" Name="NecessaryFunding" Precision="19" Scale="4" />
+          <Property Type="String" Name="ShortDescription" MaxLength="135" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="FundingDuration" />
           <Property Type="Boolean" Name="IsInspected" Nullable="false" />
+          <Property Type="String" Name="ProjectFilesDirectory" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Scope">
           <Key>
@@ -530,6 +539,7 @@
           <Property Type="String" Name="PasportIssuedBy" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="PhoneNumber" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="RegisterDate" Nullable="false" Precision="3" />
+          <Property Type="String" Name="AboutMyself" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -548,6 +558,9 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="InvestNetworkModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="FilesBrowserDirectory" ColumnName="FilesBrowserDirectory" />
+                <ScalarProperty Name="PostNotice" ColumnName="PostNotice" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -559,6 +572,7 @@
           <EntitySetMapping Name="Projects">
             <EntityTypeMapping TypeName="InvestNetworkModel.Project">
               <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="ProjectFilesDirectory" ColumnName="ProjectFilesDirectory" />
                 <ScalarProperty Name="IsInspected" ColumnName="IsInspected" />
                 <ScalarProperty Name="FundingDuration" ColumnName="FundingDuration" />
                 <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
@@ -660,6 +674,7 @@
           <EntitySetMapping Name="UsersInfoes">
             <EntityTypeMapping TypeName="InvestNetworkModel.UsersInfo">
               <MappingFragment StoreEntitySet="UsersInfo">
+                <ScalarProperty Name="AboutMyself" ColumnName="AboutMyself" />
                 <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="PasportIssuedBy" ColumnName="PasportIssuedBy" />

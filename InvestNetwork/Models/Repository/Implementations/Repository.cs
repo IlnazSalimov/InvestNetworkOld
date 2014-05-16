@@ -40,9 +40,10 @@ namespace InvestNetwork.Models
             return Entities.Find(id);
         }
 
-        public void Insert(TEntity entity)
+        public int Insert(TEntity entity)
         {
             Entities.Add(entity);
+            return dataContext.Entry<TEntity>(entity).Entity.ID;
         }
 
         public void Update(TEntity entity)

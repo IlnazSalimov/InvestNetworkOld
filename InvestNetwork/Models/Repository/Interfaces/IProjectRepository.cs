@@ -10,7 +10,7 @@ namespace InvestNetwork.Models
     {
         List<Project> GetAll();
         Project GetById(int id);
-        void Insert(Project model);
+        int Insert(Project model);
         void Update(Project model);
         void Delete(Project model);
         void SaveChanges();

@@ -14,7 +14,8 @@ namespace InvestNetwork.Models
         OnReview = 1,
         Active = 5,
         Inactive = -99,
-        Blocked = -1
+        Blocked = -1,
+        Uncreated = -5
     }
 
     public enum FundingPeriod

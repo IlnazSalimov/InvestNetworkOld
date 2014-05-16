@@ -19,6 +19,9 @@ namespace InvestNetwork.Models
         public string Password { get; set; }
         public string FullName { get; set; }
         public Nullable<int> RoleId { get; set; }
+        public string Avatar { get; set; }
+        public Nullable<bool> PostNotice { get; set; }
+        public string FilesBrowserDirectory { get; set; }
     
         public virtual Role Role { get; set; }
     }

@@ -433,10 +433,11 @@ height: 0;
 
 
 /*===========------------------------------ RESET ----------------------------------==========*/
-
 /*------------------------- img ------------------------*/
 .our_team_box_big img.teammempic {
     border: 1px solid #DADADA;
+}
+
 .divider_line10 {
 	float: left;
 	width: 100%;
@@ -445,6 +446,7 @@ height: 0;
 	margin: 25px 0px 0px 0px;
 	background: url(../images/divider-hlines.png) no-repeat center top;
 }
+
 .recent_posts_list.amount li span img {
     border: 1px solid #DADADA;
 }
@@ -461,6 +463,10 @@ height: 0;
 .recent_posts_list.amount li i {
     font-size: 12px;
     color: #333;
+}
+
+.project_details.custom {
+    margin:15px;
 }
 /*------------------------- custom ------------------------*/
 /*.our_team_box_big li strong i .author-name {

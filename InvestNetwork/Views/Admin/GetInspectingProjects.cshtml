@@ -19,12 +19,15 @@
         </div>
     </div>
 }
+
 <div class="content_fullwidth">
     <div class="our_team_box_big">
         <h2>Проекты  <strong>на осмотр</strong></h2>
+        @{var i = 0;}
         @foreach (Project p in Model)
         {
-            <div class="one_fourth">
+            i++;
+            <div class="one_fourth @(i % 4 == 0 ? "last" : String.Empty)">
                 <div class="cont-area">
                     @Html.ProjectImage(p.ID, true, true, 210, 230, new { @class = "teammempic" })
                     <ul>
@@ -38,6 +41,10 @@
                 </div>
                 <p>@p.ShortDescription</p>
             </div>
+            if (i % 4 == 0)
+            {
+            <div class="clearfix mar_top5"></div>
+            }
         }
 
         @if (Model.Count() == 0)

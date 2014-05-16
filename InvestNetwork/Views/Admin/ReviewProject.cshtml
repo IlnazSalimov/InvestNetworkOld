@@ -24,27 +24,19 @@
 
         <div class="portfolio_area_left">
             <img src="@Model.LinkToImg" alt="">
-            <div class="mar_top2"></div>
-            <p>@Model.Description</p>
+            <div class="mar_top3"></div>
+            <h3>О проекте</h3>
+            <div class="divider_line8"></div>
+            @Html.Raw(HttpUtility.HtmlDecode(Model.Description))
         </div>
 
         <div class="portfolio_area_right">
-
-            <h3>Описание проекта</h3>
-            <p>@Model.ShortDescription</p>
-            <ul class="small_social_links">
-                <li><a href="#"><i class="icon-facebook"></i></a></li>
-                <li><a href="#"><i class="icon-twitter"></i></a></li>
-                <li><a href="#"><i class="icon-google-plus"></i></a></li>
-                <li><a href="#"><i class="icon-linkedin"></i></a></li>
-                <li><a href="#"><i class="icon-pinterest"></i></a></li>
-            </ul>
             @{
                 var isProjectOnReview = Model.Status == ProjectStatusEnum.OnReview;
                 var isProjectBlocked = Model.Status == ProjectStatusEnum.Blocked;
                 var isProjectActive = Model.Status == ProjectStatusEnum.Active;
             }
-            <div class="project_details">
+            <div class="project_details custom">
                 <h3>Детали проекта</h3>
                 <span><strong>Дата создания</strong> <em>@Model.CreateDate.ToString("d MMMM yyyy hh:mm")</em></span>
                 @if (isProjectActive)
@@ -54,7 +46,7 @@
                     <span><strong>Дней до окончания</strong> <em>@((Model.EndDate.Value - Model.StartDate.Value).Days)</em></span>
                 }
                 <span><strong>Статус</strong> <em>@Model.ProjectStatus.Status</em></span>
-                <span><strong>Необходимо собрать</strong> <em>@Model.NecessaryFunding.ToString("C0")</em></span>
+                <span><strong>Необходимо собрать</strong> <em>@Model.NecessaryFunding.Value.ToString("C0")</em></span>
                 <span><strong>Собрано</strong> <em>@Model.Payments.Sum(s => s.Sum).ToString("C0")</em></span>
                 <span><strong>Категория</strong> <em><a href="#">@Model.Scope.Title</a></em></span>
                 <span><strong>Автор</strong> <em>@Html.UserLink(Model.AuthorID)</em></span>
