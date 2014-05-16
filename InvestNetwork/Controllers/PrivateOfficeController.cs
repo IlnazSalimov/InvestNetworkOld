@@ -32,7 +32,6 @@ namespace InvestNetwork.Controllers
         public ActionResult Index()
         {
             User user = _investContext.CurrentUser;
-            user.Avatar = "http://placehold.it/210x230";
 
             ViewBag.usersInfo = _usersInfoRepository.GetByUserId(user.Id);
             ViewBag.messages = _messageRepository.GetByUserId(user.Id);
@@ -43,7 +42,7 @@ namespace InvestNetwork.Controllers
             userSettings.Email = user.Email;
             userSettings.FullName = user.FullName;
             userSettings.Id = user.Id;
-            userSettings.PostNotice = true;
+            userSettings.PostNotice = user.PostNotice;
             userSettings.RoleId = user.RoleId;
 
             ViewBag.userSettings = userSettings;
@@ -56,7 +55,6 @@ namespace InvestNetwork.Controllers
         public ActionResult Index(HttpPostedFileBase file)
         {
             User user = _investContext.CurrentUser;
-            user.Avatar = "http://placehold.it/210x230";
 
             ViewBag.usersInfo = _usersInfoRepository.GetByUserId(user.Id);
             ViewBag.messages = _messageRepository.GetByUserId(user.Id);
@@ -67,7 +65,7 @@ namespace InvestNetwork.Controllers
             userSettings.Email = user.Email;
             userSettings.FullName = user.FullName;
             userSettings.Id = user.Id;
-            userSettings.PostNotice = true;
+            userSettings.PostNotice = user.PostNotice;
             userSettings.RoleId = user.RoleId;
 
             ViewBag.userSettings = userSettings;
@@ -93,6 +91,7 @@ namespace InvestNetwork.Controllers
 
                     user.Avatar = relativeFilePath;
                     userSettings.Avatar = user.Avatar;
+                    _userRepository.Update(user);
                     _userRepository.SaveChanges();
                 }
                 else

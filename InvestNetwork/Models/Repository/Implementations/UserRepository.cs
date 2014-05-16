@@ -12,7 +12,6 @@ namespace InvestNetwork.Models
     public class UserRepository : IUserRepository
     {
         private IRepository<User> userRepository;
-        private IRoleRepository roleRepository;
 
         public UserRepository(IRepository<User> userRepository)
         {

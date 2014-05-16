@@ -10,8 +10,6 @@ namespace InvestNetwork.Models
     [MetadataType(typeof(UserMetaData))]
     public partial class User : IEntity
     {
-        public string Avatar { set; get; }
-
         public bool InRoles(string roles)
         {
             if (string.IsNullOrWhiteSpace(roles))

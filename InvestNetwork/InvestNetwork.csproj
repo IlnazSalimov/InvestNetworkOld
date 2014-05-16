@@ -141,6 +141,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\FundingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\PrivateOfficeController.cs" />
@@ -248,6 +249,7 @@
     </Compile>
     <Compile Include="Models\Showcases\Message\MessageSending.cs" />
     <Compile Include="Models\Showcases\UsersInfo\PartycipationUsersInfo.cs" />
+    <Compile Include="Models\Showcases\Users\UserProfile.cs" />
     <Compile Include="Models\Showcases\Users\UserSettings.cs" />
     <Compile Include="Models\Showcases\Users\LoginUser.cs" />
     <Compile Include="Models\Showcases\Users\SignupUser.cs" />
@@ -630,6 +632,7 @@
     <Content Include="Views\Admin\GetInspectingProjects.cshtml" />
     <Content Include="Views\PrivateOffice\Index.cshtml" />
     <Content Include="Views\Funding\DetermineAmount.cshtml" />
+    <Content Include="Views\Profile\GetProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -155,6 +155,8 @@
           <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="FullName" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="RoleId" Type="int" />
+          <Property Name="Avatar" Type="nvarchar" MaxLength="300" />
+          <Property Name="PostNotice" Type="bit" />
         </EntityType>
         <EntityType Name="UsersInfo">
           <Key>
@@ -174,6 +176,7 @@
           <Property Name="PasportIssuedBy" Type="nvarchar" Nullable="false" MaxLength="1000" />
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
           <Property Name="RegisterDate" Type="datetime" Nullable="false" />
+          <Property Name="AboutMyself" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK__Cities__RegionID__3B75D760">
           <End Role="Regions" Type="InvestNetworkModel.Store.Regions" Multiplicity="1" />
@@ -323,6 +326,8 @@
           <Property Name="FullName" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
           <Property Name="RoleId" Type="Int32" />
           <NavigationProperty Name="Role" Relationship="InvestNetworkModel.FK__Users__RoleId__1CF15040" FromRole="Users" ToRole="Roles" />
+          <Property Type="String" Name="Avatar" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="PostNotice" />
         </EntityType>
         <Association Name="FK__Users__RoleId__1CF15040">
           <End Role="Roles" Type="InvestNetworkModel.Role" Multiplicity="0..1" />
@@ -530,6 +535,7 @@
           <Property Type="String" Name="PasportIssuedBy" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="PhoneNumber" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="RegisterDate" Nullable="false" Precision="3" />
+          <Property Type="String" Name="AboutMyself" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -548,6 +554,8 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="InvestNetworkModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="PostNotice" ColumnName="PostNotice" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -660,6 +668,7 @@
           <EntitySetMapping Name="UsersInfoes">
             <EntityTypeMapping TypeName="InvestNetworkModel.UsersInfo">
               <MappingFragment StoreEntitySet="UsersInfo">
+                <ScalarProperty Name="AboutMyself" ColumnName="AboutMyself" />
                 <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="PasportIssuedBy" ColumnName="PasportIssuedBy" />

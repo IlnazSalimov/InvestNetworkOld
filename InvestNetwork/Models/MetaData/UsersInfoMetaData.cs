@@ -57,6 +57,9 @@ namespace InvestNetwork.Models
         [DisplayFormat(ApplyFormatInEditMode = true,
                DataFormatString = "{0:dd.MM.yyyy}")]
         public DateTime RegisterDate { get; set; }
+
+        [Display(Name = "О себе")]
+        public string AboutMyself { get; set; }
     }
 
 

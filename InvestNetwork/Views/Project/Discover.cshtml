@@ -30,7 +30,7 @@
                 <div class="cont-area">
                     @Html.ProjectImage(p.ID, true, false, 210, 230, new { @class = "teammempic" })
                     <ul>
-                        <li><strong>@Html.ActionLink(p.Name, "View", "Project", new { id = p.ProjectID }, new { @class="project_name" })&nbsp;<i>от автора&nbsp;&nbsp;@p.AuthorFullName</i></strong></li>
+                        <li><strong>@Html.ActionLink(p.Name, "View", "Project", new { id = p.ProjectID }, new { @class="project_name" })&nbsp;<i>от автора&nbsp;&nbsp;@Html.UserLink(p.AuthorID)</i></strong></li>
                         <li><a href="#"><i class="icon-facebook icon-large"></i></a></li>
                         <li><a href="#"><i class="icon-twitter icon-large"></i></a></li>
                         <li><a href="#"><i class="icon-google-plus icon-large"></i></a></li>
