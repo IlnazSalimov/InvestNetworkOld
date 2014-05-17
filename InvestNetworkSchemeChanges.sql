@@ -167,3 +167,20 @@ CREATE UNIQUE INDEX idxUsersInfoID ON UsersInfo (UsersInfoID);
 alter table Users add Avatar nvarchar(300);
 alter table Users add PostNotice bit default 1;
 alter table UsersInfo add AboutMyself nvarchar(max);
+
+---------------------------------------------
+-- Леха 17.05.2014  Добавил таблицу для блога проекта
+-- Леха 18.05.2014  Добавил таблицу для комментариев проекта
+---------------------------------------------
+CREATE TABLE ProjectNews (
+	ProjectNewsID INT IDENTITY (1, 1) PRIMARY KEY,
+	ProjectID INT NOT NULL REFERENCES Projects (ProjectID),
+	Description NVARCHAR(MAX) NULL
+)
+CREATE TABLE ProjectComments(
+	ProjectCommentID INT IDENTITY (1, 1) PRIMARY KEY,
+	FromUserID INT NOT NULL REFERENCES Users (Id),
+	ProjectID INT NOT NULL REFERENCES Projects (ProjectID),
+	CommentText NVARCHAR(MAX) NOT NULL,
+	CommentDate DATETIME NOT NULL
+)

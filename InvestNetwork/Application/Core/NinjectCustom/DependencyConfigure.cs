@@ -33,6 +33,8 @@ namespace InvestNetwork.Ninject
             kernel.Bind<IUsersInfoRepository>().To<UsersInfoRepository>();
             kernel.Bind<IAuthentication>().To<CustomAuthentication>().InRequestScope();
             kernel.Bind<IMessageRepository>().To<MessageRepository>();
+            kernel.Bind<IProjectCommentRepository>().To<ProjectCommentRepository>();
+            //kernel.Bind<IProjectNewsRepository>().To<ProjectNewsRepository>();
 
             DependencyResolver.SetResolver(new CustomDependencyResolver(kernel));
             GlobalConfiguration.Configuration.DependencyResolver =

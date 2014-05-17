@@ -7,9 +7,12 @@
     Layout = "~/Views/Layouts/_Layout.cshtml";
 }
 
-@section Styles{}
+@section Styles {
+    <link href="~/Content/kendo/2014.1.318/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/2014.1.318/kendo.common.min.css" rel="stylesheet" />
+}
 
-@section Header{
+@section Header {
     <div class="page_title">
         <div class="container">
             <div class="title">
@@ -20,33 +23,190 @@
 }
 
 <div class="content_fullwidth">
-    <div class="portfolio_area">
 
-        <div class="portfolio_area_left">
-            @Html.ProjectImage(Model.ID)
-            <div class="mar_top3"></div>
-            <h2>О проекте</h2>
-            <div class="divider_line8"></div>
-            @Html.Raw(HttpUtility.HtmlDecode(Model.Description))
-        </div>
 
-        <div class="portfolio_area_right">
-            <a href="#" class="addto_favorites"><strong><i class="icon-heart"></i> В избранное</strong></a>
+    <div id="tabs">
+        <ul class="tabs">
+            <li class="active"><a href="#tab1">О проекте</a></li>
+            <li class=""><a href="#tab2">Новости</a></li>
+            <li class=""><a href="#tab3">Комментарии</a></li>
+        </ul>
+        <!-- /# end tab links -->
+        <div class="tab-container">
+            <div id="tab1" class="tab-content" style="display: block;">
+                <div class="portfolio_area" style="margin-bottom:20px">
 
-            <div class="project_details custom">
-                <h3>Детали проекта</h3>
-                <span><strong>Дней до окончания</strong> <em>@((Model.EndDate.Value - Model.StartDate.Value).Days)</em></span>
-                <span><strong>Необходимо собрать</strong> <em>@Model.NecessaryFunding.Value.ToString("C0")</em></span>
-                <span><strong>Собрано</strong> <em>@Model.Payments.Sum(s => s.Sum).ToString("C0")</em></span>
-                <span><strong>Категория</strong> <em><a href="#">@Model.Scope.Title</a></em></span>
-                <span><strong>Автор</strong> <em>@Html.UserLink(Model.AuthorID)</em></span>
-                <div class="clearfix mar_top3"></div>
-                
+                    <div class="portfolio_area_left">
+                        @Html.ProjectImage(Model.ID)
+                        <div class="mar_top3"></div>
+                        <h2>О проекте</h2>
+                        <div class="divider_line8"></div>
+                        @Html.Raw(HttpUtility.HtmlDecode(Model.Description))
+                    </div>
+
+                    <div class="portfolio_area_right">
+                        <a href="#" class="addto_favorites"><strong><i class="icon-heart"></i>В избранное</strong></a>
+
+                        <div class="project_details custom">
+                            <h3>Детали проекта</h3>
+                            <span><strong>Дней до окончания</strong> <em>@((Model.EndDate.Value - Model.StartDate.Value).Days)</em></span>
+                            <span><strong>Необходимо собрать</strong> <em>@Model.NecessaryFunding.Value.ToString("C0")</em></span>
+                            <span><strong>Собрано</strong> <em>@Model.Payments.Sum(s => s.Sum).ToString("C0")</em></span>
+                            <span><strong>Категория</strong> <em><a href="#">@Model.Scope.Title</a></em></span>
+                            <span><strong>Автор</strong> <em>@Html.UserLink(Model.AuthorID)</em></span>
+                            <div class="clearfix mar_top3"></div>
+
+                        </div>
+                        <a href="@Url.Action("DetermineAmount", "Funding", new { Id = Model.ID })" class="but_goback"><i class="icon-hand-right icon-large"></i>Инвестировать</a>
+                    </div>
+
+                </div>
             </div>
-            <a href="@Url.Action("DetermineAmount", "Funding", new {Id = Model.ID })" class="but_goback"><i class="icon-hand-right icon-large"></i> Инвестировать</a>
+            <!-- end tab single section -->
+
+            <div id="tab2" class="tab-content" style="display: none;">
+                <h2>Новости</h2>
+                <div class="content_left">
+
+                    @{
+                        Html.ValidationSummary(false);
+                        var projectNews = new InvestNetwork.Models.ProjectNew();
+                        <fieldset>
+                            <div class="accrodation">
+                                <div class="punchline_text_box">
+
+                                    <div class="join_row">
+                                        <div class="join_label"><strong>@Html.LabelFor(model => projectNews.Description)</strong></div>
+                                        <div class="join_element">
+                                            @Html.TextAreaFor(model => projectNews.Description)
+                                        </div>
+                                    </div>
+
+                                    @Html.HiddenFor(model => model.ProjectFilesDirectory)
+                                    @Html.HiddenFor(model => model.ProjectID)
+                                </div>
+                            </div>
+                        </fieldset>
+                    }
+
+
+                    <div class="blog_post">
+                        <div class="blog_postcontent">
+                            <div class="image_frame">
+                            </div>
+                            <a class="date"><strong>18</strong><i>Август</i></a>
+                            <h3><a href="blog-post.html">Название новости</a></h3>
+                            <div class="post_info_content">
+                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
+                            </div>
+                            <!-- end section -->
+                        </div>
+                        <div class="clearfix divider_line"></div>
+                    </div>
+                    <!-- /# end post -->
+
+                </div>
+            </div>
+            <!-- end tab single section -->
+
+            <div id="tab3" class="tab-content" style="display: none;">
+                <h2 style="margin-bottom:0px; margin-top:0px">Комментарии</h2>
+                <div class="content_left" style="padding:0px">
+
+                    <div class="comment_form" style="margin-bottom:10px;">
+
+                        <h5>Добавить комментарий</h5>
+                        
+                        <textarea id="comment" class="comment_textarea_bg" style="height:100px; width:450px"></textarea>
+                        <div class="clearfix"></div>
+                        <input type="button" id="send_comment" value="Отправить" class="comment_submit">
+
+                    </div>
+                    <div class="clearfix divider_line10" style="margin:0px"></div>
+
+                    @{
+                        foreach (InvestNetwork.Models.ProjectComment comment in ViewBag.projectComments)
+                        {
+                            <div class="comment_wrap">
+                                <div class="gravatar">
+                                    @Html.UserImage(comment.User.Id, true, 50, 50, new { @class = "teammempic" })
+                                </div>
+                                <div class="comment_content" style="min-height:0px">
+                                    <div class="comment_meta">
+                                        <div class="comment_author">@Html.UserLink(comment.User.Id) - <i>@comment.CommentDate.ToString("dd.MM.yyyy HH:mm:ss")</i></div>
+                                    </div>
+                                    <div class="comment_text">
+                                        <p>@comment.CommentText</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    <script>
+                    var baseUrl = '@Url.Content("~/")';
+                    (function () {
+                        $("#send_comment").bind("click", function () {
+
+                            var msgval = $("#comment").val();
+                            var msglen = msgval.length;
+                            // Проверка длины сообщения
+                            if (msglen < 1) {
+                                return;
+                            }
+                            $.ajax({
+                                type: 'POST',
+                                url: baseUrl + 'Api/ProjectComment/Send',
+                                data: {
+                                    Comment: msgval,
+                                    ProjectID: '@Model.ProjectID',
+                                    FromUserID: '@ViewBag.user.Id'
+                                },
+                                dataType: "json",
+                                success: function (data) {
+                                    if (data) {
+                                        $("#comment").val(null);
+                                    }
+                                },
+                                error: function () {
+                                }
+                            });
+                        });
+                    })();
+                </script>
+                    
+                </div>
+            </div>
+            <!-- end tab single section -->
         </div>
-        
     </div>
+
 </div>
+
+<script src="~/Scripts/kendo/2014.1.318/kendo.web.min.js"></script>
+<script src="~/Scripts/kendo/2014.1.415/lang/kendo.ru-RU.js"></script>
+
+<script>
+    (function () {
+        $("#projectNews_Description").kendoEditor({
+            imageBrowser: {
+                transport: {
+                    read: "@Url.Action("Read", "ImageBrowser", new { rootDirectory = Model.ProjectFilesDirectory })",
+                    destroy: {
+                        url: "@Url.Action("Destroy", "ImageBrowser", new { rootDirectory = Model.ProjectFilesDirectory })",
+                        type: "POST"
+                    },
+                    create: {
+                        url: "@Url.Action("Create", "ImageBrowser", new { rootDirectory = Model.ProjectFilesDirectory })",
+                        type: "POST"
+                    },
+                    thumbnailUrl: "@Url.Action("Thumbnail", "ImageBrowser", new { rootDirectory = Model.ProjectFilesDirectory })",
+                    uploadUrl: "@Url.Action("Upload", "ImageBrowser", new { rootDirectory = Model.ProjectFilesDirectory })",
+                    imageUrl: "/ImageBrowser/Image?path={0}&rootDirectory=" + "@Model.ProjectFilesDirectory"
+                }
+            }
+        });
+    })();
+</script>
 
 @section Scripts{}

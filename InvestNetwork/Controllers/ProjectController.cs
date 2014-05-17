@@ -16,13 +16,19 @@ namespace InvestNetwork.Controllers
         //
         // GET: /Project/
         private readonly IProjectRepository _projectRepository;
+        //private readonly IProjectNewsRepository _projectNewsRepository;
+        private readonly IProjectCommentRepository _projectCommentRepository;
         private readonly IProjectStatusRepository _projectStatusRepository;
         private readonly IInvestContext _investContext;
         private const int PROJECT_COUNT_AT_THE_FIRST_VIEWING = 20;
 
-        public ProjectController(IProjectRepository projectRepository, IProjectStatusRepository projectStatusRepository, IInvestContext investContext)
+        public ProjectController(IProjectRepository projectRepository, IProjectStatusRepository projectStatusRepository, 
+                                 /*IProjectNewsRepository projectNewsRepository, */ IProjectCommentRepository projectCommentRepository,
+                                 IInvestContext investContext)
         {
             this._projectRepository = projectRepository;
+            //this._projectNewsRepository = projectNewsRepository;
+            this._projectCommentRepository = projectCommentRepository;
             this._projectStatusRepository = projectStatusRepository;
             this._investContext = investContext;
         }
@@ -133,6 +139,9 @@ namespace InvestNetwork.Controllers
 
         public ActionResult View(int id)
         {
+            //ViewBag.projectNews = _projectNewsRepository.GetAll().Where(p => p.ProjectID == id).ToList();
+            ViewBag.projectComments = _projectCommentRepository.GetByProjectId(id);
+            ViewBag.user = _investContext.CurrentUser;
             return View(_projectRepository.GetById(id));
         }
     }
