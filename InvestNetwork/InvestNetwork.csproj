@@ -144,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\ProjectController.cs" />
+    <Compile Include="Api\ProjectCommentController.cs" />
     <Compile Include="Application\Core\FileUploader\EntryType.cs" />
     <Compile Include="Application\Core\FileUploader\FileBrowserEntry.cs" />
     <Compile Include="Application\Core\FileUploader\FileUploader.cs" />
@@ -217,6 +218,7 @@
     <Compile Include="Models\Partials\Payment.cs" />
     <Compile Include="Models\Partials\PaymentStatus.cs" />
     <Compile Include="Models\Partials\Project.cs" />
+    <Compile Include="Models\Partials\ProjectComment.cs" />
     <Compile Include="Models\Partials\ProjectStatus.cs" />
     <Compile Include="Models\Partials\Region.cs" />
     <Compile Include="Models\Partials\Role.cs" />
@@ -237,6 +239,12 @@
     <Compile Include="Models\Project.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProjectComment.cs">
+      <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectNew.cs">
+      <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ProjectStatus.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -249,6 +257,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\Repository\Implementations\MessageRepository.cs" />
+    <Compile Include="Models\Repository\Implementations\ProjectCommentRepository.cs" />
     <Compile Include="Models\Repository\Implementations\ProjectRepository.cs" />
     <Compile Include="Models\Repository\Implementations\ProjectStatusRepository.cs" />
     <Compile Include="Models\Repository\Implementations\RegionRepository.cs" />
@@ -270,6 +279,8 @@
     </Compile>
     <Compile Include="Models\Repository\Implementations\RoleRepository.cs" />
     <Compile Include="Models\Repository\Implementations\UserRepository.cs" />
+    <Compile Include="Models\Repository\Interfaces\IProjectNewsRepository.cs" />
+    <Compile Include="Models\Repository\Interfaces\IProjectCommentRepository.cs" />
     <Compile Include="Models\Role.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -277,6 +288,7 @@
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Showcases\Message\MessageSending.cs" />
+    <Compile Include="Models\Showcases\Project\ProjectCommentSending.cs" />
     <Compile Include="Models\Showcases\Project\ProjectStart.cs" />
     <Compile Include="Models\Showcases\Project\ProjectStartingSecondStep.cs" />
     <Compile Include="Models\Showcases\UsersInfo\PartycipationUsersInfo.cs" />

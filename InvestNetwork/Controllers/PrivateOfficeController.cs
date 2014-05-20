@@ -16,14 +16,17 @@ namespace InvestNetwork.Controllers
         private readonly IUsersInfoRepository _usersInfoRepository;
         private readonly IUserRepository _userRepository;
         private readonly IMessageRepository _messageRepository;
+        private readonly IProjectRepository _projectRepository;
         private readonly IInvestContext _investContext;
 
         public PrivateOfficeController(IUserRepository userRepository, IUsersInfoRepository usersInfoRepository, 
-                                       IMessageRepository messageRepository, IInvestContext investContext)
+                                       IMessageRepository messageRepository, IProjectRepository projectRepository,
+                                       IInvestContext investContext)
         {
             _userRepository = userRepository;
             _usersInfoRepository = usersInfoRepository;
             _messageRepository = messageRepository;
+            _projectRepository = projectRepository;
             _investContext = investContext;
         }
 
@@ -36,6 +39,7 @@ namespace InvestNetwork.Controllers
             ViewBag.usersInfo = _usersInfoRepository.GetByUserId(user.Id);
             ViewBag.messages = _messageRepository.GetByUserId(user.Id);
             ViewBag.partycipations = _usersInfoRepository.GetPartycipation(user.ID);
+            ViewBag.projects = _projectRepository.GetAll().Where(e => e.AuthorID == user.Id).ToList();
             UserSettings userSettings = new UserSettings();
             
             userSettings.Avatar = user.Avatar;
@@ -59,6 +63,7 @@ namespace InvestNetwork.Controllers
             ViewBag.usersInfo = _usersInfoRepository.GetByUserId(user.Id);
             ViewBag.messages = _messageRepository.GetByUserId(user.Id);
             ViewBag.partycipations = _usersInfoRepository.GetPartycipation(user.ID);
+            ViewBag.projects = _projectRepository.GetAll().Where(e => e.AuthorID == user.Id).ToList();
             UserSettings userSettings = new UserSettings();
 
             userSettings.Avatar = user.Avatar;

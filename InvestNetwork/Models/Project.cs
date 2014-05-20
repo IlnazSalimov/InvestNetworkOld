@@ -17,6 +17,8 @@ namespace InvestNetwork.Models
         public Project()
         {
             this.Payments = new HashSet<Payment>();
+            this.ProjectNews = new HashSet<ProjectNew>();
+            this.ProjectComments = new HashSet<ProjectComment>();
         }
     
         public int ProjectID { get; set; }
@@ -43,5 +45,7 @@ namespace InvestNetwork.Models
         public virtual Scope Scope { get; set; }
         public virtual ICollection<Payment> Payments { get; set; }
         public virtual ProjectStatus ProjectStatus { get; set; }
+        public virtual ICollection<ProjectNew> ProjectNews { get; set; }
+        public virtual ICollection<ProjectComment> ProjectComments { get; set; }
     }
 }

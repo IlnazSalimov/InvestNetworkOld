@@ -20,8 +20,8 @@
 }
 
 @Html.UserImage(Model.User.Id, false, 210, 230, new { @class = "teammempic" })
-<p>Адрес: @(Model.UsersInfo == null) ? "" : Model.UsersInfo.Address</p>
-<p>О себе: @(Model.UsersInfo == null) ? "" : Model.UsersInfo.AboutMyself</p>
+<p>Адрес: @((Model.UsersInfo == null) ? "" : Model.UsersInfo.Address)</p>
+<p>О себе: @((Model.UsersInfo == null) ? "" : Model.UsersInfo.AboutMyself)</p>
 
 <div class="content_left">
     <h2><strong>Проекты</strong></h2>

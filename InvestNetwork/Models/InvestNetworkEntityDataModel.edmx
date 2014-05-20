@@ -11,6 +11,8 @@
           <EntitySet Name="Messages" EntityType="InvestNetworkModel.Store.Messages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Payments" EntityType="InvestNetworkModel.Store.Payments" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PaymentStatuses" EntityType="InvestNetworkModel.Store.PaymentStatuses" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProjectComments" EntityType="InvestNetworkModel.Store.ProjectComments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProjectNews" EntityType="InvestNetworkModel.Store.ProjectNews" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Projects" EntityType="InvestNetworkModel.Store.Projects" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProjectStatuses" EntityType="InvestNetworkModel.Store.ProjectStatuses" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Regions" EntityType="InvestNetworkModel.Store.Regions" store:Type="Tables" Schema="dbo" />
@@ -29,6 +31,14 @@
           <AssociationSet Name="FK__Payments__Projec__7E37BEF6" Association="InvestNetworkModel.Store.FK__Payments__Projec__7E37BEF6">
             <End Role="Projects" EntitySet="Projects" />
             <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProjectCo__Proje__4F47C5E3" Association="InvestNetworkModel.Store.FK__ProjectCo__Proje__4F47C5E3">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProjectComments" EntitySet="ProjectComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProjectNe__Proje__4B7734FF" Association="InvestNetworkModel.Store.FK__ProjectNe__Proje__4B7734FF">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProjectNews" EntitySet="ProjectNews" />
           </AssociationSet>
           <AssociationSet Name="FK__Projects__Projec__73BA3083" Association="InvestNetworkModel.Store.FK__Projects__Projec__73BA3083">
             <End Role="ProjectStatuses" EntitySet="ProjectStatuses" />
@@ -91,6 +101,24 @@
           <Property Name="PaymentStatusID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Status" Type="nvarchar" MaxLength="100" />
           <Property Name="StatusCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectComments">
+          <Key>
+            <PropertyRef Name="ProjectCommentID" />
+          </Key>
+          <Property Name="ProjectCommentID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FromUserID" Type="int" Nullable="false" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="CommentText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CommentDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectNews">
+          <Key>
+            <PropertyRef Name="ProjectNewsID" />
+          </Key>
+          <Property Name="ProjectNewsID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Projects">
           <Key>
@@ -216,6 +244,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__ProjectCo__Proje__4F47C5E3">
+          <End Role="Projects" Type="InvestNetworkModel.Store.Projects" Multiplicity="1" />
+          <End Role="ProjectComments" Type="InvestNetworkModel.Store.ProjectComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="ProjectComments">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProjectNe__Proje__4B7734FF">
+          <End Role="Projects" Type="InvestNetworkModel.Store.Projects" Multiplicity="1" />
+          <End Role="ProjectNews" Type="InvestNetworkModel.Store.ProjectNews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="ProjectNews">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Projects__Projec__73BA3083">
           <End Role="ProjectStatuses" Type="InvestNetworkModel.Store.ProjectStatuses" Multiplicity="1" />
           <End Role="Projects" Type="InvestNetworkModel.Store.Projects" Multiplicity="*" />
@@ -309,6 +361,16 @@
             <End Role="Project" EntitySet="Projects" />
           </AssociationSet>
           <EntitySet Name="UsersInfoes" EntityType="InvestNetworkModel.UsersInfo" />
+          <EntitySet Name="ProjectNews" EntityType="InvestNetworkModel.ProjectNew" />
+          <AssociationSet Name="FK__ProjectNe__Proje__4B7734FF" Association="InvestNetworkModel.FK__ProjectNe__Proje__4B7734FF">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectNew" EntitySet="ProjectNews" />
+          </AssociationSet>
+          <EntitySet Name="ProjectComments" EntityType="InvestNetworkModel.ProjectComment" />
+          <AssociationSet Name="FK__ProjectCo__Proje__4F47C5E3" Association="InvestNetworkModel.FK__ProjectCo__Proje__4F47C5E3">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectComment" EntitySet="ProjectComments" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Role">
           <Key>
@@ -371,6 +433,8 @@
           <Property Type="Int32" Name="FundingDuration" />
           <Property Type="Boolean" Name="IsInspected" Nullable="false" />
           <Property Type="String" Name="ProjectFilesDirectory" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProjectNews" Relationship="InvestNetworkModel.FK__ProjectNe__Proje__4B7734FF" FromRole="Project" ToRole="ProjectNew" />
+          <NavigationProperty Name="ProjectComments" Relationship="InvestNetworkModel.FK__ProjectCo__Proje__4F47C5E3" FromRole="Project" ToRole="ProjectComment" />
         </EntityType>
         <EntityType Name="Scope">
           <Key>
@@ -541,6 +605,50 @@
           <Property Type="DateTime" Name="RegisterDate" Nullable="false" Precision="3" />
           <Property Type="String" Name="AboutMyself" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="ProjectNew">
+          <Key>
+            <PropertyRef Name="ProjectNewsID" />
+          </Key>
+          <Property Type="Int32" Name="ProjectNewsID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ProjectID" Nullable="false" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Project" Relationship="InvestNetworkModel.FK__ProjectNe__Proje__4B7734FF" FromRole="ProjectNew" ToRole="Project" />
+        </EntityType>
+        <Association Name="FK__ProjectNe__Proje__4B7734FF">
+          <End Type="InvestNetworkModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="InvestNetworkModel.ProjectNew" Role="ProjectNew" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="ProjectNew">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProjectComment">
+          <Key>
+            <PropertyRef Name="ProjectCommentID" />
+          </Key>
+          <Property Type="Int32" Name="ProjectCommentID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="FromUserID" Nullable="false" />
+          <Property Type="Int32" Name="ProjectID" Nullable="false" />
+          <Property Type="String" Name="CommentText" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CommentDate" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Project" Relationship="InvestNetworkModel.FK__ProjectCo__Proje__4F47C5E3" FromRole="ProjectComment" ToRole="Project" />
+        </EntityType>
+        <Association Name="FK__ProjectCo__Proje__4F47C5E3">
+          <End Type="InvestNetworkModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="InvestNetworkModel.ProjectComment" Role="ProjectComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="ProjectComment">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -689,6 +797,26 @@
                 <ScalarProperty Name="Family" ColumnName="Family" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="UsersInfoID" ColumnName="UsersInfoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectNews">
+            <EntityTypeMapping TypeName="InvestNetworkModel.ProjectNew">
+              <MappingFragment StoreEntitySet="ProjectNews">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ProjectNewsID" ColumnName="ProjectNewsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectComments">
+            <EntityTypeMapping TypeName="InvestNetworkModel.ProjectComment">
+              <MappingFragment StoreEntitySet="ProjectComments">
+                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+                <ScalarProperty Name="CommentText" ColumnName="CommentText" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="FromUserID" ColumnName="FromUserID" />
+                <ScalarProperty Name="ProjectCommentID" ColumnName="ProjectCommentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

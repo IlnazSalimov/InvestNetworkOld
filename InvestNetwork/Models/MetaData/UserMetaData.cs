@@ -20,7 +20,7 @@ namespace InvestNetwork.Models
 
         [Required]
         [Display(Name = "Имя")]
-        public int FullName { get; set; }
+        public string FullName { get; set; }
 
         [Display(Name = "Получать уведомления по почте")]
         public bool PostNotice { set; get; }

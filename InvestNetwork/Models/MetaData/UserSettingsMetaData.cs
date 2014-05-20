@@ -8,6 +8,9 @@ namespace InvestNetwork.Models
 {
     public class UserSettingsMetaData
     {
+        [Display(Name = "Имя")]
+        public string FullName { get; set; }
+
         [Display(Name = "E-mail")]
         [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*\\.([a-z]{2,4})$", ErrorMessage = "Некорректный E-mail")]
         public string Email { set; get; }

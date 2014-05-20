@@ -48,7 +48,8 @@
             <li class=""><a href="#tab-two1">Данные</a></li>
             <li class=""><a href="#tab-two2">История</a></li>
             <li class=""><a href="#tab-two3">Сообщения</a></li>
-            <li class=""><a href="#tab-two4">Настройки</a></li>
+            <li class=""><a href="#tab-two4">Проекты</a></li>
+            <li class=""><a href="#tab-two5">Настройки</a></li>
 
         </ul>
         <!-- /# end tab links -->
@@ -261,7 +262,7 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(model => part.ProjectName)
+                                    @Html.ActionLink(part.ProjectName, "View", "Project", new { id = part.ProjectId }, new { @class="project_name" })
                                 </td>
                                 <td>
                                     @Html.DisplayFor(model => part.ProjectStatus)
@@ -387,6 +388,34 @@
             <!-- end tab single section -->
 
             <div id="tab-two4" class="tab-content-two fullpage" style="display: none;">
+                <h2><strong>Мои проекты</strong></h2>
+                <div class="content_left">
+                    @{
+                        var projects = ViewBag.Projects as List<InvestNetwork.Models.Project>;
+                        foreach (InvestNetwork.Models.Project project in projects)
+                        {
+                            <div class="blog_post">
+                                <div class="blog_postcontent">
+                                    <div class="image_frame small">
+                                            @Html.ProjectImage(project.ProjectID, true, false, 210, 230, new { @class = "teammempic" })
+                                    </div>
+                                    <div class="post_info_content_small">
+                                        <h3>@Html.ActionLink(project.Name, "View", "Project", new { id = project.ProjectID }, new { @class="project_name" })</h3>
+                                        <div class="clearfix"></div>
+                                        <p>@project.ShortDescription</p>
+
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="clearfix divider_line3"></div>
+                        }
+                    }
+                </div>
+            </div>
+            <!-- end tab single section -->
+
+            <div id="tab-two5" class="tab-content-two fullpage" style="display: none;">
                 @{
                     var userSettings = ViewBag.userSettings as InvestNetwork.Models.UserSettings;
                     
@@ -399,33 +428,45 @@
                     @Html.HiddenFor(e => userSettings.Password)
                     <div class="clearfix divider_line10"></div>
                     <h3>E-mail и Имя профиля</h3>
-                    <div class="join_label">@Html.LabelFor(e => userSettings.Email)</div>
-                    <div class="join_element">
-                        @Html.EditorFor(e => userSettings.Email)
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(e => userSettings.Email)</div>
+                        <div class="join_element">
+                            @Html.EditorFor(e => userSettings.Email)
+                        </div>
                     </div>
-                    <div class="join_label">@Html.LabelFor(e => userSettings.FullName)</div>
-                    <div class="join_element">
-                        @Html.EditorFor(e => userSettings.FullName)
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(e => userSettings.FullName)</div>
+                        <div class="join_element">
+                            @Html.EditorFor(e => userSettings.FullName)
+                        </div>
                     </div>
                     <div class="clearfix divider_line10"></div>
                     <h3>Смена пароля</h3>
-                    <div class="join_label">@Html.LabelFor(e => userSettings.OldPassword)</div>
-                    <div class="join_element">
-                        @Html.EditorFor(e => userSettings.OldPassword)
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(e => userSettings.OldPassword)</div>
+                        <div class="join_element">
+                            @Html.EditorFor(e => userSettings.OldPassword)
+                        </div>
                     </div>
-                    <div class="join_label">@Html.LabelFor(e => userSettings.NewPassword)</div>
-                    <div class="join_element">
-                        @Html.EditorFor(e => userSettings.NewPassword)
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(e => userSettings.NewPassword)</div>
+                        <div class="join_element">
+                            @Html.EditorFor(e => userSettings.NewPassword)
+                        </div>
                     </div>
-                    <div class="join_label">@Html.LabelFor(e => userSettings.ConfirmPassword)</div>
-                    <div class="join_element">
-                        @Html.EditorFor(e => userSettings.ConfirmPassword)
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(e => userSettings.ConfirmPassword)</div>
+                        <div class="join_element">
+                            @Html.EditorFor(e => userSettings.ConfirmPassword)
+                        </div>
                     </div>
                     <div class="clearfix divider_line10"></div>
                     <h3>Почта</h3>
-                    <div class="join_label">@Html.LabelFor(e => userSettings.PostNotice)</div>
-                    <div class="join_element">
-                        @Html.CheckBox("check", userSettings.PostNotice ?? true, new { id = "userSettings_PostNotice" })
+                    <div class="join_row">
+                        <div class="join_label">@Html.LabelFor(e => userSettings.PostNotice)</div>
+                        <div class="join_element">
+                            @Html.CheckBox("check", userSettings.PostNotice ?? true, new { id = "userSettings_PostNotice" })
+                        </div>
                     </div>
                     <div class="join_row">
                         <input type="button" id="btnSaveSettings" value="Сохранить" />
