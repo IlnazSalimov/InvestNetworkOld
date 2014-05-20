@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Serialization;
 
 namespace InvestNetwork.Models
 {
@@ -27,13 +28,14 @@ namespace InvestNetwork.Models
     public partial class Project : IEntity
     {
         private IUserRepository _userRepository = DependencyResolver.Current.GetService<IUserRepository>();
+        private IUserInfo _userRepository = DependencyResolver.Current.GetService<IUserRepository>();
         private IProjectStatusRepository _projectStatusRepository = DependencyResolver.Current.GetService<IProjectStatusRepository>();
 
         public string AuthorFullName
         {
             get
             {
-                return _userRepository.GetById(this.AuthorID).FullName;
+                return _userRepository.GetById(this.AuthorID).;
             }
         }
 
