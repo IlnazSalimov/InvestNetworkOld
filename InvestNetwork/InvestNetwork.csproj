@@ -198,6 +198,7 @@
     <Compile Include="Models\Partials\PaymentStatus.cs" />
     <Compile Include="Models\Partials\Project.cs" />
     <Compile Include="Models\Partials\ProjectComment.cs" />
+    <Compile Include="Models\Partials\ProjectNew.cs" />
     <Compile Include="Models\Partials\ProjectStatus.cs" />
     <Compile Include="Models\Partials\Region.cs" />
     <Compile Include="Models\Partials\Role.cs" />
@@ -237,6 +238,7 @@
     </Compile>
     <Compile Include="Models\Repository\Implementations\MessageRepository.cs" />
     <Compile Include="Models\Repository\Implementations\ProjectCommentRepository.cs" />
+    <Compile Include="Models\Repository\Implementations\ProjectNewsRepository.cs" />
     <Compile Include="Models\Repository\Implementations\ProjectRepository.cs" />
     <Compile Include="Models\Repository\Implementations\ProjectStatusRepository.cs" />
     <Compile Include="Models\Repository\Implementations\RegionRepository.cs" />

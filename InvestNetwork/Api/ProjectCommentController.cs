@@ -21,7 +21,7 @@ namespace InvestNetwork.Api
 
         [Authorize]
         [HttpPost]
-        public bool Send(ProjectCommentSending model)
+        public object Send(ProjectCommentSending model)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace InvestNetwork.Api
                 _projectCommentRepository.Insert(comment);
                 _projectCommentRepository.SaveChanges();
 
-                return true;
+                return new { CommentDate = comment.CommentDate.ToString("dd.MM.yyyy HH:mm:ss") };
             }
             catch
             { return false; }
