@@ -122,7 +122,7 @@
                         <input type="button" id="send_comment" value="Отправить" class="comment_submit">
 
                     </div>
-                    <div class="clearfix divider_line10" style="margin:0px"></div>
+                    <div class="clearfix divider_line10" style="margin:0px" id="after"></div>
 
                     @{
                         foreach (InvestNetwork.Models.ProjectComment comment in ViewBag.projectComments)
@@ -166,6 +166,21 @@
                                 success: function (data) {
                                     if (data) {
                                         $("#comment").val(null);
+                                            $("#after").after(
+                                                "<div class='comment_wrap'>" +
+                                                "    <div class='gravatar'>" +
+                                                "        <a href='/Profile/GetProfile/@ViewBag.user.Id'><img class='teammempic' src=@ViewBag.user.Avatar@@50x50sc></a>" +
+                                                "   </div>" +
+                                                "   <div class='comment_content' style='min-height:0px'>" +
+                                                "       <div class='comment_meta'>" +
+                                                "           <div class='comment_author'><a href='/Profile/GetProfile/@ViewBag.user.Id'>SpiriT</a> - <i>" + data.CommentDate + "</i></div>" +
+                                                "       </div>" +
+                                                "       <div class='comment_text'>" +
+                                                "           <p>" + msgval + "</p>" +
+                                                "       </div>" +
+                                                "    </div>" +
+                                                "</div>"
+                                                );
                                     }
                                 },
                                 error: function () {
