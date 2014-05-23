@@ -28,14 +28,15 @@ namespace InvestNetwork.Models
     public partial class Project : IEntity
     {
         private IUserRepository _userRepository = DependencyResolver.Current.GetService<IUserRepository>();
-        private IUserInfo _userRepository = DependencyResolver.Current.GetService<IUserRepository>();
+        private IUsersInfoRepository _userInfoRepository = DependencyResolver.Current.GetService<IUsersInfoRepository>();
         private IProjectStatusRepository _projectStatusRepository = DependencyResolver.Current.GetService<IProjectStatusRepository>();
 
         public string AuthorFullName
         {
             get
             {
-                return _userRepository.GetById(this.AuthorID).;
+                UsersInfo authorInfo = _userInfoRepository.GetByUserId(this.AuthorID);
+                return String.Format("{0} {1}", authorInfo.Name, authorInfo.Family);
             }
         }
 

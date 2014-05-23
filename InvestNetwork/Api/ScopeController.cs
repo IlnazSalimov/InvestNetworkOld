@@ -19,10 +19,10 @@ namespace InvestNetwork.Api
             this._scopeRepository = scopeRepository;
         }
 
-        public List<ScopeDto> GetAllScopes()
+        public List<ScopeDTO> GetAllScopes()
         {
             List<Scope> sc = _scopeRepository.GetAll();
-            return _scopeRepository.GetAll().Select(s => new ScopeDto
+            return _scopeRepository.GetAll().Select(s => new ScopeDTO
             {
                 ScopeID = s.ScopeID,
                 Title = s.Title

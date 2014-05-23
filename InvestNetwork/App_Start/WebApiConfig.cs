@@ -19,11 +19,15 @@ namespace InvestNetwork
 
             config.EnableQuerySupport();
 
-            ODataModelBuilder modelBuilder = new ODataConventionModelBuilder();
-            modelBuilder.EntitySet<ProjectDto>("Project");
+            ODataConventionModelBuilder modelBuilder = new ODataConventionModelBuilder();
+            modelBuilder.EntitySet<ProjectDTO>("Project");
 
             Microsoft.Data.Edm.IEdmModel model = modelBuilder.GetEdmModel();
             config.Routes.MapODataRoute("ODataRoute", "odata", model);
+
+            var json = config.Formatters.JsonFormatter;
+            json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
         }
     }
 }

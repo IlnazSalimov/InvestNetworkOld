@@ -37,5 +37,7 @@ namespace InvestNetwork.Models
         public DbSet<PaymentStatus> PaymentStatuses { get; set; }
         public DbSet<ProjectStatus> ProjectStatuses { get; set; }
         public DbSet<UsersInfo> UsersInfoes { get; set; }
+        public DbSet<ProjectNew> ProjectNews { get; set; }
+        public DbSet<ProjectComment> ProjectComments { get; set; }
     }
 }

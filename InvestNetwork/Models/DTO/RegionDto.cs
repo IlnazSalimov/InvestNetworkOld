@@ -5,7 +5,7 @@ using System.Web;
 
 namespace InvestNetwork.Models
 {
-    public class RegionDto
+    public class RegionDTO
     {
         public int RegionID { get; set; }
         public string RegionName { get; set; }

@@ -52,17 +52,6 @@ namespace InvestNetwork.Models
         [Range((int)FundingDurationRanges.Min, (int)FundingDurationRanges.Max, ErrorMessage = "Продолжительность финансирования должна быть в пределах от 1 до 60 дней")]
         [Display(Name = "Продолжительность финансирования")]
         public string FundingDuration { get; set; }*/
-
-        [XmlElement(IsNullable = true)]
-        public int LocationCityID { get; set; }
-        [XmlElement(IsNullable = true)]
-        public System.DateTime StartDate { get; set; }
-        [XmlElement(IsNullable = true)]
-        public System.DateTime EndDate { get; set; }
-        [XmlElement(IsNullable = true)]
-        public decimal NecessaryFunding { get; set; }
-        [XmlElement(IsNullable = true)]
-        public int FundingDuration { get; set; }
     }
 
 

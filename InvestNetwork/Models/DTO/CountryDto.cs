@@ -6,7 +6,7 @@ using System.Web;
 
 namespace InvestNetwork.Models
 {
-    public class CountryDto
+    public class CountryDTO
     {
         public int CountryID { get; set; }
         public string CountryName { get; set; }
