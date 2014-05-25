@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace InvestNetwork.Core
 {
+    /// <summary>
+    /// Интерфейс, используемый для взаимодействия с конкретной реализации ORM
+    /// </summary>
     public interface IDataContext
     {
         IDbSet<TEntity> Set<TEntity>() where TEntity : class;

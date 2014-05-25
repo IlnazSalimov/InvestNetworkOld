@@ -20,18 +20,18 @@ namespace InvestNetwork.Api
             this._cityRepository = cityRepository;
         }
 
-        public List<CountryDto> GetAllContries()
+        public List<CountryDTO> GetAllContries()
         {
-            return _countryRepository.GetAll().Select(c => new CountryDto
+            return _countryRepository.GetAll().Select(c => new CountryDTO
             {
                 CountryID = c.CountryID,
                 CountryName = c.CountryName
             }).ToList();
         }
 
-        public List<RegionDto> GetCountryRegions(int id)
+        public List<RegionDTO> GetCountryRegions(int id)
         {
-            return _regionRepository.GetAll().Select(r => new RegionDto
+            return _regionRepository.GetAll().Select(r => new RegionDTO
             {
                 RegionID = r.RegionID,
                 RegionName = r.RegionName,
@@ -39,9 +39,9 @@ namespace InvestNetwork.Api
             }).Where(r => r.CountryID == id).ToList();
         }
 
-        public List<CityDto> GetRegionCities(int id)
+        public List<CityDTO> GetRegionCities(int id)
         {
-            return _cityRepository.GetAll().Select(c => new CityDto
+            return _cityRepository.GetAll().Select(c => new CityDTO
             {
                 CityID = c.CityID,
                 CityName = c.CityName,
@@ -50,10 +50,10 @@ namespace InvestNetwork.Api
             }).Where(c => c.RegionID == id).ToList();
         }
 
-        public CityDto GetCityById(int id)
+        public CityDTO GetCityById(int id)
         {
             City city = _cityRepository.GetById(id);
-            return new CityDto
+            return new CityDTO
             {
                 CityID = city.CityID,
                 CityName = city.CityName,

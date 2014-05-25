@@ -1,4 +1,5 @@
-﻿using InvestNetwork.Context;
+﻿using InvestNetwork.Application.Core;
+using InvestNetwork.Context;
 using InvestNetwork.Controllers;
 using InvestNetwork.Core;
 using InvestNetwork.Models;
@@ -35,6 +36,7 @@ namespace InvestNetwork.Ninject
             kernel.Bind<IMessageRepository>().To<MessageRepository>();
             kernel.Bind<IProjectCommentRepository>().To<ProjectCommentRepository>();
             kernel.Bind<IProjectNewsRepository>().To<ProjectNewsRepository>();
+            kernel.Bind<IMapper>().To<CommonMapper>();
             kernel.Bind<IProjectNewsCommentsRepository>().To<ProjectNewsCommentsRepository>();
 
             DependencyResolver.SetResolver(new CustomDependencyResolver(kernel));

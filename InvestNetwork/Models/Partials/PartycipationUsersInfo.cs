@@ -17,6 +17,7 @@ namespace InvestNetwork.Models.Partials
         public string ProjectStatus { set; get; }
         public decimal Sum { set; get; }
         public string PaymentStatus { set; get; }
+
         public int ID
         {
            get {

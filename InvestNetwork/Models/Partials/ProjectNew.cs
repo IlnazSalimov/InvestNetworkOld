@@ -15,4 +15,5 @@ namespace InvestNetwork.Models
             get { return this.ProjectNewsID; }
         }
     }
+
 }

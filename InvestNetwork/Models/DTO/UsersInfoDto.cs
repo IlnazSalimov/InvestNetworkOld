@@ -5,7 +5,7 @@ using System.Web;
 
 namespace InvestNetwork.Models
 {
-    public class UsersInfoDto
+    public class UsersInfoDTO
     {
         public int UsersInfoID { get; set; }
         public int UserID { get; set; }
