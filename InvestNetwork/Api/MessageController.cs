@@ -9,12 +9,33 @@ using InvestNetwork.Models;
 
 namespace InvestNetwork.Api
 {
+    /// <summary>
+    /// Предоставляет метод, отвечающий за отправление сообщения пользователя
+    /// </summary>
     public class MessageController : ApiController
     {
+        /// <summary>
+        /// Предоставляет доступ к хранилищу данных о пользователях
+        /// </summary>
         private readonly IUserRepository _userRepository;
+
+        /// <summary>
+        /// Предоставляет доступ к хранилищу данных о сообщениях пользователей
+        /// </summary>
         private readonly IMessageRepository _messageRepository;
+
+        /// <summary>
+        /// Экземпляр класса InvestContext, предоставляет доступ к системным данным приложения.
+        /// Может быть использован для доступа к текущему авторизованному пользователю
+        /// </summary>
         private readonly IInvestContext _investContext;
 
+        /// <summary>
+        /// Инициализирует новый экземпляр ProjectCommentController с внедрением зависемостей к хранилищу данных о пользователях и их сообщениях
+        /// </summary>
+        /// <param name="userRepository">Экземпляр класса UserRepository, предоставляющий доступ к хранилищу данных о пользователях</param>
+        /// <param name="investContext">Экземпляр класса InvestContext, предоставляющий доступ к системным данным приложения</param>
+        /// <param name="messageRepository">Экземпляр класса ProjectCommentRepository, предоставляющий доступ к хранилищу данных о ссобщениях пользователей</param>
         public MessageController(IUserRepository userRepository, IInvestContext investContext, IMessageRepository messageRepository)
         {
             _userRepository = userRepository;
@@ -22,6 +43,11 @@ namespace InvestNetwork.Api
             _investContext = investContext;
         }
 
+        /// <summary>
+        /// Отправляет сообщение пользователя
+        /// </summary>
+        /// <param name="model">Модель сообщения</param>
+        /// <returns>Результат отправления сообщения</returns>
         [Authorize]
         [HttpPost]
         public bool Send(MessageSending model)

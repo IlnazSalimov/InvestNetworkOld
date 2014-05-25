@@ -1571,8 +1571,11 @@
     <Content Include="Views\Project\CompleteSecondStepOfStart.cshtml" />
     <Content Include="Views\Profile\GetProfile.cshtml" />
     <Content Include="Views\Admin\GetAllProjects.cshtml" />
-    <Content Include="Views\Shared\_LayoutExtended.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Shared\Error.cshtml" />
+=======
+    <Content Include="Views\Shared\_LayoutExtended.cshtml" />
+>>>>>>> 2f6805d275e7aa7d6bd49414c490d3af1e4b2ca4
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

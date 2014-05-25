@@ -18,8 +18,12 @@ namespace InvestNetwork.Controllers
         /// <summary>
         /// Предоставляет доступ к хранилищу данных о проектах.</summary>
         private readonly IProjectRepository _projectRepository;
+<<<<<<< HEAD
+        /// <summary>
+=======
         private readonly IProjectNewsRepository _projectNewsRepository;
         private readonly IProjectNewsCommentsRepository _projectNewsCommentsRepository;
+>>>>>>> 2f6805d275e7aa7d6bd49414c490d3af1e4b2ca4
         /// Предоставляет доступ к хранилищу данных о новостях проекта.</summary>
         private readonly IProjectNewsRepository _projectNewsRepository;
 

@@ -9,17 +9,38 @@ using InvestNetwork.Models;
 
 namespace InvestNetwork.Api
 {
+    /// <summary>
+    /// Предоставляет метод, отвечающий за редактирование настроек профиля пользователя
+    /// </summary>
     public class UserSettingsController : ApiController
     {
+        /// <summary>
+        /// Предоставляет доступ к хранилищу данных о пользователях
+        /// </summary>
         private readonly IUserRepository _userRepository;
+
+        /// <summary>
+        /// Экземпляр класса InvestContext, предоставляет доступ к системным данным приложения.
+        /// Может быть использован для доступа к текущему авторизованному пользователю
+        /// </summary>
         private readonly IInvestContext _investContext;
 
+        /// <summary>
+        /// Инициализирует новый экземпляр контроллера настроек профиля пользователя
+        /// </summary>
+        /// <param name="userRepository">Экземпляр класса UserRepository, предоставляющий доступ к хранилищу данных о пользователях</param>
+        /// <param name="investContext">Экземпляр класса InvestContext, предоставляющий доступ к системным данным приложения</param>
         public UserSettingsController(IUserRepository userRepository, IInvestContext investContext)
         {
             _userRepository = userRepository;
             _investContext = investContext;
         }
 
+        /// <summary>
+        /// Редактирует личную информацию пользователя
+        /// </summary>
+        /// <param name="model">Модель настроек профиля пользователя</param>
+        /// <returns>Объект результата сохранения профиля пользователя</returns>
         [Authorize]
         [HttpPost]
         public object Edit(UserSettings model)

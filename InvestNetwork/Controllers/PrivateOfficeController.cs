@@ -9,16 +9,45 @@ using System.Configuration;
 
 namespace InvestNetwork.Controllers
 {
+    /// <summary>
+    /// Предоставляет методы, которые отвечают за бизнес логику личного кабинета пользователя
+    /// </summary>
     public class PrivateOfficeController : Controller
     {
-        //
-        // GET: /UsersInfo/
+        /// <summary>
+        /// Предоставляет доступ к хранилищу личных данных пользователей
+        /// </summary>
         private readonly IUsersInfoRepository _usersInfoRepository;
+
+        /// <summary>
+        /// Предоставляет доступ к хранилищу данных о пользователях
+        /// </summary>
         private readonly IUserRepository _userRepository;
+
+        /// <summary>
+        /// Предоставляет доступ к хранилищу данных о сообщениях пользователей
+        /// </summary>
         private readonly IMessageRepository _messageRepository;
+
+        /// <summary>
+        /// Предоставляет доступ к хранилищу данных о проектах
+        /// </summary>
         private readonly IProjectRepository _projectRepository;
+
+        /// <summary>
+        /// Экземпляр класса InvestContext, предоставляет доступ к системным данным приложения.
+        /// Может быть использован для доступа к текущему авторизованному пользователю
+        /// </summary>
         private readonly IInvestContext _investContext;
 
+        /// <summary>
+        /// Инициализирует новый экземпляр PrivateOfficeController с внедрением зависемостей к хранилищу данных о пользователях, их личной информации, настройках, проектах исообщениях
+        /// </summary>
+        /// <param name="userRepository">Экземпляр класса UserRepository, предоставляющий доступ к хранилищу данных о пользователях</param>
+        /// <param name="usersInfoRepository">Экземпляр класса UsersInfoRepository, предоставляющий доступ к хранилищу личных данных о пользователях</param>
+        /// <param name="messageRepository">Экземпляр класса MessageRepository, предоставляющий доступ к хранилищу данных сообщених пользователей</param>
+        /// <param name="projectRepository">Экземпляр класса ProjectRepository, предоставляющий доступ к хранилищу данных о проектах</param>
+        /// <param name="investContext">Экземпляр класса InvestContext, предоставляющий доступ к системным данным приложения</param>
         public PrivateOfficeController(IUserRepository userRepository, IUsersInfoRepository usersInfoRepository, 
                                        IMessageRepository messageRepository, IProjectRepository projectRepository,
                                        IInvestContext investContext)
@@ -30,6 +59,10 @@ namespace InvestNetwork.Controllers
             _investContext = investContext;
         }
 
+        /// <summary>  
+        /// Метод отвечающий за бизнес логику на странице личного кабинета пользователя.
+        /// </summary>
+        /// <returns>Экземпляр ViewResult, который выполняет визуализацию представления.</returns>
         [HttpGet]
         [Authorize]
         public ActionResult Index()
@@ -54,6 +87,11 @@ namespace InvestNetwork.Controllers
             return View(user);
         }
 
+        /// <summary>  
+        /// Метод отвечающий за бизнес логику на главной странице аутентификации.
+        /// </summary>
+        /// <param name="file">Объект, представляющий собой изображение профиля пользователя</param>
+        /// <returns>Экземпляр ViewResult, который выполняет визуализацию представления.</returns>
         [Authorize]
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase file)

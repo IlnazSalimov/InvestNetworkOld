@@ -37,6 +37,7 @@ namespace InvestNetwork.Ninject
             kernel.Bind<IProjectCommentRepository>().To<ProjectCommentRepository>();
             kernel.Bind<IProjectNewsRepository>().To<ProjectNewsRepository>();
             kernel.Bind<IMapper>().To<CommonMapper>();
+            kernel.Bind<IProjectNewsCommentsRepository>().To<ProjectNewsCommentsRepository>();
 
             DependencyResolver.SetResolver(new CustomDependencyResolver(kernel));
             GlobalConfiguration.Configuration.DependencyResolver =

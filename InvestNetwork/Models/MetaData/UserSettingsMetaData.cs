@@ -6,6 +6,9 @@ using System.Web;
 
 namespace InvestNetwork.Models
 {
+    /// <summary>
+    /// Класс для установки мета-данных соответствующей модели
+    /// </summary>
     public class UserSettingsMetaData
     {
         [Display(Name = "Имя")]

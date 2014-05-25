@@ -14,10 +14,18 @@ namespace InvestNetwork.Models
     
     public partial class ProjectNew
     {
+        public ProjectNew()
+        {
+            this.ProjectNewsComments = new HashSet<ProjectNewsComment>();
+        }
+    
         public int ProjectNewsID { get; set; }
         public int ProjectID { get; set; }
         public string Description { get; set; }
+        public System.DateTime NewsDate { get; set; }
+        public string NewsTittle { get; set; }
     
         public virtual Project Project { get; set; }
+        public virtual ICollection<ProjectNewsComment> ProjectNewsComments { get; set; }
     }
 }

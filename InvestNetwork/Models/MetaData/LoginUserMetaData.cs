@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Security.Principal;
 using System.Web;
 
 namespace InvestNetwork.Models
 {
-    /// <summary>
-    /// Класс для установки мета-данных соответствующей модели
-    /// </summary>
-    public class UserMetaData
+    public class LoginUserMetaData
     {
         [Required]
         [Display(Name = "E-mail")]
@@ -22,12 +18,7 @@ namespace InvestNetwork.Models
         public string Password { get; set; }
 
         [Required]
-        [Display(Name = "Имя")]
-        public string FullName { get; set; }
-
-        [Display(Name = "Получать уведомления по почте")]
-        public bool PostNotice { set; get; }
+        [Display(Name = "Запомнить меня")]
+        public bool RememberMe { get; set; }
     }
-
-
 }

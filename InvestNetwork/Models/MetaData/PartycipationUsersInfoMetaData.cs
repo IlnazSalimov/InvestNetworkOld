@@ -6,6 +6,9 @@ using System.Web;
 
 namespace InvestNetwork.Models.MetaData
 {
+    /// <summary>
+    /// Класс для установки мета-данных соответствующей модели
+    /// </summary>
     public class PartycipationUsersInfoMetaData
     {
         [DisplayFormat(ApplyFormatInEditMode = true,
