@@ -8,7 +8,7 @@ namespace InvestNetwork.Models
 {
     public interface ICityRepository
     {
-        List<City> GetAll();
+        IQueryable<City> GetAll();
         City GetById(int id);
     }
 }

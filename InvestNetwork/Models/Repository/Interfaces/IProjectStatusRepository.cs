@@ -8,7 +8,7 @@ namespace InvestNetwork.Models
 {
     public interface IProjectStatusRepository
     {
-        List<ProjectStatus> GetAll();
+        IQueryable<ProjectStatus> GetAll();
         ProjectStatus GetById(int id);
         ProjectStatus GetByCode(int code);
         void Insert(ProjectStatus model);

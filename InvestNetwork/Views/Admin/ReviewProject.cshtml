@@ -1,4 +1,4 @@
-﻿@using InvestNetwork.Application.Core.Extensions.Html;
+﻿@using InvestNetwork.Application.Core;
 @using InvestNetwork.Models;
 @model Project
 
@@ -69,7 +69,7 @@
                     @if (isProjectOnReview || isProjectActive)
                     {
                         <li>
-                            <a href="@Url.Action("BlockProject", "Admin", new { Id = Model.ProjectID }, null)" class="but_lock"><i class="icon-lock icon-large"></i> Заблокировать</a>
+                            <a class="but_lock block"><i class="icon-lock icon-large"></i> Заблокировать</a>
                         </li>
                     }
                 </ul>
@@ -80,4 +80,24 @@
     </div>
 </div>
 
-@section Scripts{}
+@section Scripts{
+    <script>
+        var baseUrl = '@Url.Content("~/")';
+        (function () {
+            $(".block").bind("click", function () {
+                debugger;
+                $.ajax({
+                    type: 'GET',
+                    url: baseUrl + "Api/Admin/BlockProject/" + '@Model.ID',
+                    success: function (response) {
+                        console.log(response);
+                    },
+                    error: function () {
+                        console.log("Error");
+                    },
+                    dataType: "json"
+                });
+            });
+        })();
+    </script>
+    }

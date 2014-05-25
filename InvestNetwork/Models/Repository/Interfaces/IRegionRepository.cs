@@ -8,7 +8,7 @@ namespace InvestNetwork.Models
 {
     public interface IRegionRepository
     {
-        List<Region> GetAll();
+        IQueryable<Region> GetAll();
         Region GetById(int id);
     }
 }

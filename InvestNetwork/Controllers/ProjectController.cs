@@ -18,7 +18,6 @@ namespace InvestNetwork.Controllers
         /// <summary>
         /// Предоставляет доступ к хранилищу данных о проектах.</summary>
         private readonly IProjectRepository _projectRepository;
-        private readonly IProjectNewsRepository _projectNewsRepository;
         /// <summary>
         /// Предоставляет доступ к хранилищу данных о новостях проекта.</summary>
         private readonly IProjectNewsRepository _projectNewsRepository;
@@ -180,7 +179,14 @@ namespace InvestNetwork.Controllers
         /// <returns>Экземпляр ViewResult со списком проектов, который выполняет визуализацию представления.</returns>
         public ActionResult Discover()
         {
-            return View(_projectRepository.GetAll().Where(p => p.Status == ProjectStatusEnum.Active).Take(PROJECT_COUNT_AT_THE_FIRST_VIEWING));
+            IProjectStatusRepository psr = DependencyResolver.Current.GetService<IProjectStatusRepository>();
+            IQueryable<ProjectStatus> projectStatus = psr.GetAll();
+            var q = (from p in _projectRepository.GetAll()
+                     from ps in projectStatus
+                    where p.ProjectStatusID == ps.ProjectStatusID &&
+                    ps.StatusCode == (int)ProjectStatusEnum.Active
+                    select p).Take(PROJECT_COUNT_AT_THE_FIRST_VIEWING);
+            return View(q.ToList());
         }
 
         /// <summary>  

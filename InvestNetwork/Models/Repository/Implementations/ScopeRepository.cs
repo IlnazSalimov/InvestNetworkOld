@@ -13,9 +13,9 @@ namespace InvestNetwork.Models
         {
             this.scopeRepository = scopeRepository;
         }
-        public List<Scope> GetAll()
+        public IQueryable<Scope> GetAll()
         {
-            return scopeRepository.GetAll().ToList();
+            return scopeRepository.GetAll();
         }
 
         public Scope GetById(int id)

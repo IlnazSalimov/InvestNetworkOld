@@ -42,7 +42,7 @@ namespace InvestNetwork.Models
         /// </summary>  
         /// <param name="context">Экземпляр класса InvestNetworkEntities, предоставляющий доступ к хранилищу данных приложения.</param>
         /// <returns>Новый экземпляр ProjectController.</returns>
-        public Repository(InvestNetworkEntities context)
+        public Repository(IDataContext context)
         {
             this.dataContext = context;
         }
@@ -126,10 +126,10 @@ namespace InvestNetwork.Models
         /// Сохраняет изменения в базу данных.</summary>
         public void SaveChanges()
         {
-            try
-            {
-                this.dataContext.SaveChanges();
-            }
+            //try
+            //{
+            this.dataContext.SaveChanges();
+            /*}
             catch (DbEntityValidationException dbEx)
             {
                 foreach (var validationErrors in dbEx.EntityValidationErrors)
@@ -139,7 +139,7 @@ namespace InvestNetwork.Models
                         Trace.TraceInformation("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
                     }
                 }
-            }
+            }*/
         }
     }
 }

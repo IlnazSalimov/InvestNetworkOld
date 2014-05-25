@@ -14,9 +14,9 @@ namespace InvestNetwork.Models
             this.projectStatusRepository = projectStatusRepository;
         }
 
-        public List<ProjectStatus> GetAll()
+        public IQueryable<ProjectStatus> GetAll()
         {
-            return projectStatusRepository.GetAll().ToList();
+            return projectStatusRepository.GetAll();
         }
 
         public ProjectStatus GetById(int id)

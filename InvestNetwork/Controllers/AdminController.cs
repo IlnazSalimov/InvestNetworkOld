@@ -68,44 +68,6 @@ namespace InvestNetwork.Controllers
             return View(_projectRepository.GetAll().Where(p => !p.IsInspected));
         }
 
-
-        /// <summary>  
-        /// Метод отвечающий за бизнес логику блокировки проекта с заданным идентификатором.</summary>
-        /// <param name="Id">Идентификатор проекта</param>
-        /// <returns>Экземпляр RedirectToRouteResult с названием метода действия и идентификатором проекта, который выполняет перенаправление к заданному методу.</returns>
-        public ActionResult BlockProject(int Id)
-        {
-            _projectRepository.GetById(Id).Status = ProjectStatusEnum.Blocked;
-            _projectRepository.SaveChanges();
-            return RedirectToAction("ReviewProject", new { Id = Id });
-        }
-
-        /// <summary>  
-        /// Метод отвечающий за бизнес логику публикации проекта с заданным идентификатором.</summary>
-        /// <param name="Id">Идентификатор проекта</param>
-        /// <returns>Экземпляр RedirectToRouteResult с названием метода действия и идентификатором проекта, который выполняет перенаправление к заданному методу.</returns>
-        public ActionResult PublishProject(int Id)
-        {
-            Project reviewingProject = _projectRepository.GetById(Id);
-            reviewingProject.Status = ProjectStatusEnum.Active;
-            reviewingProject.IsInspected = true;
-            _projectRepository.SaveChanges();
-            return RedirectToAction("ReviewProject", new { Id = Id });
-        }
-
-        /// <summary>  
-        /// Метод отвечающий за бизнес логику одобрения проекта с заданным идентификатором.</summary>
-        /// <param name="Id">Идентификатор проекта</param>
-        /// <returns>Экземпляр RedirectToRouteResult с названием метода действия и идентификатором проекта, который выполняет перенаправление к заданному методу.</returns>
-        public ActionResult ApproveProject(int Id)
-        {
-            Project reviewingProject = _projectRepository.GetById(Id);
-            reviewingProject.IsInspected = true;
-            _projectRepository.SaveChanges();
-            return RedirectToAction("ReviewProject", new { Id = Id });
-        }
-
-
         /// <summary>  
         /// Метод отвечающий за бизнес логику просмотра всех проектов.</summary>
         /// <param name="Id">Идентификатор проекта</param>

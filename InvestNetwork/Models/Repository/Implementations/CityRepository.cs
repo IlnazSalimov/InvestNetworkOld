@@ -14,9 +14,9 @@ namespace InvestNetwork.Models
             this.cityRepository = cityRepository;
         }
 
-        public List<City> GetAll()
+        public IQueryable<City> GetAll()
         {
-            return cityRepository.GetAll().ToList();
+            return cityRepository.GetAll();
         }
 
         public City GetById(int id)

@@ -14,9 +14,9 @@ namespace InvestNetwork.Models
             this.regionRepository = regionRepository;
         }
 
-        public List<Region> GetAll()
+        public IQueryable<Region> GetAll()
         {
-            return regionRepository.GetAll().ToList();
+            return regionRepository.GetAll();
         }
 
         public Region GetById(int id)

@@ -8,9 +8,9 @@ namespace InvestNetwork.Models
 {
     public interface IMessageRepository
     {
-        List<Message> GetAll();
+        IQueryable<Message> GetAll();
         Message GetById(int id);
-        List<Message> GetByUserId(int id);
+        IQueryable<Message> GetByUserId(int id);
         void Insert(Message model);
         void Update(Message model);
         void Delete(Message model);

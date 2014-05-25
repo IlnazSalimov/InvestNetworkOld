@@ -8,7 +8,7 @@ namespace InvestNetwork.Models
 {
     public interface ICountryRepository
     {
-        List<Country> GetAll();
+        IQueryable<Country> GetAll();
         Country GetById(int id);
     }
 }

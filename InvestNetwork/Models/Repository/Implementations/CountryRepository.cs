@@ -14,9 +14,9 @@ namespace InvestNetwork.Models
             this.countryRepository = countryRepository;
         }
 
-        public List<Country> GetAll()
+        public IQueryable<Country> GetAll()
         {
-            return countryRepository.GetAll().ToList();
+            return countryRepository.GetAll();
         }
 
         public Country GetById(int id)

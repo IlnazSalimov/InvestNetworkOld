@@ -13,9 +13,9 @@ namespace InvestNetwork.Models
         {
             this.roleRepository = userRepository;
         }
-        public List<Role> GetAll()
+        public IQueryable<Role> GetAll()
         {
-            return roleRepository.GetAll().ToList();
+            return roleRepository.GetAll();
         }
 
         public Role GetById(int id)

@@ -21,7 +21,6 @@ namespace InvestNetwork.Api
 
         public List<ScopeDTO> GetAllScopes()
         {
-            List<Scope> sc = _scopeRepository.GetAll();
             return _scopeRepository.GetAll().Select(s => new ScopeDTO
             {
                 ScopeID = s.ScopeID,

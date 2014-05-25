@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace InvestNetwork.Application.Core.Extensions.Html
+namespace InvestNetwork.Application.Core
 {
     /// <summary>
     /// Представляет поддержку для визуализации элементов расширенный список управления HTML в представлении.</summary>

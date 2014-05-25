@@ -468,6 +468,10 @@ height: 0;
 .project_details.custom {
     margin:10px 0 0 0;
 }
+
+:root *>.k-icon, :root *>.k-sprite, :root *>.k-button-group .k-tool-icon {
+ vertical-align:central
+}
 /*------------------------- custom ------------------------*/
 /*.our_team_box_big li strong i .author-name {
     font-size: 13px;

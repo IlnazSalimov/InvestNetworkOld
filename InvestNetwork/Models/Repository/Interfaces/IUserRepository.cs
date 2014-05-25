@@ -8,7 +8,7 @@ namespace InvestNetwork.Models
 {
     public interface IUserRepository
     {
-        List<User> GetAll();
+        IQueryable<User> GetAll();
         User GetById(int id);
         void Insert(User model);
         void Update(User model);

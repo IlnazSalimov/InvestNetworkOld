@@ -19,9 +19,9 @@ namespace InvestNetwork.Models
             this.projectCommentRepository = projectCommentRepository;
             this.userRepository = userRepository;
         }
-        public List<ProjectComment> GetAll()
+        public IQueryable<ProjectComment> GetAll()
         {
-            return projectCommentRepository.GetAll().ToList();
+            return projectCommentRepository.GetAll();
         }
 
         public ProjectComment GetById(int id)
@@ -31,11 +31,11 @@ namespace InvestNetwork.Models
             return projectCommentRepository.GetById(id);
         }
 
-        public List<ProjectComment> GetByProjectId(int id)
+        public IQueryable<ProjectComment> GetByProjectId(int id)
         {
             if (id == 0)
                 return null;
-            var list = projectCommentRepository.GetAll().Where(e => e.ProjectID == id).OrderByDescending(e => e.CommentDate).ToList();
+            var list = projectCommentRepository.GetAll().Where(e => e.ProjectID == id).OrderByDescending(e => e.CommentDate);
             foreach (ProjectComment comment in list)
             {
                 comment.User = userRepository.GetById(comment.FromUserID);

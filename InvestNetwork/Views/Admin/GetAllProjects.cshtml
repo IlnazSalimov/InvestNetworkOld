@@ -4,8 +4,8 @@
 }
 
 @section Styles{
-    <link href="~/Content/kendo/2014.1.415/kendo.default.min.css" rel="stylesheet" />
-    <link href="~/Content/kendo/2014.1.415/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/Styles/kendo/2014.1.415/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/Styles/kendo/2014.1.415/kendo.common.min.css" rel="stylesheet" />
 }
 
 @section Header{
@@ -30,7 +30,6 @@
 
 <script>
     (function () {
-        kendo.culture("ru-RU");
         $("#Grid").kendoGrid({
             columns: [
                 { field: "Name", title: "Название проекта", width: "150px", template: "<a href='/Admin/ReviewProject/${ProjectID}'>${Name}</a>" },

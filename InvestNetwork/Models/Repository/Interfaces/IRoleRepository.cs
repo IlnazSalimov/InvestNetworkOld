@@ -8,7 +8,7 @@ namespace InvestNetwork.Models
 {
     public interface IRoleRepository
     {
-        List<Role> GetAll();
+        IQueryable<Role> GetAll();
         Role GetById(int id);
         void Insert(Role model);
         void Update(Role model);

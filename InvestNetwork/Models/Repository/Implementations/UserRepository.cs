@@ -17,9 +17,9 @@ namespace InvestNetwork.Models
         {
             this.userRepository = userRepository;
         }
-        public List<User> GetAll()
+        public IQueryable<User> GetAll()
         {
-            return userRepository.GetAll().ToList();
+            return userRepository.GetAll();
         }
 
         public User GetById(int id)

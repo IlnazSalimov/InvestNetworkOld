@@ -8,7 +8,7 @@ namespace InvestNetwork.Models
 {
     public interface IScopeRepository
     {
-        List<Scope> GetAll();
+        IQueryable<Scope> GetAll();
         Scope GetById(int id);
         void Insert(Scope model);
     }

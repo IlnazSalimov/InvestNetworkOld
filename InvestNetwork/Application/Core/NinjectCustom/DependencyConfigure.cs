@@ -20,7 +20,7 @@ namespace InvestNetwork.Ninject
         public static void Initialize()
         {
             IKernel kernel = new StandardKernel();
-            kernel.Bind<IDataContext>().To<InvestNetworkEntities>();
+            kernel.Bind<IDataContext>().To<InvestNetworkEntities>().InRequestScope();
             kernel.Bind(typeof(IRepository<>)).To(typeof(Repository<>));
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<ICountryRepository>().To<CountryRepository>();

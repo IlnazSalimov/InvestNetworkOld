@@ -19,9 +19,9 @@ namespace InvestNetwork.Models
             this.messageRepository = messageRepository;
             this.userRepository = userRepository;
         }
-        public List<Message> GetAll()
+        public IQueryable<Message> GetAll()
         {
-            return messageRepository.GetAll().ToList();
+            return messageRepository.GetAll();
         }
 
         public Message GetById(int id)
@@ -31,11 +31,11 @@ namespace InvestNetwork.Models
             return messageRepository.GetById(id);
         }
 
-        public List<Message> GetByUserId(int id)
+        public IQueryable<Message> GetByUserId(int id)
         {
             if (id == 0)
                 return null;
-            var list = messageRepository.GetAll().Where(e => e.ToUserID == id).OrderByDescending(e => e.MessageDate).ToList();
+            var list = messageRepository.GetAll().Where(e => e.ToUserID == id).OrderByDescending(e => e.MessageDate);
             foreach(Message message in list)
             {
                 message.User = userRepository.GetById(message.FromUserID);

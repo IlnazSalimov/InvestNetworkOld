@@ -26,12 +26,11 @@ namespace InvestNetwork.Api
 
         public override IQueryable<ProjectDTO> Get()
         {
-            List<Project> projects = _projectRepository.GetAll();
+            IQueryable<Project> projects = _projectRepository.GetAll();
             List<ProjectDTO> pr = new List<ProjectDTO>();
             foreach (Project p in projects)
             {
-                ProjectDTO responseObject = _modelMapper.Map(p, typeof(Project), typeof(ProjectDTO)) as ProjectDTO;
-                pr.Add(responseObject);
+                pr.Add(_modelMapper.Map(p, typeof(Project), typeof(ProjectDTO)) as ProjectDTO);
             }
             return pr.AsQueryable();
         }

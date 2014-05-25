@@ -8,7 +8,7 @@ namespace InvestNetwork.Models
 {
     public interface IProjectRepository
     {
-        List<Project> GetAll();
+        IQueryable<Project> GetAll();
         Project GetById(int id);
         int Insert(Project model);
         void Update(Project model);

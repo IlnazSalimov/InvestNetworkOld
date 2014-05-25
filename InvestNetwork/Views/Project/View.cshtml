@@ -1,4 +1,4 @@
-﻿@using InvestNetwork.Application.Core.Extensions.Html;
+﻿@using InvestNetwork.Application.Core;
 
 @model InvestNetwork.Models.Project
 
@@ -160,7 +160,7 @@
                                 data: {
                                     Comment: msgval,
                                     ProjectID: '@Model.ProjectID',
-                                    FromUserID: '@ViewBag.user.Id'
+                                    FromUserID: ''
                                 },
                                 dataType: "json",
                                 success: function (data) {
@@ -169,11 +169,11 @@
                                             $("#after").after(
                                                 "<div class='comment_wrap'>" +
                                                 "    <div class='gravatar'>" +
-                                                "        <a href='/Profile/GetProfile/@ViewBag.user.Id'><img class='teammempic' src=@ViewBag.user.Avatar@@50x50sc></a>" +
+                                                "        <a href='/Profile/GetProfile/'><img class='teammempic'></a>" +
                                                 "   </div>" +
                                                 "   <div class='comment_content' style='min-height:0px'>" +
                                                 "       <div class='comment_meta'>" +
-                                                "           <div class='comment_author'><a href='/Profile/GetProfile/@ViewBag.user.Id'>SpiriT</a> - <i>" + data.CommentDate + "</i></div>" +
+                                                "           <div class='comment_author'><a href='/Profile/GetProfile/'>SpiriT</a> - <i>" + data.CommentDate + "</i></div>" +
                                                 "       </div>" +
                                                 "       <div class='comment_text'>" +
                                                 "           <p>" + msgval + "</p>" +

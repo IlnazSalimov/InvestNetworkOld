@@ -8,15 +8,25 @@ namespace InvestNetwork.Models
     public class ProjectRepository : IProjectRepository
     {
         private IRepository<Project> projectRepository;
+        private IProjectStatusRepository projectStatusRepository;
 
-        public ProjectRepository(IRepository<Project> projectRepository)
+        public ProjectRepository(IRepository<Project> projectRepository, IProjectStatusRepository projectStatusRepository)
         {
             this.projectRepository = projectRepository;
+            this.projectStatusRepository = projectStatusRepository;
         }
 
-        public List<Project> GetAll()
+        public IQueryable<Project> GetAll()
         {
-            return projectRepository.GetAll().ToList();
+            IQueryable<Project> projects = projectRepository.GetAll();
+            IQueryable<ProjectStatus> projectStatus = projectStatusRepository.GetAll();
+            return from p in projects
+                   from ps in projectStatus
+                   where p.ProjectStatusID == ps.ProjectStatusID &&
+                   ps.StatusCode != (int)ProjectStatusEnum.Uncreated
+                   select p;
+
+
         }
 
         public Project GetById(int id)

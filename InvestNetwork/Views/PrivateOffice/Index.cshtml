@@ -1,12 +1,13 @@
 ﻿@model InvestNetwork.Models.User
-@using InvestNetwork.Application.Core.Extensions.Html;
+@using InvestNetwork.Application.Core;
 @{
     ViewBag.Title = "Личный кабинет";
     Layout = "~/Views/Layouts/_Layout.cshtml";
 }
 
 @section Styles{
-    <link href="~/Styles/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" />
+    <link href="~/Styles/kendo/2014.1.415/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/Styles/kendo/2014.1.415/kendo.common.min.css" rel="stylesheet" />
 }
 
 @section Header{
@@ -544,17 +545,20 @@
 
 </div>
 
-<script src="~/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="~/Scripts/kendo/2014.1.415/kendo.web.min.js"></script>
+<script src="~/Scripts/kendo/2014.1.415/lang/kendo.ru-RU.js"></script>
+
 <script>
-    $(document).ready(function () {
-        $(".modalbox").fancybox({
+    (function () {
+        /*$(".modalbox").fancybox({
             minWidth: 350,
             minHeight: 200
         });
-        $("#contact").submit(function () { return false; });
-    });
-    (function () {
-        $("#usersInfo_DateOfBirth, #usersInfo_PasportIssueDate").datepicker({ dateFormat: 'dd.mm.yy' });
+        $("#contact").submit(function () { return false; });*/
+
+        $("#usersInfo_DateOfBirth, #usersInfo_PasportIssueDate").kendoDatePicker({
+            format: "dd.MM.yyyy"
+        });
     })();
 </script>
 
