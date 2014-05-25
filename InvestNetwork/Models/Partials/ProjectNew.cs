@@ -3,9 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace InvestNetwork.Models
 {
+    [MetadataType(typeof(ProjectNewMetaData))]
     public partial class ProjectNew : IEntity
     {
         public int ID

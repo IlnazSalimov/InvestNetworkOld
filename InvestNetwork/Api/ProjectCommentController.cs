@@ -8,17 +8,38 @@ using InvestNetwork.Models;
 
 namespace InvestNetwork.Api
 {
+    /// <summary>
+    /// Предоставляет метод, отвечающий за добавление комментария к проекту
+    /// </summary>
     public class ProjectCommentController : ApiController
     {
+        /// <summary>
+        /// Предоставляет доступ к хранилищу данных о комментариях к проекту
+        /// </summary>
         private readonly IProjectCommentRepository _projectCommentRepository;
-        private readonly IInvestContext _investContext;
 
+        /// <summary>
+        /// Экземпляр класса InvestContext, предоставляет доступ к системным данным приложения.
+        /// Может быть использован для доступа к текущему авторизованному пользователю
+        /// </summary>
+        private readonly IInvestContext _investContext;
+        
+        /// <summary>
+        /// Инициализирует новый экземпляр ProjectCommentController с внедрением зависемостей к хранилищу комметариев проектов
+        /// </summary>
+        /// <param name="investContext">Экземпляр класса InvestContext, предоставляющий доступ к системным данным приложения</param>
+        /// <param name="projectCommentRepository">Экземпляр класса ProjectCommentRepository, предоставляющий доступ к хранилищу данных о комментариях к проекту</param>
         public ProjectCommentController(IInvestContext investContext, IProjectCommentRepository projectCommentRepository)
         {
             _projectCommentRepository = projectCommentRepository;
             _investContext = investContext;
         }
 
+        /// <summary>
+        /// Добавляет комментарий пользователя к проекту
+        /// </summary>
+        /// <param name="model">Модель комментария</param>
+        /// <returns>Объект данных о комментарии</returns>
         [Authorize]
         [HttpPost]
         public object Send(ProjectCommentSending model)
@@ -26,7 +47,6 @@ namespace InvestNetwork.Api
             try
             {
                 User user = _investContext.CurrentUser;
-
                 ProjectComment comment = new ProjectComment()
                     {
                         FromUserID = user.Id,

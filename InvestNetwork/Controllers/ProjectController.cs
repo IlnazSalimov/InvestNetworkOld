@@ -17,6 +17,7 @@ namespace InvestNetwork.Controllers
         // GET: /Project/
         private readonly IProjectRepository _projectRepository;
         private readonly IProjectNewsRepository _projectNewsRepository;
+        private readonly IProjectNewsCommentsRepository _projectNewsCommentsRepository;
         private readonly IProjectCommentRepository _projectCommentRepository;
         private readonly IProjectStatusRepository _projectStatusRepository;
         private readonly IInvestContext _investContext;
@@ -24,10 +25,11 @@ namespace InvestNetwork.Controllers
 
         public ProjectController(IProjectRepository projectRepository, IProjectStatusRepository projectStatusRepository, 
                                  IProjectNewsRepository projectNewsRepository, IProjectCommentRepository projectCommentRepository,
-                                 IInvestContext investContext)
+                                 IProjectNewsCommentsRepository projectNewsCommentsRepository, IInvestContext investContext)
         {
             this._projectRepository = projectRepository;
             this._projectNewsRepository = projectNewsRepository;
+            this._projectNewsCommentsRepository = projectNewsCommentsRepository;
             this._projectCommentRepository = projectCommentRepository;
             this._projectStatusRepository = projectStatusRepository;
             this._investContext = investContext;
@@ -139,9 +141,15 @@ namespace InvestNetwork.Controllers
 
         public ActionResult View(int id)
         {
-            ViewBag.projectNews = _projectNewsRepository.GetAll().Where(p => p.ProjectID == id).ToList();
+            List<ProjectNew> projectNews = _projectNewsRepository.GetAll().Where(p => p.ProjectID == id).OrderByDescending(p => p.NewsDate).ToList();
+            foreach (ProjectNew _new in projectNews)
+            {
+                _new.ProjectNewsComments = _projectNewsCommentsRepository.GetByProjectNewsId(_new.ProjectNewsID);
+            }
+            ViewBag.projectNews = projectNews; 
             ViewBag.projectComments = _projectCommentRepository.GetByProjectId(id);
             ViewBag.user = _investContext.CurrentUser;
+            ViewBag.currDate = DateTime.Now;
             return View(_projectRepository.GetById(id));
         }
     }

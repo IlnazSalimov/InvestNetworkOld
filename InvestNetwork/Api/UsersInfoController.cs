@@ -8,17 +8,38 @@ using InvestNetwork.Models;
 
 namespace InvestNetwork.Api
 {
+    /// <summary>
+    /// Предоставляет метод, отвечающий за редактирование личной информации пользователя
+    /// </summary>
     public class UsersInfoController : ApiController
     {
+        /// <summary>
+        /// Предоставляет доступ к хранилищу данных личной информации пользователя
+        /// </summary>
         private readonly IUsersInfoRepository _usersInfoRepository;
+
+        /// <summary>
+        /// Экземпляр класса InvestContext, предоставляет доступ к системным данным приложения.
+        /// Может быть использован для доступа к текущему авторизованному пользователю
+        /// </summary>
         private readonly IInvestContext _investContext;
 
+        /// <summary>
+        /// Инициализирует новый экземпляр UsersInfoController с внедрением зависемостей к хранилищу личной информации пользователей
+        /// </summary>
+        /// <param name="usersInfoRepository">Экземпляр класса ProjectCommentRepository, предоставляющий доступ к хранилищу данных о пользователях</param>
+        /// <param name="investContext">Экземпляр класса InvestContext, предоставляющий доступ к системным данным приложения</param>
         public UsersInfoController(IUsersInfoRepository usersInfoRepository, IInvestContext investContext)
         {
             _usersInfoRepository = usersInfoRepository;
             _investContext = investContext;
         }
 
+        /// <summary>
+        /// Редактирует личную информацию пользователя
+        /// </summary>
+        /// <param name="model">Модель личной информации пользователя</param>
+        /// <returns>Результат сохранения личной информации</returns>
         [Authorize]
         [HttpPost]
         public object Edit(UsersInfo model)

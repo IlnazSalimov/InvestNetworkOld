@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Calabonga.Mvc.Extensions">
+      <HintPath>..\packages\MvcTools.2.0.6\lib\net40\Calabonga.Mvc.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Calabonga.Xml.Exports">
+      <HintPath>..\packages\XmlExport.0.2.4\lib\net40\Calabonga.Xml.Exports.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -125,6 +131,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\ProjectCommentController.cs" />
+    <Compile Include="Api\ProjectNewsCommentController.cs" />
+    <Compile Include="Api\ProjectNewsController.cs" />
     <Compile Include="Application\Core\FileUploader\EntryType.cs" />
     <Compile Include="Application\Core\FileUploader\FileBrowserEntry.cs" />
     <Compile Include="Application\Core\FileUploader\FileUploader.cs" />
@@ -189,7 +197,10 @@
     <Compile Include="Models\Message.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MetaData\LoginUserMetaData.cs" />
     <Compile Include="Models\MetaData\PartycipationUsersInfoMetaData.cs" />
+    <Compile Include="Models\MetaData\ProjectNewMetaData.cs" />
+    <Compile Include="Models\MetaData\SignupUserMetaData.cs" />
     <Compile Include="Models\MetaData\UserSettingsMetaData.cs" />
     <Compile Include="Models\Partials\City.cs" />
     <Compile Include="Models\Partials\Message.cs" />
@@ -199,6 +210,7 @@
     <Compile Include="Models\Partials\Project.cs" />
     <Compile Include="Models\Partials\ProjectComment.cs" />
     <Compile Include="Models\Partials\ProjectNew.cs" />
+    <Compile Include="Models\Partials\ProjectNewsComment.cs" />
     <Compile Include="Models\Partials\ProjectStatus.cs" />
     <Compile Include="Models\Partials\Region.cs" />
     <Compile Include="Models\Partials\Role.cs" />
@@ -225,6 +237,9 @@
     <Compile Include="Models\ProjectNew.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProjectNewsComment.cs">
+      <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ProjectStatus.cs">
       <DependentUpon>InvestNetworkEntityDataModel.tt</DependentUpon>
     </Compile>
@@ -238,6 +253,7 @@
     </Compile>
     <Compile Include="Models\Repository\Implementations\MessageRepository.cs" />
     <Compile Include="Models\Repository\Implementations\ProjectCommentRepository.cs" />
+    <Compile Include="Models\Repository\Implementations\ProjectNewsCommentsRepository.cs" />
     <Compile Include="Models\Repository\Implementations\ProjectNewsRepository.cs" />
     <Compile Include="Models\Repository\Implementations\ProjectRepository.cs" />
     <Compile Include="Models\Repository\Implementations\ProjectStatusRepository.cs" />
@@ -247,6 +263,7 @@
     <Compile Include="Models\Repository\Interfaces\ICityRepository.cs" />
     <Compile Include="Models\Repository\Interfaces\ICountryRepository.cs" />
     <Compile Include="Models\Repository\Interfaces\IMessageRepository.cs" />
+    <Compile Include="Models\Repository\Interfaces\IProjectNewsCommentsRepository.cs" />
     <Compile Include="Models\Repository\Interfaces\IProjectRepository.cs" />
     <Compile Include="Models\Repository\Interfaces\IProjectStatusRepository.cs" />
     <Compile Include="Models\Repository\Interfaces\IRegionRepository.cs" />
@@ -669,6 +686,7 @@
     <Content Include="Scripts\jcarousel\skin2.css" />
     <Content Include="Content\kendo\2014.1.415\images\kendoui.ttf" />
     <Content Include="Content\kendo\2014.1.415\images\kendoui.woff" />
+    <Content Include="App_Code\Content.cshtml" />
     <None Include="Scripts\jquery-1.9.1-vsdoc.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
@@ -1447,6 +1465,7 @@
     <Content Include="Scripts\kendo\2014.1.415\kendo.window.min.js.map" />
     <Content Include="Views\Project\CompleteSecondStepOfStart.cshtml" />
     <Content Include="Views\Profile\GetProfile.cshtml" />
+    <Content Include="Views\Shared\_LayoutExtended.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

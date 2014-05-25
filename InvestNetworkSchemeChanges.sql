@@ -171,6 +171,7 @@ alter table UsersInfo add AboutMyself nvarchar(max);
 ---------------------------------------------
 -- Леха 17.05.2014  Добавил таблицу для блога проекта
 -- Леха 18.05.2014  Добавил таблицу для комментариев проекта
+-- Леха 23.05.2014  Добавил поле дата новости проекта
 ---------------------------------------------
 CREATE TABLE ProjectNews (
 	ProjectNewsID INT IDENTITY (1, 1) PRIMARY KEY,
@@ -181,6 +182,15 @@ CREATE TABLE ProjectComments(
 	ProjectCommentID INT IDENTITY (1, 1) PRIMARY KEY,
 	FromUserID INT NOT NULL REFERENCES Users (Id),
 	ProjectID INT NOT NULL REFERENCES Projects (ProjectID),
+	CommentText NVARCHAR(MAX) NOT NULL,
+	CommentDate DATETIME NOT NULL
+)
+alter table ProjectNews add NewsDate DATETIME NOT NULL;
+alter table ProjectNews add NewsTittle NVARCHAR(250) NOT NULL DEFAULT '';
+CREATE TABLE ProjectNewsComments(
+	ProjectNewsCommentID INT IDENTITY (1, 1) PRIMARY KEY,
+	FromUserID INT NOT NULL REFERENCES Users (Id),
+	ProjectNewsID INT NOT NULL REFERENCES ProjectNews (ProjectNewsID),
 	CommentText NVARCHAR(MAX) NOT NULL,
 	CommentDate DATETIME NOT NULL
 )
